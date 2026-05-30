@@ -1,1 +1,7 @@
-@import "tailwindcss"
+@import "tailwindcss";
+
+.landingPageCards {
+    -webkit-box-shadow:0px 0px 10px 2px rgba(47, 56, 59, 0.9);
+-moz-box-shadow: 0px 0px 10px 2px rgba(47, 56, 59, 0.9);
+box-shadow: 0px 0px 10px 2px rgba(47, 56, 59, 0.9);
+}
