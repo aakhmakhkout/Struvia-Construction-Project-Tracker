@@ -6,12 +6,16 @@ const Home = () => {
   return (
     <div>
         <div className='flex'>
-            <div className='flex'>
+            <div>
              <Sidebar />
-            <Navbar />
             </div>
-        <div>Home</div>
-        <div><Outlet/></div>
+
+              <div className='w-full'>
+              <Navbar />
+              <div>
+                <Outlet/>
+              </div>
+            </div>
         </div>
     </div>
   )
