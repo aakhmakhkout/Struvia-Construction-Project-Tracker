@@ -1,8 +1,7 @@
-// import { Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import {ArrowRight} from "lucide-react"
 
 const LandingPageCards = ({data}) => {
-    console.log(data)
   return (
     <div className="flex flex-col gap-4 max-md:my-10">
         <div className="text-2xl font-bold text-[#fdba03]">
@@ -24,7 +23,7 @@ const LandingPageCards = ({data}) => {
                         <h1 className="text-2xl font-bold max-xl:text-xl max-lg:text-lg">{items.role}</h1>
                         <p className="text-white/80 max-lg:text-sm">{items.description}</p>
                     </div>
-                    <div className=" text-[#fdba03] flex justify-end p-3 max-lg:p-1"><button><ArrowRight size={30} strokeWidth={1.5} /></button></div>
+                    <div className=" text-[#fdba03] flex justify-end p-3 max-lg:p-1"><Link to="/home/dashboard"><ArrowRight size={30} strokeWidth={1.5} /></Link></div>
                     </div>
                     </div>
                 </div>

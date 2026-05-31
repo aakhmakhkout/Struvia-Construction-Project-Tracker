@@ -62,7 +62,7 @@ const LandingPage = () => {
         
         <div className='flex justify-between max-emd:flex-col max-emd:gap-3'>
           <div>
-            <h1 className='flex gap-1 items-center text-sm text-white/80'><Copyright size={18} strokeWidth={1.5} /> <h1>2026 <span className='text-[#fdba03] font-bold'>Noumaan Nabi</span>. All Rights Reserved</h1> </h1>
+            <h1 className='flex gap-1 items-center text-sm text-white/80'><Copyright size={18} strokeWidth={1.5} /> <span>2026 <span className='text-[#fdba03] font-bold'>Noumaan Nabi</span>. All Rights Reserved</span> </h1>
           </div>
 
           <div className='flex gap-2 items-center text-white/80'>
