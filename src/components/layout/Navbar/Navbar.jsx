@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux"
 import { userData } from "../../../data/usersData"
 import { useState } from "react"
-import { Bell } from "lucide-react"
+import { Bell, ChevronDown } from "lucide-react"
 
 const Navbar = () => {
+  const [showHidden, setshowHidden] = useState("hidden")
   let proStatusClass = null
   let {activeTab} = useSelector(state => state.layout)
   const {role} = useSelector(state => state.auth)
@@ -23,7 +24,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className='flex justify-between w-full bg-[#eae9f0] h-15 items-center px-10'>
+      <div className='flex justify-between w-full bg-[#eae9f0] h-15 items-center px-10 relative'>
 
         <div className='flex gap-10 items-center'>
           <div className="text-xl font-bold">
@@ -43,24 +44,29 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div>
-           <div className="flex relative">
+          <div className="w-60 h-15">
+           <div className="flex absolute top-0 right-4 flex-col w-60">
             {userData.map((items)=> {
-              return <div key={items.id} className="flex">
-                {items.role === role ? <div className="flex items-center gap-3">
+              return <div key={items.id}>
+                {items.role === role ? <div className="flex items-center h-15 justify-evenly">
+                <div className="flex  gap-3 items-center">
                   <div className="w-10 h-10 rounded-full overflow-hidden"><img src={items.pfp} alt="pfp" className="object-cover object-center w-10 h-10" /></div>
                   <div>
                   <h1 className="text-xl font-bold">{items.name}</h1>
                   <h2 className="text-sm text-black/70">{items.role}</h2>
                   </div>
+                </div>
+                  <div className="flex items-end"><button onClick={()=> {
+                    showHidden === "hidden" ? setshowHidden("flex") : setshowHidden("hidden")
+                  }} className="cursor-pointer"><ChevronDown size={28} strokeWidth={1.5} /></button></div>
                 </div>: null}
               </div>
             })}
-            <div className="absolute -bottom-15 bg-black/20 w-30 h-13">
+            <div className={`bg-[#eae9f0] ${showHidden} flex-col gap-2 py-3 rounded-b-xl items-center w-60`}>
             {userData.map((items)=> {
               if (items.role !== role) {
                 return <ul key={items.id}>
-                <li>{items.role}</li>
+                <li><span className="font-bold bg-[#cbc6d6] px-3 py-1 rounded-md">{items.role}</span></li>
                </ul>
               }
             })}
