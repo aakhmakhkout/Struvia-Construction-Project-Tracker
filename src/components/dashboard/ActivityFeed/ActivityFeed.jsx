@@ -1,8 +1,12 @@
-import React from 'react'
+import RecentActivites from "./RecentActivities.jsx"
+import UpcomingTasks from "./UpcomingTasks.jsx"
 
 const ActivityFeed = () => {
   return (
-    <div>ActivityFeed</div>
+    <div className="flex justify-between mt-5">
+      <RecentActivites />
+      <UpcomingTasks />
+    </div>
   )
 }
 

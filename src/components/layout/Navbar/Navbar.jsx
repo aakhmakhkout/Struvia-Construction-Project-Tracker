@@ -1,9 +1,11 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { userData } from "../../../data/usersData"
 import { useState } from "react"
 import { Bell, ChevronDown } from "lucide-react"
+import { setUser } from "../../../redux/features/authSlice"
 
 const Navbar = () => {
+  const dispatch = useDispatch()
   const [showHidden, setshowHidden] = useState("hidden")
   let proStatusClass = null
   let {activeTab} = useSelector(state => state.layout)
@@ -24,7 +26,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className='flex justify-between w-full bg-[#eae9f0] h-15 items-center px-10 relative'>
+      <div className='flex justify-between w-full navbar h-15 items-center px-10 relative'>
 
         <div className='flex gap-10 items-center'>
           <div className="text-xl font-bold">
@@ -48,7 +50,9 @@ const Navbar = () => {
            <div className="flex absolute top-0 right-4 flex-col w-60">
             {userData.map((items)=> {
               return <div key={items.id}>
-                {items.role === role ? <div className="flex items-center h-15 justify-evenly">
+                {items.role === role ? <div className="flex items-center h-15 justify-evenly" onLoad={()=> {
+                {dispatch(setUser(items.name))}
+                }}>
                 <div className="flex  gap-3 items-center">
                   <div className="w-10 h-10 rounded-full overflow-hidden"><img src={items.pfp} alt="pfp" className="object-cover object-center w-10 h-10" /></div>
                   <div>
