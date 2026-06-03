@@ -5,7 +5,7 @@ const dashboardStatusData = [
         id: 1,
         title: "Project Progress",
         data: "58%",
-        subtitle: "Complete",
+        subtitle: "Completed",
         icon: <CalendarCheck size={20} strokeWidth={1.5} />,
         color: "#fd4f0e",
         bgColor: "#fef2e3"

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 const PunchListPreview = () => {
   const punchlistData = useSelector(state => state.punchlist.punchListData)
   return (
-    <div className='w-[30%]  rounded-lg p-4 dashboardBottomCards flex flex-col gap-4 border border-black/20'>
+    <div className='w-[33%]  rounded-lg p-4 dashboardBottomCards flex flex-col gap-4 border border-black/20'>
        <div className='flex justify-between'>
         <h1 className='font-bold text-xl'>Punch List</h1>
         <button className='text-sm text-[#ff4800]'>View All</button>

@@ -14,7 +14,7 @@ const RecentActivities = () => {
         return <div key={idx} className="flex justify-between">
           <div className="flex gap-3">
            <div className="w-15 h-10 flex items-center justify-center rounded-lg">
-            <img src={rp1} alt="img" className="rounded-lg"/>
+            <img src={items.img} alt="img" className="rounded-lg"/>
            </div>
            <div>
             <h1 className="font-bold mb-1">{items.activity}</h1>

@@ -1,4 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import ra1 from "../../assets/rp2.jpg"
+import ra2 from "../../assets/ra2.jpg"
+import ra3 from "../../assets/ra3.jpg"
+import ra4 from "../../assets/ra4.jpg"
 
 export const dashboardSlice = createSlice({
     name: "dashboard",
@@ -7,25 +11,25 @@ export const dashboardSlice = createSlice({
         ProjectName: ["Skyline Villa Project"],
         recentActivites: [
             {
-            img: "img",
+            img: ra1,
             activity: "Bathroom Tiles Installation completed",
             subtitle: "Uploaded by Worker 1",
             time: "2h ago"
             }, 
             {
-            img: "img",
+            img: ra2,
             activity: "Electrical wiring - First floor",
             subtitle: "Completed by worker 3",
             time: "5h ago"
             }, 
             {
-            img: "img",
+            img: ra3,
             activity: "Site inspection done",
             subtitle: "by kaneki",
             time: "1d ago"
             }, 
             {
-            img: "img",
+            img: ra4,
             activity: "Payment of 2,00,000 approved",
             subtitle: "by kaneki to manager",
             time: "2d ago"

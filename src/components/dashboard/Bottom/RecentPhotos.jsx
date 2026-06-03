@@ -5,7 +5,7 @@ import rp4 from "../../../assets/rp4.jpg"
 
 const RecentPhotos = () => {
   return (
-    <div className='dashboardBottomCards w-[40%] p-4 rounded-lg border border-black/20 gap-3 flex flex-col'>
+    <div className='dashboardBottomCards w-[42%] p-4 rounded-lg border border-black/20 gap-3 flex flex-col'>
       <div className='flex justify-between'>
         <h1 className='font-bold text-xl'>Recent Photos</h1>
         <button className='text-sm text-[#ff4800]'>View All</button>

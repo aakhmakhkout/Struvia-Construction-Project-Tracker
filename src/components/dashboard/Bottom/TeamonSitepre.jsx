@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 const TeamonSitepre = () => {
   const teamOnSiteData = useSelector(state => state.dashboard.teamOnSite)
   return (
-    <div className='dashboardBottomCards border border-black/20 w-[25%] rounded-lg p-4 flex flex-col gap-3'>
+    <div className='dashboardBottomCards border border-black/20 w-[20%] rounded-lg p-4 flex flex-col gap-3'>
        <div className='flex justify-between'>
         <h1 className='font-bold text-xl'>Team On Site</h1>
         <button className='text-sm text-[#ff4800]'>View All</button>
