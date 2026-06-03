@@ -50,9 +50,9 @@ const dashboardStatusData = [
 
 ]
   return (
-    <div className="flex justify-between h-40 items-center">
+    <div className="flex justify-between h-30 items-center">
       {dashboardStatusData.map((items)=> {
-        return <div key={items.id} className="p-4 flex gap-10 rounded-lg weatherandlocation min-w-50 justify-between">
+        return <div key={items.id} className="p-4 flex gap-10 rounded-lg weatherandlocation min-w-50 justify-between border border-black/20">
           <div className="flex flex-col gap-1 ">
             <h1 className="font-bold">{items.title}</h1>
             <h2 className="text-2xl font-bold">{items.data}</h2>

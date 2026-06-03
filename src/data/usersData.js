@@ -14,14 +14,14 @@ export const userData = [
    {
         id:2,
         role: "Contractor",
-        name: "Kaneki",
+        name: "Kaneki Ken",
         pfp: contractorimg
     },
 
     {
         id:3,
         role: "Worker",
-        name: "isagi",
+        name: "Isagi Yoichi",
         pfp: workerimg
     }
 ]

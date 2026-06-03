@@ -12,7 +12,7 @@ const Welcome = () => {
       </div>
 
       <div className="flex gap-10 h-30 items-center flex-col justify-center" >
-        <div className="flex items-center gap-10 weatherandlocation p-3 rounded-lg">
+        <div className="flex items-center gap-10 weatherandlocation p-3 rounded-lg border border-black/20">
           <div className="flex gap-4 items-center">
             <div className="w-8"><img src={sun} alt="weather png" /></div>
             <div>
@@ -20,7 +20,7 @@ const Welcome = () => {
               <p className="text-sm text-black/60">Sunny</p>
             </div>
           </div>
-            <div className="w-[2px] h-10 bg-black/50"></div>
+            <div className="w-0.5 h-10 bg-black/50"></div>
           <div className="flex gap-4 items-center">
             <div><MapPin size={20} strokeWidth={1.5} /></div>
             <div>

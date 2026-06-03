@@ -56,6 +56,32 @@ export const dashboardSlice = createSlice({
                 date: "June 10",
                 time: "in 6 days"
             },
+        ],
+        teamOnSite:[
+            {
+                img: "pfp",
+                name: "Kaneki Ken",
+                field: "Contractor",
+                isPresent: true
+            },
+            {
+                img: "pfp",
+                name: "Isagi Yoichi",
+                field: "Electrician",
+                isPresent: true
+            },
+            {
+                img: "pfp",
+                name: "Nagi Seishiro",
+                field: "Plumber",
+                isPresent: false
+            },
+            {
+                img: "pfp",
+                name: "Eren yeager",
+                field: "Painter",
+                isPresent: true
+            },
         ]
     
     },

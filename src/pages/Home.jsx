@@ -4,7 +4,7 @@ import Sidebar from "../components/layout/Sidebar/Sidebar.jsx"
 
 const Home = () => {
   return (
-    <div className='w-full min-h-screen'>
+    <div className='w-full min-h-screen bg-[#f0f5ff]'>
         <div className='flex'>
             <div>
              <Sidebar />
