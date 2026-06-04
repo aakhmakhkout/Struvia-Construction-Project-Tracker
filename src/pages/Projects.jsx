@@ -1,8 +1,10 @@
-import React from 'react'
+import ContractorProjects from "../components/Projects/ProjectContractor/ContractorProjects.jsx"
 
 const Projects = () => {
   return (
-    <div>Projects</div>
+    <div>
+      <ContractorProjects />
+    </div>
   )
 }
 
