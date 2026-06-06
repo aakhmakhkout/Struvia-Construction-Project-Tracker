@@ -62,7 +62,7 @@ const CPCards = () => {
     startDate: "15-Jan, 2025",
     endDate: "30-Dec, 2025",
     budget: "1,20,00,000",
-    team: ["pfp", "pfp", "pfp", "pfp"],
+    team: ["pfp", "pfp", "pfp"],
   },
   {
     id: 3,
@@ -75,7 +75,7 @@ const CPCards = () => {
     startDate: "05-Mar, 2026",
     endDate: "15-Nov, 2027",
     budget: "3,50,00,000",
-    team: ["pfp", "pfp", "pfp", "pfp", "pfp"],
+    team: ["pfp", "pfp", "pfp"],
   },
   {
     id: 4,
@@ -101,62 +101,61 @@ const CPCards = () => {
     startDate: "20-Feb, 2026",
     endDate: "15-Dec, 2028",
     budget: "8,50,00,000",
-    team: ["pfp", "pfp", "pfp", "pfp"],
+    team: ["pfp", "pfp", "pfp"],
   },
-
   ]
+
   return (
-    <div>
-        <div>
-          {cardHeadings.map((items)=> {
-            return <div key={items.id}>
-              <h1>{items.title}</h1>
+    <div className='CPCards border border-black/20 p-4 mt-3'>
+      <table className='w-full'>
+        <thead>
+        <tr className='border-b border-black/20'>
+        {cardHeadings.map((items)=> {
+          return <th key={items.id}>
+            <div className='h-10 flex items-center '>
+            {items.title}
             </div>
-          })}
-        </div>
+            </th>
+        })}
+          </tr>
+        </thead>
 
-        <div>
-          {cardsData.map((items)=> {
-            return <div key={items.id}>
+        <tbody>
+        {cardsData.map((items)=> {
+          return <tr key={items.id}>
+            <td>
+              <div className='flex gap-2'>
               <div>
-
-                  <div>
-                  <img src={items.img} alt="img" />
-                  </div>
-
-                  <div>
-                    <h1>{items.title}</h1>
-                    <h3>{items.type}</h3>
+                {items.img}
+                </div>
+                <div>
+                {items.title}
+                <div>
+                  {items.type}
                   </div>
                 </div>
-
-                  <div>
-                    <p>{items.location}</p>
-                  </div>
-
-                  <div>
-                    <p>{items.status}</p>
-                  </div>
-
-                  <div>
-                    <p>{items.startDate}</p>
-                  </div>
-
-                  <div>
-                    <p>{items.endDate}</p>
-                  </div>
-
-                  <div>
-                    <h1>{items.budget}</h1>
-                  </div>
-
-                  <div>
-                    
-                  </div>
-
-            </div>
-          })}
-        </div>
+              </div>
+              </td>
+            <td>
+              <div className='flex flex-col'>
+                <div>
+                  {items.location}
+                </div>
+                <div>
+                  {items.country}
+                </div>
+              </div>
+              </td>
+            <td>{items.status}</td>
+            <td>{items.startDate}</td>
+            <td>{items.endDate}</td>
+            <td>{items.budget}</td>
+            <td>{items.team.map(items => items)}</td>
+            <td><button>...</button></td>
+          </tr>
+        })}
+        </tbody>
+        </table>
     </div>
   )
 }

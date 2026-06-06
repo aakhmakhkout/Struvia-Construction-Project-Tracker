@@ -25,7 +25,7 @@ const CPTabs = () => {
             bgColor: "#D1FAE5"
         },
         {
-            id:1,
+            id:4,
             title: "On Hold",
             color: "#EF4444",
             bgColor: "#FEE2E2"
