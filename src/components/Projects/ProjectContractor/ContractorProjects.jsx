@@ -8,7 +8,7 @@ import CPQuickActions from './CPQuickActions'
 
 const ContractorProjects = () => {
   return (
-    <div>
+    <div className='mb-10'>
         <div className='flex justify-between h-30 items-center'>
             <div>
                 <h1 className='text-4xl font-bold mb-2'>Projects</h1>
@@ -19,14 +19,20 @@ const ContractorProjects = () => {
 
         <div><CPTabs /></div>
 
-        <div><CPCards /></div>
-
-        <div> <CPPagination /></div>
-
+        <div className='CPCards border border-black/20 px-8  flex flex-col gap-3 mt-2'>
         <div>
-            <div><RecentProjectUpdates /></div>
-            <div><ProjectHealth /></div>
-            <div><CPQuickActions /></div>
+            <CPCards />
+        </div>
+            <div className='border-t-2 border-black/20 py-3'>
+            <CPPagination />
+            </div>
+            </div>
+
+
+        <div className='mt-8 flex justify-between'>
+            <RecentProjectUpdates />
+            <ProjectHealth />
+            <CPQuickActions />
         </div>
     </div>
   )

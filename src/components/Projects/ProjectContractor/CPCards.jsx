@@ -1,4 +1,4 @@
-import React from 'react'
+import {EllipsisVertical} from "lucide-react"
 
 const CPCards = () => {
   const cardHeadings = [
@@ -106,38 +106,41 @@ const CPCards = () => {
   ]
 
   return (
-    <div className='CPCards border border-black/20 p-4 mt-3'>
-      <table className='w-full'>
-        <thead>
-        <tr className='border-b border-black/20'>
+    <div className='flex flex-col gap-5'>
+
+      <div className='grid grid-cols-[2.5fr_1.5fr_1fr_1.5fr_1.5fr_1.5fr_1.5fr_1fr] border-b-2 border-black/20'>
         {cardHeadings.map((items)=> {
-          return <th key={items.id}>
-            <div className='h-10 flex items-center '>
+          return <div key={items.id}>
+            <div className='h-15 flex items-center font-bold'>
             {items.title}
             </div>
-            </th>
+            </div>
         })}
-          </tr>
-        </thead>
+        </div>
+          
 
-        <tbody>
+        <div className='flex flex-col gap-5'>   
         {cardsData.map((items)=> {
-          return <tr key={items.id}>
-            <td>
+          return <div key={items.id} className='grid grid-cols-[2.5fr_1.5fr_1fr_1.5fr_1.5fr_1.5fr_1.5fr_1fr] border border-black/10 h-15 items-center px-3 rounded-lg'>
+            <div className=''>
               <div className='flex gap-2'>
-              <div>
+              <div className="flex bg-black/20 w-15 h-10 items-center justify-center rounded-sm"> 
                 {items.img}
                 </div>
+                <div >
+                <h1 className="font-bold">
+                  {items.title}
+                  </h1>
                 <div>
-                {items.title}
-                <div>
+                  <h3 className="text-sm text-black/70">
                   {items.type}
+                  </h3>
                   </div>
                 </div>
               </div>
-              </td>
-            <td>
-              <div className='flex flex-col'>
+              </div>
+            <div className='flex'>
+              <div className='flex flex-col '>
                 <div>
                   {items.location}
                 </div>
@@ -145,17 +148,17 @@ const CPCards = () => {
                   {items.country}
                 </div>
               </div>
-              </td>
-            <td>{items.status}</td>
-            <td>{items.startDate}</td>
-            <td>{items.endDate}</td>
-            <td>{items.budget}</td>
-            <td>{items.team.map(items => items)}</td>
-            <td><button>...</button></td>
-          </tr>
+              </div>
+            <div>{items.status}</div>
+            <div>{items.startDate}</div>
+            <div>{items.endDate}</div>
+            <div>{items.budget}</div>
+            <div>{items.team.map(items => items)}</div>
+            <div><button className=" w-[50%] flex justify-center"><EllipsisVertical size={20} strokeWidth={1.5} /></button></div>
+          </div>
         })}
-        </tbody>
-        </table>
+        </div>
+     
     </div>
   )
 }

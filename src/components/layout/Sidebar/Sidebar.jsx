@@ -41,7 +41,7 @@ const Sidebar = () => {
       linkAddr: "/home/punchlist"    }
   ]
   return (
-  <div className='bg-[#14202e] min-h-screen w-65 text-white p-4 flex flex-col justify-between'>
+  <div className='bg-[#14202e] min-h-screen w-65 text-white p-4 flex flex-col justify-between sticky top-0'>
       <div className='flex flex-col gap-10'>
         <div className='flex gap-3'>
         <div className='w-20'>
