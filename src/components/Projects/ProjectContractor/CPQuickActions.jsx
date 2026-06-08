@@ -21,7 +21,7 @@ const CPQuickActions = () => {
       desc: "Invite people to your project"
     },
     {
-      id: 1,
+      id: 4,
       img: "icon",
       label: "Upload Photos",
       desc: "Upload site photos and updates"

@@ -3,6 +3,7 @@ import { userData } from "../../../data/usersData"
 import { useState } from "react"
 import { Bell, ChevronDown } from "lucide-react"
 import { setUser } from "../../../redux/features/authSlice"
+import { getRole } from "../../../redux/features/authSlice"
 
 const Navbar = () => {
   const dispatch = useDispatch()
@@ -47,7 +48,7 @@ const Navbar = () => {
           </div>
 
           <div className="w-60 h-15">
-           <div className="flex absolute top-0 right-4 flex-col w-60">
+           <div className="flex absolute top-0 right-4 flex-col w-60 z-10">
             {userData.map((items)=> {
               return <div key={items.id}>
                 {items.role === role ? <div className="flex items-center h-15 justify-evenly" onLoad={()=> {
@@ -66,11 +67,13 @@ const Navbar = () => {
                 </div>: null}
               </div>
             })}
-            <div className={`bg-[#eae9f0] ${showHidden} flex-col gap-2 py-3 rounded-b-xl items-center w-60`}>
+            <div className={`bg-[#f0f5ff] ${showHidden} flex-col gap-2 py-3 rounded-b-xl items-center w-60 NavToggle`}>
             {userData.map((items)=> {
               if (items.role !== role) {
                 return <ul key={items.id}>
-                <li><span className="font-bold bg-[#cbc6d6] px-3 py-1 rounded-md">{items.role}</span></li>
+                <li><button className="font-bold bg-[#7745a7] text-white w-30 py-1 rounded-md cursor-pointer" onClick={()=> {
+                  dispatch(getRole(items.role))
+                }}>{items.role}</button></li>
                </ul>
               }
             })}

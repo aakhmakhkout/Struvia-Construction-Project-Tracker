@@ -24,7 +24,7 @@ const RecentProjectUpdates = () => {
       time: "2 days ago"
     },
     {
-      id: 1,
+      id: 4,
       icon: "icon",
       update: "Eren Yeager Completed Task 'Second Floor Slab' in Greenfield Commercial",
       by: "Eren Yeager",

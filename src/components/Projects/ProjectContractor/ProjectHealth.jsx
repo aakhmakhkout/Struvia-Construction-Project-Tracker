@@ -21,7 +21,7 @@ const ProjectHealth = () => {
       status: "Completed"
     },
     {
-      id: 1,
+      id: 4,
       img: "img",
       projectName: "Lakeview Interiors",
       status: "On hold"
