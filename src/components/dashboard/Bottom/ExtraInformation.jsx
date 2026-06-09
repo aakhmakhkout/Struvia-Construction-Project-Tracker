@@ -8,7 +8,9 @@ const ExtraInformation = () => {
     <div className='mt-5 flex justify-between'>
       <RecentPhotos />
       <PunchListPreview />
+      <div className='w-[20%]'>
       <TeamonSitepre />
+      </div>
     </div>
   )
 }

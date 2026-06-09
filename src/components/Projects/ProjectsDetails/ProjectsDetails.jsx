@@ -1,6 +1,7 @@
 import React from 'react'
 import ProjectCards from './ProjectCards'
 import ProjectTimeLine from './ProjectTimeLine'
+import CPTeams from './CPTeams.jsx'
 
 const ProjectsDetails = () => {
   const currentProjectData = [
@@ -45,8 +46,11 @@ const ProjectsDetails = () => {
         <p className='text-sm text-black/70'>Track your Project Details and Timeline here</p>
       </div>
 
-      <div>
+      <div className='flex gap-10'>
         <ProjectCards data ={currentProjectData}/>
+        <div className='w-[35%]'>
+        <CPTeams />
+        </div>
       </div>
 
       <div>
