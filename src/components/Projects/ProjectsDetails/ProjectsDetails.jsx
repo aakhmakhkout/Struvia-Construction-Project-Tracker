@@ -46,9 +46,9 @@ const ProjectsDetails = () => {
         <p className='text-sm text-black/70'>Track your Project Details and Timeline here</p>
       </div>
 
-      <div className='flex gap-10'>
+      <div className='flex justify-between h-96'>
         <ProjectCards data ={currentProjectData}/>
-        <div className='w-[35%]'>
+        <div className='w-[38%]'>
         <CPTeams />
         </div>
       </div>

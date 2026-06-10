@@ -66,24 +66,28 @@ export const dashboardSlice = createSlice({
                 img: "pfp",
                 name: "Kaneki Ken",
                 field: "Contractor",
+                currentTask: "Inspection of the site",
                 isPresent: true
             },
             {
                 img: "pfp",
                 name: "Isagi Yoichi",
                 field: "Electrician",
+                currentTask: "Electric wiring setup in hall",
                 isPresent: true
             },
             {
                 img: "pfp",
                 name: "Nagi Seishiro",
                 field: "Plumber",
+                currentTask: "Bathroom finishing",
                 isPresent: false
             },
             {
                 img: "pfp",
                 name: "Eren yeager",
                 field: "Painter",
+                currentTask: "Paint coat on bedroom 2",
                 isPresent: true
             },
         ]

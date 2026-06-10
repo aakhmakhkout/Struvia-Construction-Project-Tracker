@@ -4,7 +4,7 @@ const CPPagination = () => {
   return (
     <div className="flex justify-between">
         <div>
-          <p className="text-sm text-black/70 font-bold">Showing 1 to 4 of 7 Projects</p>
+          <p className="text-sm text-black/70 font-bold">Showing 4 team members out of 8</p>
         </div>
 
         <div className="flex gap-5">
@@ -19,5 +19,4 @@ const CPPagination = () => {
       </div>
   )
 }
-
 export default CPPagination

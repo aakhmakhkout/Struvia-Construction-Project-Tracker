@@ -5,7 +5,7 @@ const ProjectCards = ({data}) => {
   console.log(data)
   return (
     <div className="flex justify-between items-center w-[60%]">
-     <div className="CPCards p-5 flex justify-between border w-full border-black/20">
+     <div className="CPCards p-5 flex justify-between h-full border w-full border-black/20">
       <div className="flex flex-col rounded-lg  gap-3 w-[40%]">
         <h1 className="font-bold text-2xl">Project Overview</h1>
         <div className="flex flex-col gap-5 p-3 CPCards  border border-black/20">

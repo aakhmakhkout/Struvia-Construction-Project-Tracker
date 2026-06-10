@@ -45,7 +45,7 @@ const Sidebar = () => {
       <div className='flex flex-col gap-10'>
         <div className='flex gap-3'>
         <div className='w-20'>
-          <img src={logo} alt="logo" />
+          <Link to="/"><img src={logo} alt="logo" /></Link>
         </div>
 
         <div className='flex flex-col'>
