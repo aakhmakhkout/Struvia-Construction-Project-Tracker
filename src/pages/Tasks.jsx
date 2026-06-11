@@ -1,8 +1,11 @@
 import React from 'react'
+import TaskDetails from '../components/tasks/TaskDetails'
 
 const Tasks = () => {
   return (
-    <div>Tasks</div>
+    <div>
+      <TaskDetails />
+    </div>
   )
 }
 

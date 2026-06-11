@@ -1,8 +1,21 @@
 import React from 'react'
+import SearchBar from './SearchBar'
 
 const TaskTabs = () => {
   return (
-    <div>TaskTabs</div>
+    <div>
+      <div>
+        <h1>Current Project</h1>
+      </div>
+
+      <div>
+        <h1>Priority</h1>
+      </div>
+
+      <div>
+        <SearchBar />
+      </div>
+    </div>
   )
 }
 
