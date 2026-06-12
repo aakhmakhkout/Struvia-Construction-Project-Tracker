@@ -1,18 +1,19 @@
 import React from 'react'
 import SearchBar from './SearchBar'
+import PriorityOptions from './PriorityOptions'
 
 const TaskTabs = () => {
   return (
-    <div>
-      <div>
-        <h1>Current Project</h1>
+    <div className='h-15 flex gap-10 items-center'>
+      <div className='border border-black/20 p-[8px_15px] rounded-sm'>
+        <h1 >Projects Drop Down</h1>
       </div>
 
-      <div>
-        <h1>Priority</h1>
+      <div className='border border-black/20 p-[8px_15px] rounded-sm'>
+        <PriorityOptions />
       </div>
 
-      <div>
+      <div className='border border-black/20 p-[8px_15px] rounded-sm'>
         <SearchBar />
       </div>
     </div>

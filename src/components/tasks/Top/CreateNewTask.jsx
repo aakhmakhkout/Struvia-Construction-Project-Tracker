@@ -2,7 +2,7 @@ import React from 'react'
 
 const CreateNewTask = () => {
   return (
-    <div className='bg-black/20 h-30 flex justify-between items-center' >
+    <div className='h-20 flex justify-between items-center' >
       <div>
         <h1 className='font-bold text-4xl'>Tasks</h1>
         <p className='text-black/70 text-sm'>Track and manage all tasks across your projects</p>
