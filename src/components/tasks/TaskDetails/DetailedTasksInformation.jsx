@@ -1,5 +1,4 @@
-import React from 'react'
-
+import {Contact, CalendarDays} from "lucide-react"
 const DetailedTasksInformation = () => {
   const todoTasks = [
   {
@@ -177,13 +176,13 @@ const priorityColors = {
             <h1 className='text-lg font-bold'>{items.task}</h1>
             <p className='text-black/70 text-sm'>{items.projectName}</p>
             </div>
-            <div className='flex gap-2 font-bold'>
-              <div>icon</div>
+            <div className='flex gap-2 font-bold items-center'>
+               <div><Contact size={15} strokeWidth={1.5} /></div>
               <h2>{items.assignee}</h2>
             </div>
-            <div className='flex justify-between'>
-              <div className='flex gap-2'>
-              <p>icon</p>
+            <div className='flex justify-between items-center'>
+              <div className='flex gap-2 items-center'>
+              <p><CalendarDays size={15} strokeWidth={1.5} /></p>
               <div>
                 {items.date}
                 </div>
@@ -213,13 +212,13 @@ const priorityColors = {
             <h1 className='text-lg font-bold'>{items.task}</h1>
             <p className='text-black/70 text-sm'>{items.projectName}</p>
             </div>
-            <div className='flex gap-2 font-bold'>
-              <div>icon</div>
+            <div className='flex gap-2 font-bold items-center'>
+              <div><Contact size={15} strokeWidth={1.5} /></div>
               <h2>{items.assignee}</h2>
             </div>
-            <div className='flex justify-between'>
-              <div className='flex gap-2'>
-              <p>icon</p>
+            <div className='flex justify-between items-center'>
+              <div className='flex gap-2 items-center'>
+              <p><CalendarDays size={15} strokeWidth={1.5} /></p>
               <div>{items.date}</div>
               </div>
               <div>
@@ -248,13 +247,13 @@ const priorityColors = {
             <h1 className='text-lg font-bold'>{items.task}</h1>
             <p className='text-black/70 text-sm'>{items.projectName}</p>
             </div>
-            <div className='flex gap-2 font-bold'>
-              <div>icon</div>
+            <div className='flex gap-2 font-bold items-center'>
+               <div><Contact size={15} strokeWidth={1.5} /></div>
               <h2>{items.assignee}</h2>
             </div>
-            <div className='flex justify-between'>
-              <div className='flex gap-2'>
-              <p>icon</p>
+            <div className='flex justify-between items-center'>
+              <div className='flex gap-2 items-center'>
+              <p><CalendarDays size={15} strokeWidth={1.5} /></p>
               <div>{items.date}</div>
               </div>
               <div>
@@ -282,13 +281,13 @@ const priorityColors = {
             <h1 className='text-lg font-bold'>{items.task}</h1>
             <p className='text-black/70 text-sm'>{items.projectName}</p>
             </div>
-            <div className='flex gap-2 font-bold'>
-              <div>icon</div>
+            <div className='flex gap-2 font-bold items-center'>
+               <div><Contact size={15} strokeWidth={1.5} /></div>
               <h2>{items.assignee}</h2>
             </div>
-            <div className='flex justify-between'>
-              <div className='flex gap-2'>
-              <p>icon</p>
+            <div className='flex justify-between items-center'>
+              <div className='flex gap-2 items-center'>
+              <p><CalendarDays size={15} strokeWidth={1.5} /></p>
               <div>{items.date}</div>
               </div>
               <div>
