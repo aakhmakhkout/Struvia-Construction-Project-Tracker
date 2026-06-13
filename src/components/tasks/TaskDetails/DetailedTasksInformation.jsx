@@ -163,7 +163,7 @@ const priorityColors = {
   },
 };
   return (
-    <div className='flex justify-between h-170'>
+    <div className='flex justify-between h-160'>
       <div className='CPCards w-[24%] overflow-y-scroll taskBoxes border border-black/20'>
         <div className='flex w-full bg-[#d0d1d2] h-10 items-center pl-3 gap-5 sticky top-0 backdrop-blur-2xl'>
           <h1 className='font-bold text-xl'>To Do</h1>
@@ -184,13 +184,18 @@ const priorityColors = {
             <div className='flex justify-between'>
               <div className='flex gap-2'>
               <p>icon</p>
-              <div>{items.date}</div>
+              <div>
+                {items.date}
+                </div>
+              </div>
+              <div>
+              <p style={items.priority === "High" ? {color: "#EF4444", backgroundColor: "#FEE2E2"}: items.priority === "Medium" ? {color: "#F59E0B", backgroundColor: "#FEF3C7"}: {color: "#10B981", backgroundColor: "#D1FAE5"}} className='p-[3px_10px] rounded-lg'>{items.priority}</p>
               </div>
             </div>
           </div>
         })}
         <div>
-          <p>+ Add Task</p>
+          <p className='text-[#e55707] font-bold'>+ Add Task</p>
         </div>
         </div>
       </div>
@@ -218,14 +223,14 @@ const priorityColors = {
               <div>{items.date}</div>
               </div>
               <div>
-              <p>{items.priority}</p>
+              <p style={items.priority === "High" ? {color: "#EF4444", backgroundColor: "#FEE2E2"}: items.priority === "Medium" ? {color: "#F59E0B", backgroundColor: "#FEF3C7"}: {color: "#10B981", backgroundColor: "#D1FAE5"}} className='p-[3px_10px] rounded-lg'>{items.priority}</p>
               </div>
             </div>
             <div>{items.progress}</div>
           </div>
         })}
         <div>
-          <p>+ Add Task</p>
+          <p className='text-[#e55707] font-bold'>+ Add Task</p>
         </div>
         </div>
       </div>
@@ -253,13 +258,13 @@ const priorityColors = {
               <div>{items.date}</div>
               </div>
               <div>
-              <p>{items.priority}</p>
+              <p style={items.priority === "High" ? {color: "#EF4444", backgroundColor: "#FEE2E2"}: items.priority === "Medium" ? {color: "#F59E0B", backgroundColor: "#FEF3C7"}: {color: "#10B981", backgroundColor: "#D1FAE5"}} className='p-[3px_10px] rounded-lg'>{items.priority}</p>
               </div>
             </div>
           </div>
         })}
         <div>
-          <p>+ Add Task</p>
+          <p className='text-[#e55707] font-bold'>+ Add Task</p>
         </div>
         </div>
       </div>
@@ -294,7 +299,7 @@ const priorityColors = {
           </div>
         })}
         <div>
-          <p>+ Add Task</p>
+           <p className='text-[#e55707] font-bold'>+ Add Task</p>
         </div>
         </div>
       </div>

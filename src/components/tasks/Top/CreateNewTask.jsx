@@ -9,7 +9,7 @@ const CreateNewTask = () => {
       </div>
 
       <div>
-        <button className='bg-[#e55707] p-[8px_10px] rounded-lg'>+ New Task</button>
+        <button className='bg-[#e55707] p-[8px_10px] rounded-lg text-white font-bold'>+ New Task</button>
       </div>
     </div>
   )
