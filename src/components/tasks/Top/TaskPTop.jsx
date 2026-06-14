@@ -11,7 +11,7 @@ const CreateNewTask = ({state}) => {
       </div>
 
       <div>
-        <button className='bg-[#e55707] p-[8px_10px] rounded-lg text-white font-bold' onClick={()=> {
+        <button className='bg-[#e55707] p-[8px_10px] rounded-lg text-white font-bold cursor-pointer active:scale-95' onClick={()=> {
           setisNTP(true)
         }}>+ New Task</button>
 
