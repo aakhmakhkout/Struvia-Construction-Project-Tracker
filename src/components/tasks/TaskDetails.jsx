@@ -1,13 +1,14 @@
-import React from 'react'
-import CreateNewTask from './Top/CreateNewTask'
+import React, { useState } from 'react'
+import TaskPTop from './Top/TaskPTop'
 import TaskTabs from './TaskDetails/TaskTabs'
 import DetailedTasksInformation from './TaskDetails/DetailedTasksInformation'
 import Bottom from './TaskPriority/Bottom'
 
 const TaskDetails = () => {
+  const [isNTP, setisNTP] = useState(false)
   return (
     <div>
-        <CreateNewTask />
+        <TaskPTop state={{isNTP, setisNTP}}/>
         <TaskTabs />
         <DetailedTasksInformation />
         <Bottom />

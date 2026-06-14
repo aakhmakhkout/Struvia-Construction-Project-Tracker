@@ -13,7 +13,7 @@ const Bottom = () => {
             desc: "Important Tasks with normal priority"
         },
         {
-            id:1,
+            id:3,
             label : "Low",
             desc: "Tasks with lower priority"
         },
