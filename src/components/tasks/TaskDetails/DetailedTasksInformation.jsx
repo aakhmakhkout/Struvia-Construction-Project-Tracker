@@ -1,39 +1,8 @@
 import {Contact, CalendarDays} from "lucide-react"
+import { useSelector } from "react-redux";
 const DetailedTasksInformation = () => {
-  const todoTasks = [
-  {
-    id: 1,
-    task: "Kitchen Cabinet Installation",
-    projectName: "Skyline Villa",
-    assignee: "Eren Yeager",
-    date: "2026-06-12",
-    priority: "High",
-  },
-  {
-    id: 2,
-    task: "Electrical Wiring Setup - First Floor",
-    projectName: "Green Heights Residency",
-    assignee: "Isagi Yoichi",
-    date: "2026-06-14",
-    priority: "Medium",
-  },
-  {
-    id: 3,
-    task: "Bathroom Tile Finishing",
-    projectName: "Tech Park Tower",
-    assignee: "Nagi Seishiro",
-    date: "2026-06-15",
-    priority: "High",
-  },
-  {
-    id: 4,
-    task: "Site Safety Inspection",
-    projectName: "Riverside Mall",
-    assignee: "Team Alpha",
-    date: "2026-06-18",
-    priority: "Low",
-  },
-]
+ const todoTaskData = useSelector(state => state.tasks.todoTasks)
+ console.log(todoTaskData)
 const inProgressTasks = [
   {
     id: 1,
@@ -170,11 +139,11 @@ const priorityColors = {
         </div>
 
         <div className='flex flex-col gap-3 p-2 '>
-        {todoTasks.map((items)=> {
-          return <div key={items.id} className='flex flex-col CPCards p-2 border border-black/20 gap-2'>
+        {todoTaskData.map((items, idx)=> {
+          return <div key={idx} className='flex flex-col CPCards p-2 border border-black/20 gap-2'>
             <div className=''>
-            <h1 className='text-lg font-bold'>{items.task}</h1>
-            <p className='text-black/70 text-sm'>{items.projectName}</p>
+            <h1 className='text-lg font-bold'>{items.Task}</h1>
+            <p className='text-black/70 text-sm'>{items.PName}</p>
             </div>
             <div className='flex gap-2 font-bold items-center'>
                <div><Contact size={15} strokeWidth={1.5} /></div>

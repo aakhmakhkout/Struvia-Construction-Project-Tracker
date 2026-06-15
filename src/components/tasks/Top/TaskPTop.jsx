@@ -2,7 +2,6 @@ import NewTask from "../CreateTask/NewTask"
 
 const CreateNewTask = ({state}) => {
   const {isNTP, setisNTP} = state
-  console.log(isNTP)
   return (
     <div className='h-20 flex justify-between items-center' >
       <div>

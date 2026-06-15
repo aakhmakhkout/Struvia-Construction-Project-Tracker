@@ -8,7 +8,6 @@ import { setActiveTab } from '../../../redux/features/layoutSlice'
 const Sidebar = () => {
   const dispatch = useDispatch()
   const activeTab = useSelector(state => state.layout.activeTab)
-  console.log(activeTab)
   const PageTabs =[
     {
       id: 1,

@@ -12,7 +12,6 @@ const Navbar = () => {
   let {activeTab} = useSelector(state => state.layout)
   const {role} = useSelector(state => state.auth)
   const {status, ProjectName} = useSelector(state => state.dashboard)
- console.log(role)
 
 
   if(status === "Pending") {
