@@ -1,5 +1,6 @@
 import {Contact, CalendarDays, MessageSquareMore, EllipsisVertical} from "lucide-react"
 import { useState } from "react";
+import Actions from "./Actions";
 const TaskCards = ({data}) => {
     // console.log(data)
     const isTaskPresent = data.data.length > 0;
@@ -38,9 +39,12 @@ const TaskCards = ({data}) => {
             <h1 className='text-lg font-bold'>{items.Task}</h1>
             <p className='text-black/70 text-sm'>{items.PName}</p>
             </div>
-            <div>
+            <div className="relative">
               <button className="cursor-pointer">
                 <EllipsisVertical size={20} strokeWidth={1.5} />
+                <div className="hidden"> 
+                  <Actions/>
+                  </div>
                 </button>
             </div>
             </div>
