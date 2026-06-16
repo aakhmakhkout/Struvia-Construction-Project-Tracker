@@ -24,16 +24,18 @@ const NewTask = ({state}) => {
 
   return (
     <div className='fixed inset-0 bg-black/30 backdrop-blur-[2px] z-50 flex justify-center items-center text-white'>
-        <div className='w-full flex items-center justify-center'>
-          <form className='relative bg-[#14202e] w-[40%] CPCards border border-white p-5 flex flex-col justify-evenly h-170' onSubmit={(elem)=> {
-           submitHandler(elem)
-          }}>
-          
+        <div className='w-full flex items-center justify-center '>
+
+          <div className='w-[40%] relative'>
           <div className='absolute top-5 right-5'>
             <button onClick={()=> {
               setisNTP(false)
             }} className='cursor-pointer active:scale-95 text-[#e55707]'><X size={25} strokeWidth={1.5} /></button>
           </div>
+          <form className=' bg-[#14202e] CPCards border border-white p-5 flex flex-col justify-evenly h-170' onSubmit={(elem)=> {
+            submitHandler(elem)
+          }}>
+          
 
           <div className='flex justify-center items-center' >
             <h1 className='font-bold text-4xl'>Create Task</h1>
@@ -101,11 +103,11 @@ const NewTask = ({state}) => {
               </div>
              
 
-            <div className='w-full flex justify-center items-end'>
-              
+            <div className='w-full flex justify-center items-end'>     
               <button className='bg-[#7745a7] w-full py-3 rounded-lg font-bold border border-white/20 active:scale-95'>Add Task</button>
             </div>
           </form>
+          </div>
         </div>
     </div>
   )
