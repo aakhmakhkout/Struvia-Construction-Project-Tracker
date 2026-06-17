@@ -23,6 +23,7 @@ const TaskCards = ({data}) => {
         color = "bg-[#10800827]"
     }
 
+    const [isOptions, setisOptions] = useState(false)
     
   return (
      <div className='CPCards w-[24%] overflow-y-scroll taskBoxes border border-black/20'>
@@ -40,12 +41,19 @@ const TaskCards = ({data}) => {
             <p className='text-black/70 text-sm'>{items.PName}</p>
             </div>
             <div className="relative">
-              <button className="cursor-pointer">
+              <button className="cursor-pointer" onClick={()=> {
+                if(isOptions) {
+                  setisOptions(false)
+                }
+                else {
+                  setisOptions(true)
+                }
+              }}>
                 <EllipsisVertical size={20} strokeWidth={1.5} />
-                <div className="hidden"> 
-                  <Actions/>
-                  </div>
                 </button>
+                {isOptions && <div className=""> 
+                  <Actions/>
+                  </div>}
             </div>
             </div>
 
