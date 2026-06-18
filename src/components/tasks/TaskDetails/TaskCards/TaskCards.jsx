@@ -64,7 +64,7 @@ const TaskCards = ({data}) => {
             <p className='text-black/70 text-sm'>{items.PName}</p>
             </div>
             <div className="relative">
-              <button className="cursor-pointer" onClick={()=> {
+              <button className="cursor-pointer hover:bg-black/20 p-1 rounded-full transition-all" onClick={()=> {
                     if(isOptionsID === idx) {
                       setisOptionsID(null)
                     }
@@ -72,10 +72,10 @@ const TaskCards = ({data}) => {
                       setisOptionsID(idx)
                     }
                   
-              }}>
+              }} >
                 <EllipsisVertical size={20} strokeWidth={1.5} id={idx}/>
                 </button>
-               {isOptionsID === idx ? <Actions data = {data.label}/> : null}
+               {isOptionsID === idx ? <Actions data = {data.label} state={setisOptionsID}/> : null}
               
             </div>
             </div>
