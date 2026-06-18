@@ -65,17 +65,17 @@ const TaskCards = ({data}) => {
             </div>
             <div className="relative">
               <button className="cursor-pointer" onClick={()=> {
-                    if(isOptionsID === items.id) {
+                    if(isOptionsID === idx) {
                       setisOptionsID(null)
                     }
                     else {
-                      setisOptionsID(items.id)
+                      setisOptionsID(idx)
                     }
                   
               }}>
-                <EllipsisVertical size={20} strokeWidth={1.5} id={items.id}/>
+                <EllipsisVertical size={20} strokeWidth={1.5} id={idx}/>
                 </button>
-               {isOptionsID === items.id ? <Actions /> : null}
+               {isOptionsID === idx ? <Actions data = {data.label}/> : null}
               
             </div>
             </div>
