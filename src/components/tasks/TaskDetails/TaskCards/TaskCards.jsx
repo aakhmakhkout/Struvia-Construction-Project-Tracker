@@ -6,7 +6,7 @@ const TaskCards = ({data}) => {
     const isTaskPresent = data.data.length > 0;
     // console.log(isTaskPresent);
     const dataCopy = [...data.data]
-    console.log(dataCopy)
+    // console.log(dataCopy)
 
     let color = ""
 
@@ -23,8 +23,31 @@ const TaskCards = ({data}) => {
         color = "bg-[#10800827]"
     }
 
-    const [isOptions, setisOptions] = useState(false)
+    const [isOptionsID, setisOptionsID] = useState(null)
+
+    // const showHideOptions = (id, dtID) => {
+    //   const targetID = parseInt(id)
+    //   // console.log("target id", targetID)
+    //   // console.log("dtid", dtID)
+    //   // console.log("data id",data.id)
     
+    //   if(data.id === dtID) {
+    //     console.log(dataCopy)
+    //     return dataCopy.forEach((items)=> {
+    //       if(items.id === targetID && isOptions) {
+    //         console.log(true)
+    //         console.log("target id", targetID)
+    //         console.log("id", items.id)
+    //         setisTarget(true)
+    //       }
+    //       else {
+    //         setisTarget(false)
+    //       }
+    //     })
+    //   }
+     
+    // }
+
   return (
      <div className='CPCards w-[24%] overflow-y-scroll taskBoxes border border-black/20'>
         <div className={`flex w-full ${color} h-10 items-center pl-3 gap-5 sticky top-0 backdrop-blur-2xl`}>
@@ -42,18 +65,18 @@ const TaskCards = ({data}) => {
             </div>
             <div className="relative">
               <button className="cursor-pointer" onClick={()=> {
-                if(isOptions) {
-                  setisOptions(false)
-                }
-                else {
-                  setisOptions(true)
-                }
+                    if(isOptionsID === items.id) {
+                      setisOptionsID(null)
+                    }
+                    else {
+                      setisOptionsID(items.id)
+                    }
+                  
               }}>
-                <EllipsisVertical size={20} strokeWidth={1.5} />
+                <EllipsisVertical size={20} strokeWidth={1.5} id={items.id}/>
                 </button>
-                {isOptions && <div className=""> 
-                  <Actions/>
-                  </div>}
+               {isOptionsID === items.id ? <Actions /> : null}
+              
             </div>
             </div>
 
