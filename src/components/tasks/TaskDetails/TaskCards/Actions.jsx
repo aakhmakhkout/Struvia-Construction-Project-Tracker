@@ -1,5 +1,12 @@
 import { ChevronRight, Plus, BatteryMedium, Delete, SquarePen,  Trash2} from "lucide-react"
-const Actions = ({data}) => {
+import { setRemoveToDoTask, setInProgressTask, setRemoveInProgTask, setInReviewTasks, setRemoveInRevTasks, setCompletedTasks, setRemoveCompTasks } from "../../../../redux/features/tasksSlice"
+import { useDispatch } from "react-redux"
+
+
+
+const Actions = ({data, id, state}) => {
+  const {setisOptionsID} = state
+  const dispatch = useDispatch()
   let label = null
   if(data === "To Do") {
     label = "Progress"
@@ -20,57 +27,93 @@ const Actions = ({data}) => {
       option: label 
     }
   ]
-  console.log(data)
+
+  const handleRemoveDispatch = (id, column) => {
+    if(column === "To Do") {
+      dispatch(setRemoveToDoTask(id))
+    }
+    else if(column === "In Progress") {
+      dispatch(setRemoveInProgTask(id))
+    }
+    else if(column === "In Review") {
+      dispatch(setRemoveInRevTasks(id))
+    }
+    else if(column === "Completed") {
+      dispatch(setRemoveCompTasks(id))
+    }
+  }
+
+  const handleAddDispatch = (id, column) => {
+    if(column === "To Do") {
+      dispatch(setInProgressTask(id))
+      dispatch(setRemoveToDoTask(id))
+    }
+    else if(column === "In Progress") {
+      dispatch(setInReviewTasks(id))
+      dispatch(setRemoveInProgTask(id))
+    }
+    else if(column === "In Review") {
+      dispatch(setCompletedTasks(id))
+      dispatch(setRemoveInRevTasks(id))
+    }
+  }
+
   return (
     <div className='w-50 bg-[#e7f0fa] text-black absolute right-2 rounded-lg flex z-10 CPCards border border-black/20'>
-        <ul className='p-2 flex flex-col justify-start items-start w-full gap-1'>
-          <div className="flex justify-between items-center w-full cursor-pointer">
+        <div className='p-2 flex flex-col justify-start items-start w-full gap-1'>
+          {data !== "Completed" ? <button className="flex justify-between items-center w-full cursor-pointer" onClick={()=> {
+            handleAddDispatch(id, data)
+            setisOptionsID(null)
+          }}>
             <div className="flex gap-3 items-center">
             <div><Plus size={15} strokeWidth={1.25} /></div>
-            <li>Add to {label}</li>
+            <h1>Add to {label}</h1>
             </div>
 
             <div><ChevronRight size={15} strokeWidth={1.25} /></div>
-          </div>
+          </button> : null}
 
           <div className="w-full cursor-pointer">
           {data === "In Progress" ? 
-          <div className="flex justify-between w-full items-center">
+          <button className="flex justify-between w-full items-center">
             <div className="flex gap-3 items-center">
             <div><BatteryMedium size={15} strokeWidth={1.25} /></div>
-            <li>Set Progress</li>
+            <h1>Set Progress</h1>
             </div>
             <div><ChevronRight size={15} strokeWidth={1.25} /></div>
-            </div>
+            </button>
             : data === "In Review" ? 
-            <div className="flex justify-between w-full items-center">
+            <button className="flex justify-between w-full items-center">
               <div className="flex gap-3 items-center">
              <div>
                <Delete size={15} strokeWidth={1.25} />
               </div>
-              <li>Reject</li>
+              <h1>Reject</h1>
               </div>
               <div><ChevronRight size={15} strokeWidth={1.25} /></div>
-            </div>
+            </button>
             : null}
           </div>
 
-          <div className="flex justify-between items-center w-full cursor-pointer">
+          <button className="flex justify-between items-center w-full cursor-pointer">
             <div className="flex gap-3 items-center">
             <div><SquarePen size={15} strokeWidth={1.25} /></div>
-          <li>Edit</li>
+            <h1>Edit</h1>
             </div>
           <div><ChevronRight size={15} strokeWidth={1.25} /></div>
-          </div>
+          </button>
 
-          <div className="flex w-full justify-between items-center cursor-pointer">
+          <button className="flex w-full justify-between items-center cursor-pointer" onClick={()=> {
+                 handleRemoveDispatch(id, data)
+                 setisOptionsID(null)
+              }}>
             <div className="flex gap-3 items-center">
               <div><Trash2 size={15} strokeWidth={1.25} /></div>
-              <li>Delete</li>
+              <h1 className="cursor-pointer">Delete</h1>
             </div>
           <div><ChevronRight size={15} strokeWidth={1.25} /></div>
-          </div>
-        </ul>    
+          </button>
+        </div>    
     </div>
   )
 }

@@ -6,12 +6,13 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const NewTask = ({state}) => {
   const {setisNTP} = state
+   const UUID = crypto.randomUUID()
   const [todoTaskData, settodoTaskData] = useState({})
   const dispatch = useDispatch()
 
   function getData(targetElement) {
     settodoTaskData((prev)=> {
-      return {...prev, [targetElement.name]:targetElement.value}
+      return {...prev, id:UUID, [targetElement.name]:targetElement.value}
     })
   }
 
@@ -44,13 +45,13 @@ const NewTask = ({state}) => {
             <div className='flex justify-between '>
               <div className='flex flex-col w-[60%] gap-2'>
                 <label htmlFor="Task" className=' text-white/70 font-bold'>Task <span className='text-red-500'>*</span></label>
-                <input type="text" placeholder='write your task here' required name="Task" className='bg-black/30 p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' value={todoTaskData.Task || ""} onChange={(elem)=> {
+                <input type="text" placeholder='write your task here' required name="Task" className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' value={todoTaskData.Task || ""} onChange={(elem)=> {
                   getData(elem.target)
                 }}/>
               </div>
               <div className='flex flex-col w-[35%] gap-2'>
                 <label htmlFor="PName" className=' text-white/70 font-bold'>Project Name <span className='text-red-500'>*</span></label>
-                <select name="PName" id="PName" className='bg-black/30 p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765] font-bold' required value={todoTaskData.PName || ""}  onChange={(elem)=> {
+                <select name="PName" id="PName" className='bg-black/30 cursor-pointer p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765] font-bold' required value={todoTaskData.PName || ""}  onChange={(elem)=> {
                   getData(elem.target)
                 }}>
                   <option value="" className='text-white/60 font-bold ' disabled selected>Select your project</option>
@@ -65,7 +66,7 @@ const NewTask = ({state}) => {
             <div className='flex justify-between '>
               <div className='flex flex-col w-[30%] gap-2'>
                 <label htmlFor="assignee" className=' text-white/70 font-bold'>Select team member <span className='text-red-500'>*</span></label>
-                <select name="assignee" id="assignee" value={todoTaskData.assignee || ""} className='bg-black/30 p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765] font-bold' required onChange={(elem)=> {
+                <select name="assignee" id="assignee" value={todoTaskData.assignee || ""} className='bg-black/30 cursor-pointer p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765] font-bold' required onChange={(elem)=> {
                   getData(elem.target)
                 }}>
                 <option value="" className='text-white/60 font-bold ' disabled selected>Select team member</option>
@@ -76,7 +77,7 @@ const NewTask = ({state}) => {
               </div>
               <div className='flex flex-col w-[30%] gap-2'>
                 <label htmlFor="priority" className='font-bold text-white/70'>Select Priority <span className='text-red-500'>*</span></label>
-                <select name="priority" id="priority" required className='bg-black/30 p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765] font-bold' value={todoTaskData.priority || ""} onChange={(elem)=> {
+                <select name="priority" id="priority" required className='bg-black/30 p-3 cursor-pointer rounded-lg border border-white/30 outline-none focus:border-[#7845a765] font-bold' value={todoTaskData.priority || ""} onChange={(elem)=> {
                   getData(elem.target)
                 }}>
                    <option value="" className='text-white/60 font-bold ' disabled selected>Select task priority</option>
@@ -87,7 +88,7 @@ const NewTask = ({state}) => {
               </div>
               <div className='flex flex-col w-[30%] gap-2'>
                 <label htmlFor="date" className='font-bold text-white/70'>Date <span className='text-red-500'>*</span></label>
-                <input type="date" name="date" id="date" required className='bg-black/30 p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' value={todoTaskData.date || ""} onChange={(elem)=> {
+                <input type="date" name="date" id="date" required className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' value={todoTaskData.date || ""} onChange={(elem)=> {
                   getData(elem.target)
                 }}/>
               </div>
@@ -104,7 +105,7 @@ const NewTask = ({state}) => {
              
 
             <div className='w-full flex justify-center items-end'>     
-              <button className='bg-[#7745a7] w-full py-3 rounded-lg font-bold border border-white/20 active:scale-95'>Add Task</button>
+              <button className='bg-[#7745a7] w-full py-3 rounded-lg cursor-pointer font-bold border border-white/20 active:scale-95'>Add Task</button>
             </div>
           </form>
           </div>

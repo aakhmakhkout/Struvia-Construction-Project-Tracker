@@ -2,11 +2,10 @@ import {Contact, CalendarDays, MessageSquareMore, EllipsisVertical} from "lucide
 import { useState } from "react";
 import Actions from "./Actions";
 const TaskCards = ({data}) => {
-    // console.log(data)
+    // console.log(data.data)
     const isTaskPresent = data.data.length > 0;
     // console.log(isTaskPresent);
     const dataCopy = [...data.data]
-    // console.log(dataCopy)
 
     let color = ""
 
@@ -25,28 +24,6 @@ const TaskCards = ({data}) => {
 
     const [isOptionsID, setisOptionsID] = useState(null)
 
-    // const showHideOptions = (id, dtID) => {
-    //   const targetID = parseInt(id)
-    //   // console.log("target id", targetID)
-    //   // console.log("dtid", dtID)
-    //   // console.log("data id",data.id)
-    
-    //   if(data.id === dtID) {
-    //     console.log(dataCopy)
-    //     return dataCopy.forEach((items)=> {
-    //       if(items.id === targetID && isOptions) {
-    //         console.log(true)
-    //         console.log("target id", targetID)
-    //         console.log("id", items.id)
-    //         setisTarget(true)
-    //       }
-    //       else {
-    //         setisTarget(false)
-    //       }
-    //     })
-    //   }
-     
-    // }
 
   return (
      <div className='CPCards w-[24%] overflow-y-scroll taskBoxes border border-black/20'>
@@ -56,7 +33,7 @@ const TaskCards = ({data}) => {
         </div>
 
         <div className='flex flex-col gap-3 p-2 '>
-        {dataCopy.reverse().map((items, idx)=> {
+        {dataCopy.length !== 0 ? dataCopy.reverse().map((items, idx)=> {
           return <div key={idx} className='flex flex-col CPCards p-2 border border-black/20 gap-2'>
             <div className='flex justify-between items-center'>
             <div>
@@ -75,7 +52,7 @@ const TaskCards = ({data}) => {
               }} >
                 <EllipsisVertical size={20} strokeWidth={1.5} id={idx}/>
                 </button>
-               {isOptionsID === idx ? <Actions data = {data.label} state={setisOptionsID}/> : null}
+               {isOptionsID === idx ? <Actions data = {data.label} id={items.id} state={{setisOptionsID}}/> : null}
               
             </div>
             </div>
@@ -107,10 +84,7 @@ const TaskCards = ({data}) => {
               </div>
             </div>
           </div>
-        })}
-        <div>
-          <p className='text-[#e55707] font-bold'>+ Add Task</p>
-        </div>
+        }) : <p className="text-xl font-bold text-[#d70c0c94]">No tasks</p>}
         </div>
       </div>
   )
