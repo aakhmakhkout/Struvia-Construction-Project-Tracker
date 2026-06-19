@@ -80,7 +80,7 @@ const TaskCards = ({data}) => {
                 </div>
               </div>
               <div>
-              <p style={items.priority === "High" ? {color: "#EF4444", backgroundColor: "#FEE2E2"}: items.priority === "Medium" ? {color: "#F59E0B", backgroundColor: "#FEF3C7"}: {color: "#10B981", backgroundColor: "#D1FAE5"}} className='p-[3px_10px] rounded-lg'>{items.priority}</p>
+              {data.label !== "Completed" ? <p style={items.priority === "High" ? {color: "#EF4444", backgroundColor: "#FEE2E2"}: items.priority === "Medium" ? {color: "#F59E0B", backgroundColor: "#FEF3C7"}: {color: "#10B981", backgroundColor: "#D1FAE5"}} className='p-[3px_10px] font-bold rounded-lg'>{items.priority}</p>: <p className="bg-[#00800034] text-[green] p-[3px_10px] rounded-lg font-bold">Completed</p>}
               </div>
             </div>
           </div>
