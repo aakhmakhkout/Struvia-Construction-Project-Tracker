@@ -1,8 +1,11 @@
 import React from 'react'
+import PhotosDetails from '../components/photos/PhotoDetails/PhotosDetails'
 
 const Photos = () => {
   return (
-    <div>Photos</div>
+    <div>
+      <PhotosDetails />
+    </div>
   )
 }
 
