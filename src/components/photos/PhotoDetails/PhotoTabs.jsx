@@ -1,19 +1,35 @@
-import {CloudUpload} from "lucide-react"
+import {Images} from "lucide-react"
+import { useState } from "react"
+import PhotosFormModal from "./PhotosFormModal"
 
 const PhotoTabs = () => {
+  const [isPFMopen, setisPFMopen] = useState(false)
   return (
-    <div className='flex justify-between items-center'>
+    <div className='flex  flex-col'>
+      <div className='flex justify-between items-center'>
       <div className='flex gap-5'>
       <div className='border border-black/30 p-[5px_15px] font-bold rounded-sm'>All Projects</div>
       <div className='border border-black/30 p-[5px_15px] font-bold rounded-sm'>All Locations</div>
       <div className='border border-black/30 p-[5px_15px] font-bold rounded-sm'>Search Bar</div>
       </div>
 
-      <div>
-        <button className='bg-[#e55707] p-[10px_15px] text-white  rounded-lg flex gap-2 items-center'>
-          <div><CloudUpload size={20} strokeWidth={1.5} /></div>
-          <h1>Upload Photos</h1></button>
+      <div className="flex relative">
+        <button className='bg-[#e55707] p-[10px_15px] text-white  rounded-lg flex gap-2 items-center cursor-pointer active:scale-95' onClick={()=> {
+          if(!isPFMopen) {
+            setisPFMopen(true)
+          }
+          else {
+            setisPFMopen(false)
+          }
+        }}>
+          <div><Images size={20} strokeWidth={1.5} /></div>
+          <h1>Create Album</h1></button>
+          
+          <div className="absolute right-0 top-13 w-100">
+           {isPFMopen && <PhotosFormModal />}
+           </div>
       </div>
+          </div>
     </div>
   )
 }
