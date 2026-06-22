@@ -5,6 +5,7 @@ import dashboardSlice from "../features/dashboardSlice.js"
 import punchlistSlice  from "../features/punclistSlice.js"
 import projectsSlice  from "../features/projects.js"
 import tasksSlice  from "../features/tasksSlice.js"
+import photoSlice from "../features/photoSlice.js"
 
 export const store = configureStore({
     reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
         dashboard: dashboardSlice,
         punchlist: punchlistSlice,
         projects: projectsSlice,
-        tasks: tasksSlice
+        tasks: tasksSlice,
+        photos: photoSlice
     }
 })
