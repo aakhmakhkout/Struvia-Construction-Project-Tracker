@@ -6,7 +6,7 @@ const PhotoCards = () => {
   console.log(photoData)
   const photosLength = 20
   return (
-    <div className='flex gap-5 h-160 mt-5'>
+    <div className='flex h-160 mt-5 gap-5 flex-wrap'>
       {photoData.map((items, idx)=> {
         return  <div key={idx} className='CPCards w-80 h-80 border border-black/20 overflow-hidden'>
         <div className='w-full h-50'>

@@ -36,11 +36,11 @@ const PhotosFormModal = () => {
                     getData(elem.target, elem.target.value)
                 }}>
                     <option value="" disabled selected>No project selected</option>
-                    <option value="p1">Project 1</option>
-                    <option value="p2">Project 2</option>
-                    <option value="p3">Project 3</option>
-                    <option value="p4">Project 4</option>
-                    <option value="p5">Project 5</option>
+                    <option value="project 1">Project 1</option>
+                    <option value="project 2">Project 2</option>
+                    <option value="project 3">Project 3</option>
+                    <option value="project 4">Project 4</option>
+                    <option value="project 5">Project 5</option>
                 </select>
 
                 </div>
