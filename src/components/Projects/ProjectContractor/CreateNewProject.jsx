@@ -1,0 +1,143 @@
+import {X} from 'lucide-react'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+
+const CreateNewProject = ({state}) => {
+  const {setisNPFO} = state
+   const UUID = crypto.randomUUID()
+  const [todoTaskData, settodoTaskData] = useState({})
+  const dispatch = useDispatch()
+
+  function getData(targetElement) {
+    settodoTaskData((prev)=> {
+      return {...prev, id:UUID, [targetElement.name]:targetElement.value}
+    })
+  }
+
+  function submitHandler(element) {
+    element.preventDefault()
+    dispatch(setToDoTask(todoTaskData))
+    settodoTaskData({})
+  }
+
+
+  return (
+    <div className='fixed inset-0 bg-black/30 backdrop-blur-[2px] z-50 flex justify-center items-center text-white'>
+        <div className='w-full flex items-center justify-center '>
+
+          <div className='w-[50%] relative'>
+          <div className='absolute top-5 right-5'>
+            <button onClick={()=> {
+              setisNPFO(false)
+            }} className='cursor-pointer active:scale-95 text-[#e55707]'><X size={25} strokeWidth={1.5} /></button>
+          </div>
+          <form className=' bg-[#14202e] CPCards border border-white p-5 flex flex-col justify-evenly h-190' onSubmit={(elem)=> {
+            submitHandler(elem)
+          }}>
+          
+
+          <div className='flex justify-center items-center' >
+            <h1 className='font-bold text-4xl'>Create New Project</h1>
+          </div>
+
+            <div className='flex justify-between bg-black/30 p-3 rounded-lg'>
+              <div className='flex flex-col w-[60%] gap-2'>
+                <label htmlFor="Task" className=' text-white/70 font-bold'>Project Name <span className='text-red-500'>*</span></label>
+                <input type="text" placeholder='write your task here' required name="Task" className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' value={todoTaskData.Task || ""} onChange={(elem)=> {
+                  getData(elem.target)
+                }}/>
+              </div>
+              <div className='flex flex-col w-[35%] gap-2'>
+                <label htmlFor="PName" className=' text-white/70 font-bold'>Project Type <span className='text-red-500'>*</span></label>
+                <select name="PName" id="PName" className='bg-black/30 cursor-pointer p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765] font-bold' required value={todoTaskData.PName || ""}  onChange={(elem)=> {
+                  getData(elem.target)
+                }}>
+                  <option value="" className='text-white/60 font-bold ' disabled selected>Select your project</option>
+                  <option value="skyline">Skyline Villa</option>
+                  <option value="greenland">Greenland Constructions</option>
+                  <option value="techpower">Tech Power Tower</option>
+                  <option value="riverside">River Side Mall</option>
+                </select>
+              </div>
+            </div>
+
+            <div className='flex justify-between bg-black/30 p-3 rounded-lg'>
+              <div className='flex flex-col  gap-2 min-w-[40%]'>
+                <div className='flex flex-col gap-1'>
+                <label htmlFor="assignee" className=' text-white/70 font-bold'>Select team member <span className='text-red-500'>*</span></label>
+                <select name="assignee" id="assignee" value={todoTaskData.assignee || ""} className='bg-black/30 cursor-pointer  p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765] font-bold' required onChange={(elem)=> {
+                    getData(elem.target)
+                }}>
+                <option value="" className='text-white/60 font-bold ' disabled selected>Select team member</option>
+                  <option value="worker1">worker1</option>
+                  <option value="worker2">worker2</option>
+                  <option value="worker3">worker3</option>
+                </select>
+                </div>
+                 <div className='flex flex-col gap-1'>
+                    <h1 className=' text-white/70 font-bold'>Team Members</h1>
+                    <div className='flex bg-black/30 p-2 border border-white/20 rounded-lg gap-3'>
+                        <div className='bg-white/20 p-1 rounded-lg border border-white/30 flex items-center gap-2 capitalize'>
+                        <h1>member 1</h1> 
+                        <button className='cursor-pointer active:scale-95 text-[#e55707]'><X size={20} strokeWidth={1.5} /></button>
+                        </div>
+                        <div className='bg-white/20 p-1 rounded-lg border border-white/30 flex items-center gap-2 capitalize'>
+                        <h1>member 1</h1> 
+                        <button className='cursor-pointer active:scale-95 text-[#e55707]'><X size={20} strokeWidth={1.5} /></button>
+                        </div>
+                        
+                    </div>
+                </div>
+              </div>
+
+              <div className='flex flex-col w-[30%]'>
+                 <div className='flex flex-col gap-2'>
+                <label htmlFor="date" className='font-bold text-white/70'>Start Date <span className='text-red-500'>*</span></label>
+                <input type="date" name="date" id="date" required className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' value={todoTaskData.date || ""} onChange={(elem)=> {
+                    getData(elem.target)
+                }}/>
+              </div>
+                 <div className='flex flex-col  gap-2'>
+                <label htmlFor="date" className='font-bold text-white/70'>End Date <span className='text-red-500'>*</span></label>
+                <input type="date" name="date" id="date" required className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' value={todoTaskData.date || ""} onChange={(elem)=> {
+                    getData(elem.target)
+                }}/>
+              </div>
+            </div>
+                
+            </div>
+            <div>
+                <div className='flex flex-col w-[30%] gap-2'>
+                <label htmlFor="priority" className='font-bold text-white/70'>Select Priority <span className='text-red-500'>*</span></label>
+                <select name="priority" id="priority" required className='bg-black/30 p-3 cursor-pointer rounded-lg border border-white/30 outline-none focus:border-[#7845a765] font-bold' value={todoTaskData.priority || ""} onChange={(elem)=> {
+                    getData(elem.target)
+                }}>
+                   <option value="" className='text-white/60 font-bold ' disabled selected>Select task priority</option>
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+            </div>
+
+         
+               <div className='flex flex-col w-full gap-2'>
+                <label htmlFor="comment" className='font-bold text-white/70'>Comment (Optional)</label>
+                <textarea name="comment" id="comment" placeholder='write any comment' value={todoTaskData.comment || ""} className='bg-black/30 p-3 rounded-lg border h-40 border-white/30 outline-none resize-none focus:border-[#7845a765]' onChange={(elem)=> {
+                  getData(elem.target)
+                }}></textarea>
+              </div>
+             
+
+            <div className='w-full flex justify-center items-end'>     
+              <button className='bg-[#7745a7] w-full py-3 rounded-lg cursor-pointer font-bold border border-white/20 active:scale-95'>Add Task</button>
+            </div>
+          </form>
+          </div>
+        </div>
+    </div>
+  )
+}
+
+export default CreateNewProject
