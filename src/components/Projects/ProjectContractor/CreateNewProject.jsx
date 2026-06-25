@@ -41,32 +41,56 @@ const CreateNewProject = ({state}) => {
             <h1 className='font-bold text-4xl'>Create New Project</h1>
           </div>
 
-            <div className='flex justify-between bg-black/30 p-3 rounded-lg'>
-              <div className='flex flex-col w-[60%] gap-2'>
-                <label htmlFor="Task" className=' text-white/70 font-bold'>Project Name <span className='text-red-500'>*</span></label>
-                <input type="text" placeholder='write your task here' required name="Task" className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' value={todoTaskData.Task || ""} onChange={(elem)=> {
-                  getData(elem.target)
-                }}/>
+            <div className='flex justify-between bg-black/30 backdrop-blur-2xl CPCards p-3 items-center'>
+              <div className='flex flex-col w-[50%] gap-2'>
+                <label htmlFor="project" className=' text-white/70 font-bold'>Project Name <span className='text-red-500'>*</span></label>
+                <input type="text" placeholder='write your project name here' required name="project" id="project" className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765] capitalize'/>
               </div>
-              <div className='flex flex-col w-[35%] gap-2'>
+              <div className='flex flex-col w-[45%] gap-2'>
                 <label htmlFor="PName" className=' text-white/70 font-bold'>Project Type <span className='text-red-500'>*</span></label>
-                <select name="PName" id="PName" className='bg-black/30 cursor-pointer p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765] font-bold' required value={todoTaskData.PName || ""}  onChange={(elem)=> {
-                  getData(elem.target)
-                }}>
-                  <option value="" className='text-white/60 font-bold ' disabled selected>Select your project</option>
-                  <option value="skyline">Skyline Villa</option>
-                  <option value="greenland">Greenland Constructions</option>
-                  <option value="techpower">Tech Power Tower</option>
-                  <option value="riverside">River Side Mall</option>
+                <input type="text" placeholder='write project type here' required name="PName" id="PName" className='bg-black/30 cursor-text capitalize p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]'/>
+              </div>
+            </div>
+
+            <div className='flex justify-between bg-black/30 p-3 backdrop-blur-2xl CPCards items-center'>
+              <div className='flex flex-col w-[35%] gap-2'>
+                <label htmlFor="location" className=' text-white/70 font-bold'>Location <span className='text-red-500'>*</span></label>
+                <input type="text" placeholder='town, city, state' required name="location" id="location" className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]'/>
+              </div>
+              <div className='flex flex-col w-[30%] gap-2'>
+                <label htmlFor="budget" className=' text-white/70 font-bold'>Total Budget <span className='text-red-500'>*</span></label>
+                <input type="text" placeholder='20,000,00 INR' required name="budget" id="budget" className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]'/>
+              </div>
+                 <div className='flex flex-col w-[30%] gap-2'>
+                <label htmlFor="status" className='font-bold text-white/70'>Project Status<span className='text-red-500'>*</span></label>
+                <select name="status" id="status" required className='bg-black/30 p-3 cursor-pointer rounded-lg border border-white/30 outline-none focus:border-[#7845a765]'>
+                   <option value="" className='text-white/60 font-bold ' disabled selected>Select Project Status</option>
+                  <option value="Completed">Completed</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="On Hold">On Hold</option>
                 </select>
               </div>
             </div>
 
-            <div className='flex justify-between bg-black/30 p-3 rounded-lg'>
-              <div className='flex flex-col  gap-2 min-w-[40%]'>
-                <div className='flex flex-col gap-1'>
+            <div className='flex flex-col  bg-black/30 p-3 backdrop-blur-2xl CPCards gap-10'>
+            <div className='flex justify-between items-center '>
+                 <div className='flex flex-col gap-2 w-[20%]'>
+                <label htmlFor="date" className='font-bold text-white/70'>Start Date <span className='text-red-500'>*</span></label>
+                <input type="date" name="date" id="date" required className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]'/>
+              </div>
+                 <div className='flex flex-col  gap-2 w-[20%]'>
+                <label htmlFor="date" className='font-bold text-white/70'>End Date <span className='text-red-500'>*</span></label>
+                <input type="date" name="date" id="date" required className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]'/>
+            </div>
+
+            <div className='flex flex-col  gap-2 w-[25%]'>
+              <label htmlFor="projectImgIcon" className='font-bold text-white/70'>Upload Project pfp <span className='text-red-500'>*</span></label>
+              <input type="file" name="projectImgIcon" id="projectImgIcon" required className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]'/>
+            </div>
+
+             <div className='flex flex-col gap-2'>
                 <label htmlFor="assignee" className=' text-white/70 font-bold'>Select team member <span className='text-red-500'>*</span></label>
-                <select name="assignee" id="assignee" value={todoTaskData.assignee || ""} className='bg-black/30 cursor-pointer  p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765] font-bold' required onChange={(elem)=> {
+                <select name="assignee" id="assignee" value={todoTaskData.assignee || ""} className='bg-black/30 cursor-pointer  p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' required onChange={(elem)=> {
                     getData(elem.target)
                 }}>
                 <option value="" className='text-white/60 font-bold ' disabled selected>Select team member</option>
@@ -75,7 +99,10 @@ const CreateNewProject = ({state}) => {
                   <option value="worker3">worker3</option>
                 </select>
                 </div>
-                 <div className='flex flex-col gap-1'>
+            </div>
+                
+            
+                 <div className='flex flex-col gap-2'>
                     <h1 className=' text-white/70 font-bold'>Team Members</h1>
                     <div className='flex bg-black/30 p-2 border border-white/20 rounded-lg gap-3'>
                         <div className='bg-white/20 p-1 rounded-lg border border-white/30 flex items-center gap-2 capitalize'>
@@ -87,51 +114,12 @@ const CreateNewProject = ({state}) => {
                         <button className='cursor-pointer active:scale-95 text-[#e55707]'><X size={20} strokeWidth={1.5} /></button>
                         </div>
                         
-                    </div>
                 </div>
-              </div>
-
-              <div className='flex flex-col w-[30%]'>
-                 <div className='flex flex-col gap-2'>
-                <label htmlFor="date" className='font-bold text-white/70'>Start Date <span className='text-red-500'>*</span></label>
-                <input type="date" name="date" id="date" required className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' value={todoTaskData.date || ""} onChange={(elem)=> {
-                    getData(elem.target)
-                }}/>
-              </div>
-                 <div className='flex flex-col  gap-2'>
-                <label htmlFor="date" className='font-bold text-white/70'>End Date <span className='text-red-500'>*</span></label>
-                <input type="date" name="date" id="date" required className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' value={todoTaskData.date || ""} onChange={(elem)=> {
-                    getData(elem.target)
-                }}/>
-              </div>
             </div>
-                
             </div>
-            <div>
-                <div className='flex flex-col w-[30%] gap-2'>
-                <label htmlFor="priority" className='font-bold text-white/70'>Select Priority <span className='text-red-500'>*</span></label>
-                <select name="priority" id="priority" required className='bg-black/30 p-3 cursor-pointer rounded-lg border border-white/30 outline-none focus:border-[#7845a765] font-bold' value={todoTaskData.priority || ""} onChange={(elem)=> {
-                    getData(elem.target)
-                }}>
-                   <option value="" className='text-white/60 font-bold ' disabled selected>Select task priority</option>
-                  <option value="High">High</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Low">Low</option>
-                </select>
-              </div>
-            </div>
-
-         
-               <div className='flex flex-col w-full gap-2'>
-                <label htmlFor="comment" className='font-bold text-white/70'>Comment (Optional)</label>
-                <textarea name="comment" id="comment" placeholder='write any comment' value={todoTaskData.comment || ""} className='bg-black/30 p-3 rounded-lg border h-40 border-white/30 outline-none resize-none focus:border-[#7845a765]' onChange={(elem)=> {
-                  getData(elem.target)
-                }}></textarea>
-              </div>
-             
 
             <div className='w-full flex justify-center items-end'>     
-              <button className='bg-[#7745a7] w-full py-3 rounded-lg cursor-pointer font-bold border border-white/20 active:scale-95'>Add Task</button>
+              <button className='bg-[#7745a7] w-full py-3 cursor-pointer font-bold border border-white/20 active:scale-95 CPCards'>Create Project</button>
             </div>
           </form>
           </div>
