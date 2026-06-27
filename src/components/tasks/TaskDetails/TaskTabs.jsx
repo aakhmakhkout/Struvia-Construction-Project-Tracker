@@ -9,7 +9,7 @@ const TaskTabs = () => {
         <h1 >Projects Drop Down</h1>
       </div>
 
-      <div className='border border-black/20 p-[8px_15px] rounded-sm'>
+      <div className='border border-black/20 p-[8px_15px] rounded-sm relative'>
         <PriorityOptions />
       </div>
 
