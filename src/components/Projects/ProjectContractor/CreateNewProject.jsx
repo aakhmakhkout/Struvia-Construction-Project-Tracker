@@ -6,19 +6,20 @@ import { useDispatch, useSelector } from 'react-redux'
 const CreateNewProject = ({state}) => {
   const {setisNPFO} = state
    const UUID = crypto.randomUUID()
-  const [todoTaskData, settodoTaskData] = useState({})
+  const [projectData, setProjectData] = useState({})
+  const [selectFile, setselectFile] = useState(null)
   const dispatch = useDispatch()
 
-  function getData(targetElement) {
-    settodoTaskData((prev)=> {
+  function handleInputChanges(targetElement) {
+    setProjectData((prev)=> {
       return {...prev, id:UUID, [targetElement.name]:targetElement.value}
     })
   }
 
   function submitHandler(element) {
     element.preventDefault()
-    dispatch(setToDoTask(todoTaskData))
-    settodoTaskData({})
+    dispatch(setToDoTask(projectData))
+    setProjectData({})
   }
 
 

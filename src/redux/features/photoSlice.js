@@ -1,21 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const photosInitData = JSON.parse(localStorage.getItem("photosData")) || []
+const albumInitialData = JSON.parse(localStorage.getItem("albumdata")) || []
 
 const photoSlice = createSlice(
     {
         name: "photos",
         initialState: {
-            photosData: photosInitData
+            albumdata: albumInitialData
         },
         reducers: {
-            setPhotosData(state, action) {
-                state.photosData.push(action.payload)
-                localStorage.setItem("photosData", JSON.stringify(state.photosData))
+            setAlbumData(state, action) {
+                state.albumdata.push(action.payload)
+                localStorage.setItem("albumdata", JSON.stringify(state.albumdata))
             }
         }
     }
 )
 
-export const {setPhotosData} = photoSlice.actions
+export const {setAlbumData} = photoSlice.actions
 export default photoSlice.reducer

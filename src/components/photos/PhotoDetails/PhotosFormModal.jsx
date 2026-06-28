@@ -1,39 +1,49 @@
 import { X } from "lucide-react"
-import { setPhotosData } from "../../../redux/features/photoSlice"
+import { setAlbumData } from "../../../redux/features/photoSlice"
 import {useDispatch, useSelector} from "react-redux"
 import { useState } from "react"
+import supabase from "../../../lib/supabase.js"
 
 const PhotosFormModal = () => {
     const dispatch = useDispatch()
-    const data = useSelector(state => state.photos.photosData)
-    console.log(data)
-    const [photodata, setphotodata] = useState({})
-    console.log(photodata)
+    const data = useSelector(state => state.photos.albumdata)
+    const [albumData, setalbumData] = useState({})
+    const [selectedFile, setselectedFile] = useState(null)
 
-    function getData(targetElem, targetElemValue) {
-        setphotodata((prev) => {
-            return {...prev, [targetElem.name]: targetElemValue}
+    function handleInputChange(targetElem) {
+        setalbumData((prev) => {
+            return {...prev, [targetElem.name]: targetElem.value}
         })
     }
+    function handleFileChange(file) {
+        setselectedFile(file)
+    }
+
+    function submitHandler(element) {
+        element.preventDefault()
+        const albumID = crypto.randomUUID()
+        const imageID = crypto.randomUUID()
+        dispatch(setPhotosData(albumData))
+        setalbumData({})
+    }
+
   return (
     <div className=' bg-black/20 backdrop-blur-[2px]  flex justify-center items-center rounded-lg CPCards overflow-hidden'>
         <form className="text-white bg-[#14202e] p-3 w-full flex flex-col gap-3" onSubmit={(elem)=> {
-            elem.preventDefault()
-            dispatch(setPhotosData(photodata))
-            setphotodata({})
+            submitHandler(elem)
         }}>
             <div className="flex flex-col gap-3">
                 <div className="flex gap-1 flex-col">
                 <label htmlFor="label" className="font-bold text-white/70 ">Album Label <span className="text-red-500">*</span></label>
-                <input type="text" placeholder="Enter label" value={photodata.label || ""} required id="label" name="label" className="outline-none bg-black/30 p-2 rounded-lg border border-white/20" onChange={(elem)=>{
-                    getData(elem.target, elem.target.value)
+                <input type="text" placeholder="Enter label" value={albumData.label || ""} required id="label" name="label" className="outline-none bg-black/30 p-2 rounded-lg border border-white/20" onChange={(elem)=>{
+                    handleInputChange(elem.target)
                 }}/>
                 </div>
 
                 <div className="flex flex-col gap-3">
                 <label htmlFor="PName" className="font-bold text-white/70 ">Select your project <span className="text-red-500">*</span></label>
-                <select name="PName" id="PName" value={photodata.PName || ""} className="bg-black/30 p-2 rounded-lg border border-white/20 w-full" required onChange={(elem)=>{
-                    getData(elem.target, elem.target.value)
+                <select name="PName" id="PName" value={albumData.PName || ""} className="bg-black/30 p-2 rounded-lg border border-white/20 w-full" required onChange={(elem)=>{
+                    handleInputChange(elem.target)
                 }}>
                     <option value="" disabled selected>No project selected</option>
                     <option value="project 1">Project 1</option>
@@ -49,9 +59,7 @@ const PhotosFormModal = () => {
             <div className="flex flex-col gap-3">
                 <label htmlFor="uploadImg" className="font-bold text-white/70 ">Upload image here <span className="text-red-500">*</span></label>
                 <input type="file" id="uploadImg" name="uploadImg" required accept="image/png, image/jpeg" className="bg-black/30 p-2 rounded-lg border border-white/20" onChange={(elem)=>{
-                    const file = elem.target.files[0]
-                    const imageURL = URL.createObjectURL(file)
-                    getData(elem.target, imageURL)
+                    handleFileChange(elem.target.files[0])
                 }}/>
             </div>
 

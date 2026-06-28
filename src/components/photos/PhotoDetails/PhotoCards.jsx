@@ -2,12 +2,11 @@ import { useSelector } from 'react-redux'
 import {EllipsisVertical} from "lucide-react"
 
 const PhotoCards = () => {
-  const photoData = useSelector(state => state.photos.photosData)
-  console.log(photoData)
+  const albumdata = useSelector(state => state.photos.albumdata)
   const photosLength = 20
   return (
     <div className='flex h-160 mt-5 gap-5 flex-wrap'>
-      {photoData.map((items, idx)=> {
+      {albumdata.map((items, idx)=> {
         return  <div key={idx} className='CPCards w-80 h-80 border border-black/20 overflow-hidden'>
         <div className='w-full h-50'>
         <img src={items.uploadImg} alt="img" className='w-full h-full object-cover object-center'/>
