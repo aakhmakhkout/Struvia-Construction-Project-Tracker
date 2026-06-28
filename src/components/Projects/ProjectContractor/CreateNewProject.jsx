@@ -1,12 +1,14 @@
 import {X} from 'lucide-react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import {setProjectsData} from "../../../redux/features/projectsSlice"
 
 
 const CreateNewProject = ({state}) => {
   const {setisNPFO} = state
    const UUID = crypto.randomUUID()
   const [projectData, setProjectData] = useState({})
+  const [teamMembers, setteamMembers] = useState([])
   const [selectFile, setselectFile] = useState(null)
   const dispatch = useDispatch()
 
@@ -16,9 +18,23 @@ const CreateNewProject = ({state}) => {
     })
   }
 
+  function addTeamMembers(data) {
+    setteamMembers((prev)=> {
+      const isTeamMembers = prev.some((items) => {
+        return items === data
+      })
+      if(!isTeamMembers) {
+        return [...prev, data]
+      }
+      else {
+        return [...prev]
+      }
+    })
+  }
+
   function submitHandler(element) {
     element.preventDefault()
-    dispatch(setToDoTask(projectData))
+    dispatch(setProjectsData(projectData))
     setProjectData({})
   }
 
@@ -37,31 +53,39 @@ const CreateNewProject = ({state}) => {
             submitHandler(elem)
           }}>
           
-
+          {/* heading */}
           <div className='flex justify-center items-center' >
             <h1 className='font-bold text-4xl'>Create New Project</h1>
           </div>
 
+            {/* Project Name and Project Type input field */}
             <div className='flex justify-between bg-black/30 backdrop-blur-2xl CPCards p-3 items-center'>
               <div className='flex flex-col w-[50%] gap-2'>
                 <label htmlFor="project" className=' text-white/70 font-bold'>Project Name <span className='text-red-500'>*</span></label>
                 <input type="text" placeholder='write your project name here' required name="project" id="project" className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765] capitalize'/>
               </div>
+
               <div className='flex flex-col w-[45%] gap-2'>
                 <label htmlFor="PName" className=' text-white/70 font-bold'>Project Type <span className='text-red-500'>*</span></label>
                 <input type="text" placeholder='write project type here' required name="PName" id="PName" className='bg-black/30 cursor-text capitalize p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]'/>
               </div>
             </div>
 
+
+            {/* Location + TotalBudget + Project Status */}
             <div className='flex justify-between bg-black/30 p-3 backdrop-blur-2xl CPCards items-center'>
               <div className='flex flex-col w-[35%] gap-2'>
                 <label htmlFor="location" className=' text-white/70 font-bold'>Location <span className='text-red-500'>*</span></label>
                 <input type="text" placeholder='town, city, state' required name="location" id="location" className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]'/>
               </div>
+
+
               <div className='flex flex-col w-[30%] gap-2'>
                 <label htmlFor="budget" className=' text-white/70 font-bold'>Total Budget <span className='text-red-500'>*</span></label>
                 <input type="text" placeholder='20,000,00 INR' required name="budget" id="budget" className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]'/>
               </div>
+
+
                  <div className='flex flex-col w-[30%] gap-2'>
                 <label htmlFor="status" className='font-bold text-white/70'>Project Status<span className='text-red-500'>*</span></label>
                 <select name="status" id="status" required className='bg-black/30 p-3 cursor-pointer rounded-lg border border-white/30 outline-none focus:border-[#7845a765]'>
@@ -73,6 +97,8 @@ const CreateNewProject = ({state}) => {
               </div>
             </div>
 
+
+            {/* Start date + End date + upload project pfp + select team member */}
             <div className='flex flex-col  bg-black/30 p-3 backdrop-blur-2xl CPCards gap-10'>
             <div className='flex justify-between items-center '>
                  <div className='flex flex-col gap-2 w-[20%]'>
@@ -91,8 +117,9 @@ const CreateNewProject = ({state}) => {
 
              <div className='flex flex-col gap-2'>
                 <label htmlFor="assignee" className=' text-white/70 font-bold'>Select team member <span className='text-red-500'>*</span></label>
-                <select name="assignee" id="assignee" value={todoTaskData.assignee || ""} className='bg-black/30 cursor-pointer  p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' required onChange={(elem)=> {
-                    getData(elem.target)
+                <select name="assignee" id="assignee" className='bg-black/30 cursor-pointer  p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' required onChange={(elem)=> {
+                  addTeamMembers(elem.target.value)
+                  console.log(teamMembers)
                 }}>
                 <option value="" className='text-white/60 font-bold ' disabled selected>Select team member</option>
                   <option value="worker1">worker1</option>
@@ -102,19 +129,20 @@ const CreateNewProject = ({state}) => {
                 </div>
             </div>
                 
+
+                {/* Team members */}
             
                  <div className='flex flex-col gap-2'>
                     <h1 className=' text-white/70 font-bold'>Team Members</h1>
-                    <div className='flex bg-black/30 p-2 border border-white/20 rounded-lg gap-3'>
-                        <div className='bg-white/20 p-1 rounded-lg border border-white/30 flex items-center gap-2 capitalize'>
-                        <h1>member 1</h1> 
+                    <div className='flex bg-black/30 h-15 p-2 border border-white/20 rounded-lg gap-3 overflow-x-scroll createNewProjectsTM'>
+
+                    {teamMembers.map((items, idx)=> {
+                        return <div key={idx} className='bg-white/20 p-[5px_15px] rounded-lg border border-white/30 flex items-center gap-2 capitalize'>
+                        <h1>{items}</h1> 
                         <button className='cursor-pointer active:scale-95 text-[#e55707]'><X size={20} strokeWidth={1.5} /></button>
                         </div>
-                        <div className='bg-white/20 p-1 rounded-lg border border-white/30 flex items-center gap-2 capitalize'>
-                        <h1>member 1</h1> 
-                        <button className='cursor-pointer active:scale-95 text-[#e55707]'><X size={20} strokeWidth={1.5} /></button>
-                        </div>
-                        
+                    })}
+                      
                 </div>
             </div>
             </div>

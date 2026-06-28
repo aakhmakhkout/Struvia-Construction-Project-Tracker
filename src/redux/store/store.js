@@ -3,7 +3,7 @@ import layoutSlice from "../features/layoutSlice.js"
 import authSlice from '../features/authSlice.js'
 import dashboardSlice from "../features/dashboardSlice.js"
 import punchlistSlice  from "../features/punclistSlice.js"
-import projectsSlice  from "../features/projects.js"
+import projectsSlice  from "../features/projectsSlice.js"
 import tasksSlice  from "../features/tasksSlice.js"
 import photoSlice from "../features/photoSlice.js"
 
