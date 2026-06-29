@@ -15,11 +15,8 @@ const PhotosFormModal = () => {
             return {...prev, [targetElem.name]: targetElem.value}
         })
     }
-    function handleFileChange(file) {
-        setselectedFile(file)
-    }
 
-    function submitHandler(element) {
+    async function submitHandler(element) {
         element.preventDefault()
         const albumID = crypto.randomUUID()
         const imageID = crypto.randomUUID()
@@ -59,7 +56,7 @@ const PhotosFormModal = () => {
             <div className="flex flex-col gap-3">
                 <label htmlFor="uploadImg" className="font-bold text-white/70 ">Upload image here <span className="text-red-500">*</span></label>
                 <input type="file" id="uploadImg" name="uploadImg" required accept="image/png, image/jpeg" className="bg-black/30 p-2 rounded-lg border border-white/20" onChange={(elem)=>{
-                    handleFileChange(elem.target.files[0])
+                   setselectedFile(elem.target.files[0])
                 }}/>
             </div>
 
