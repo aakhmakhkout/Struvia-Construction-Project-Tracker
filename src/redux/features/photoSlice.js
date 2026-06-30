@@ -12,10 +12,19 @@ const photoSlice = createSlice(
             setAlbumData(state, action) {
                 state.albumdata.push(action.payload)
                 localStorage.setItem("albumdata", JSON.stringify(state.albumdata))
-            }
+            },
+             deleteAlbum(state, action) {
+            const updatedAlbums = state.albumdata.filter((items)=> {
+                return items.albumid !== action.payload 
+            })
+
+            state.albumdata = updatedAlbums
+
+            localStorage.setItem("albumdata", JSON.stringify(updatedAlbums))
+        }
         }
     }
 )
 
-export const {setAlbumData} = photoSlice.actions
+export const {setAlbumData, deleteAlbum} = photoSlice.actions
 export default photoSlice.reducer

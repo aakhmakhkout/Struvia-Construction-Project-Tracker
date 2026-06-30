@@ -94,7 +94,7 @@ const CPCards = () => {
             <div>{items.status}</div>
             <div>{items.stdate}</div>
             <div>{items.endate}</div>
-            <div className="font-bold">{items.budget}</div>
+            <div className="font-bold uppercase">{items.budget}</div>
             <div>{items.team.map(items => items)}</div>
             <div className="relative">
               <button className="cursor-pointer hover:bg-black/20 p-1 rounded-full transition-all" onClick={()=> {

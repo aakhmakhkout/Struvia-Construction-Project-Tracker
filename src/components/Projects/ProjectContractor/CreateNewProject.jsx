@@ -52,6 +52,7 @@ const CreateNewProject = ({state}) => {
     const {data, error} = await supabase.storage.from("struvia-media").upload(imagePath, selectFile)
 
     if(error) {
+      setisLoading(false)
       return
     }
 
@@ -165,7 +166,7 @@ const CreateNewProject = ({state}) => {
 
             <div className='flex flex-col  gap-2 w-[25%]'>
               <label htmlFor="projectImgIcon" className='font-bold text-white/70'>Upload Project pfp <span className='text-red-500'>*</span></label>
-              <input type="file" name="projectImgIcon" id="projectImgIcon" required className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' onChange={(elem)=> {
+              <input type="file" name="projectImgIcon" id="projectImgIcon" required className='bg-black/30 p-3 cursor-pointer rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' onChange={(elem)=> {
                 setselectFile(elem.target.files[0])
               }}/>
             </div>
@@ -177,9 +178,9 @@ const CreateNewProject = ({state}) => {
 
                 }}>
                 <option value="" className='text-white/60 font-bold ' disabled>Select team member</option>
-                  <option value="worker1">Isagi Yoichi</option>
-                  <option value="worker2">Eren Yaeger</option>
-                  <option value="worker3">Echida</option>
+                  <option value="Isagi Yoichi">Isagi Yoichi</option>
+                  <option value="Eren Yaeger">Eren Yaeger</option>
+                  <option value="Echida">Echida</option>
                 </select>
                 </div>
             </div>
@@ -204,7 +205,7 @@ const CreateNewProject = ({state}) => {
             </div>
 
             <div className='w-full flex justify-center items-end'>     
-              <button type='submit' className='bg-[#7745a7] w-full py-3 cursor-pointer font-bold border border-white/20 active:scale-95 CPCards'>{isLoading ? <span className='flex justify-center items-center animate-spin'><Loader size={20} strokeWidth={1.5} /></span>: <h1>Create Project</h1>}</button>
+              {!isLoading ? <button type='submit' className='bg-[#7745a7] w-full py-3 cursor-pointer font-bold border border-white/20 active:scale-95 CPCards'>Create Project</button> : <button type="submit" disabled className='bg-[#7745a7] w-full py-3 flex justify-center items-center font-bold border border-white/20 active:scale-95 CPCards'><Loader size={20} strokeWidth={1.5} className='animate-spin'/> </button>}
             </div>
           </form>
           </div>

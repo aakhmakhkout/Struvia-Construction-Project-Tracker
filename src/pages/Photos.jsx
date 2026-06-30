@@ -3,7 +3,7 @@ import PhotosDetails from '../components/photos/PhotoDetails/PhotosDetails'
 
 const Photos = () => {
   return (
-    <div>
+    <div className='w-full h-full'>
       <PhotosDetails />
     </div>
   )

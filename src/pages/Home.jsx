@@ -11,9 +11,11 @@ const Home = () => {
             </div>
 
               <div className='w-full'>
-              <Navbar />
-              <div className='w-full flex justify-center'>
-                <div className='w-[95%]'>
+                <div className='h-[6%]'>
+                <Navbar />
+                </div>
+              <div className='w-full flex justify-center h-[94%]'>
+                <div className='w-[95%] h-full'>
                 <Outlet/>
                 </div>
               </div>
