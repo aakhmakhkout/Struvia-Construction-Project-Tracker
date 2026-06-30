@@ -11,8 +11,8 @@ const CPQuickActions = () => {
     {
       id: 2,
       img: "icon",
-      label: "View Timeline",
-      desc: "See project schedules"
+      label: "Team Members",
+      desc: "View All Team Members"
     },
     {
       id: 3,

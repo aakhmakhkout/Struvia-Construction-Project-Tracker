@@ -1,4 +1,4 @@
-import {X} from 'lucide-react'
+import {X, Loader} from 'lucide-react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {setProjectsData} from "../../../redux/features/projectsSlice"
@@ -13,6 +13,7 @@ const CreateNewProject = ({state}) => {
   const dispatch = useDispatch()
   const fpData = useSelector(state => state.projects.projectsdata)
   console.log(fpData)
+  const [isLoading, setisLoading] = useState(false)
 
   function handleInputChanges(targetElement) {
     setProjectData((prev)=> {
@@ -42,6 +43,7 @@ const CreateNewProject = ({state}) => {
   async function submitHandler(element) {
     element.preventDefault()
   
+    setisLoading(true)
     const projectID = crypto.randomUUID()
     const pfpID = crypto.randomUUID()
 
@@ -72,6 +74,7 @@ const CreateNewProject = ({state}) => {
     setProjectData({})
     setteamMembers([])
     setselectFile(null)
+    setisLoading(false)
   }
 
 
@@ -104,8 +107,8 @@ const CreateNewProject = ({state}) => {
               </div>
 
               <div className='flex flex-col w-[45%] gap-2'>
-                <label htmlFor="PName" className=' text-white/70 font-bold'>Project Type <span className='text-red-500'>*</span></label>
-                <input type="text" placeholder='write project type here' required name="PName" id="PName" className='bg-black/30 cursor-text capitalize p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' onChange={(elem)=> {
+                <label htmlFor="PType" className=' text-white/70 font-bold'>Project Type <span className='text-red-500'>*</span></label>
+                <input type="text" placeholder='write project type here' required name="PType" value={projectData.PType || ""} id="PType" className='bg-black/30 cursor-text capitalize p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' onChange={(elem)=> {
                   handleInputChanges(elem.target)
                 }}/>
               </div>
@@ -116,7 +119,7 @@ const CreateNewProject = ({state}) => {
             <div className='flex justify-between bg-black/30 p-3 backdrop-blur-2xl CPCards items-center'>
               <div className='flex flex-col w-[35%] gap-2'>
                 <label htmlFor="location" className=' text-white/70 font-bold'>Location <span className='text-red-500'>*</span></label>
-                <input type="text" placeholder='town, city, state' required name="location" id="location" className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' onChange={(elem)=> {
+                <input type="text" placeholder='town, city, state' required name="location" id="location" value={projectData.location || ""} className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' onChange={(elem)=> {
                   handleInputChanges(elem.target)
                 }}/>
               </div>
@@ -124,7 +127,7 @@ const CreateNewProject = ({state}) => {
 
               <div className='flex flex-col w-[30%] gap-2'>
                 <label htmlFor="budget" className=' text-white/70 font-bold'>Total Budget <span className='text-red-500'>*</span></label>
-                <input type="text" placeholder='20,000,00 INR' required name="budget" id="budget" className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' onChange={(elem)=> {
+                <input type="text" placeholder='20,000,00 INR' required name="budget" id="budget" value={projectData.budget || ""} className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 uppercase outline-none focus:border-[#7845a765]' onChange={(elem)=> {
                   handleInputChanges(elem.target)
                 }}/>
               </div>
@@ -132,10 +135,10 @@ const CreateNewProject = ({state}) => {
 
                  <div className='flex flex-col w-[30%] gap-2'>
                 <label htmlFor="status" className='font-bold text-white/70'>Project Status<span className='text-red-500'>*</span></label>
-                <select name="status" id="status" required className='bg-black/30 p-3 cursor-pointer rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' onChange={(elem)=> {
+                <select name="status" id="status" value={projectData.status || ""} required className='bg-black/30 p-3  cursor-pointer rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' onChange={(elem)=> {
                   handleInputChanges(elem.target)
                 }}>
-                   <option value="" className='text-white/60 font-bold ' disabled selected>Select Project Status</option>
+                   <option value="" className='text-white/60 font-bold ' disabled>Select Project Status</option>
                   <option value="Completed">Completed</option>
                   <option value="In Progress">In Progress</option>
                   <option value="On Hold">On Hold</option>
@@ -149,13 +152,13 @@ const CreateNewProject = ({state}) => {
             <div className='flex justify-between items-center '>
                  <div className='flex flex-col gap-2 w-[20%]'>
                 <label htmlFor="stdate" className='font-bold text-white/70'>Start Date <span className='text-red-500'>*</span></label>
-                <input type="date" name="stdate" id="stdate" required className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' onChange={(elem)=> {
+                <input type="date" name="stdate" id="stdate" value={projectData.stdate || ""} required className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' onChange={(elem)=> {
                   handleInputChanges(elem.target)
                 }}/>
               </div>
                  <div className='flex flex-col  gap-2 w-[20%]'>
                 <label htmlFor="endate" className='font-bold text-white/70'>End Date <span className='text-red-500'>*</span></label>
-                <input type="date" name="endate" id="endate" required className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' onChange={(elem)=> {
+                <input type="date" name="endate" id="endate" value={projectData.endate || ""} required className='bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' onChange={(elem)=> {
                   handleInputChanges(elem.target)
                 }}/>
             </div>
@@ -169,14 +172,14 @@ const CreateNewProject = ({state}) => {
 
              <div className='flex flex-col gap-2'>
                 <label htmlFor="team" className=' text-white/70 font-bold'>Select team member <span className='text-red-500'>*</span></label>
-                <select name="team" id="team" className='bg-black/30 cursor-pointer  p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' required onChange={(elem)=> {
+                <select name="team" id="team" value={projectData.team || ""} className='bg-black/30 cursor-pointer   p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]' onChange={(elem)=> {
                   addTeamMembers(elem.target.value)
 
                 }}>
-                <option value="" className='text-white/60 font-bold ' disabled selected>Select team member</option>
-                  <option value="worker1">worker1</option>
-                  <option value="worker2">worker2</option>
-                  <option value="worker3">worker3</option>
+                <option value="" className='text-white/60 font-bold ' disabled>Select team member</option>
+                  <option value="worker1">Isagi Yoichi</option>
+                  <option value="worker2">Eren Yaeger</option>
+                  <option value="worker3">Echida</option>
                 </select>
                 </div>
             </div>
@@ -190,7 +193,7 @@ const CreateNewProject = ({state}) => {
                     {teamMembers.map((items, idx)=> {
                         return <div key={idx} className='bg-white/20 p-[5px_15px] rounded-lg border border-white/30 flex items-center gap-2 capitalize'>
                         <h1>{items}</h1> 
-                        <button className='cursor-pointer active:scale-95 text-[#e55707]'><X size={20} strokeWidth={1.5} onClick={()=> {
+                        <button type='button' className='cursor-pointer active:scale-95 text-[#e55707]'><X size={20} strokeWidth={1.5} onClick={()=> {
                           removeTeamMembers(items)
                         }}/></button>
                         </div>
@@ -201,7 +204,7 @@ const CreateNewProject = ({state}) => {
             </div>
 
             <div className='w-full flex justify-center items-end'>     
-              <button className='bg-[#7745a7] w-full py-3 cursor-pointer font-bold border border-white/20 active:scale-95 CPCards'>Create Project</button>
+              <button type='submit' className='bg-[#7745a7] w-full py-3 cursor-pointer font-bold border border-white/20 active:scale-95 CPCards'>{isLoading ? <span className='flex justify-center items-center animate-spin'><Loader size={20} strokeWidth={1.5} /></span>: <h1>Create Project</h1>}</button>
             </div>
           </form>
           </div>
