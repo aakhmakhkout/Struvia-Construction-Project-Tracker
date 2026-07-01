@@ -1,24 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
+import CreateNewProject from './CreateNewProject'
+import Teams from './Teams/Teams'
 
-const CPQuickActions = () => {
+const CPQuickActions = ({state}) => {
+  const {setisNPFO, setisTeamModalOpen} = state
+
+  function openCreateNewProject() {
+    setisNPFO(true)
+  }
+
+  function openTeamModal() {
+    setisTeamModalOpen(true)
+  }
+
    const projectHealthData = [
     {
       id: 1,
       img: "icon",
       label: "Create New Project",
-      desc: "Add a new construction project"
+      desc: "Add a new construction project",
+      function: openCreateNewProject
     },
     {
       id: 2,
       img: "icon",
       label: "Team Members",
-      desc: "View All Team Members"
+      desc: "View and manage team members",
+      function: openTeamModal
     },
     {
       id: 3,
       img: "icon",
-      label: "Add team member",
-      desc: "Invite people to your project"
+      label: "Add Updates",
+      desc: "Add updates related to projects"
     },
     {
       id: 4,
@@ -36,15 +50,15 @@ const CPQuickActions = () => {
 
       <div className="flex flex-col gap-2">
         {projectHealthData.map((items)=> {
-          return <div key={items.id} className="flex justify-between p-[10px_5px] items-center rounded-lg">
+          return <button key={items.id} className="flex p-[10px_5px] rounded-lg hover:bg-black/10 cursor-pointer transition-all ease-in" onClick={items.function}>
             <div className="flex gap-5 items-center">
               <div className="bg-black/20 w-10 h-10 flex items-center justify-center rounded-sm">{items.img}</div>
-              <div>
-                <h1 className="font-bold">{items.label}</h1>
+              <div className='flex flex-col'>
+                <h1 className="font-bold flex">{items.label}</h1>
                 <h3 className="text-sm text-black/70">{items.desc}</h3>
               </div>
             </div>
-          </div>
+          </button>
         })}
       </div>
     </div>

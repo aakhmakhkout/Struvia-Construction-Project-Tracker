@@ -16,7 +16,7 @@ const PhotoCards = () => {
   return (
     
       <div className='h-[95%] mt-5 border border-black/20 CPCards'>
-        {albumsLength < 1 ? <h1 className='flex w-full h-full justify-center items-center bg-black/20 font-bold'>No Albums (click on "Create Album" to create new albums)</h1>: 
+        {albumsLength < 1 ? <h1 className='flex w-full h-full justify-center items-center bg-black/20 font-bold rounded-[10px]'>No Albums (click on "Create Album" to create new albums)</h1>: 
       <div className=' h-full gap-3 p-2 grid grid-cols-4 place-content-between place-items-center'>
       {albumDataCopy.reverse().map((items, idx)=> {
         const project = projectData.find ((projectItems)=> {

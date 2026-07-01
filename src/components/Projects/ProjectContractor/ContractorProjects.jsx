@@ -6,9 +6,11 @@ import RecentProjectUpdates from './RecentProjectUpdates'
 import ProjectHealth from './ProjectHealth'
 import CPQuickActions from './CPQuickActions'
 import CreateNewProject from './CreateNewProject'
+import Teams from './Teams/Teams'
 
 const ContractorProjects = () => {
     const [isNPFO, setisNPFO] = useState(false)
+    const [isTeamModalOpen, setisTeamModalOpen] = useState(false)
   return (
     <div className='mb-10'>
         <div className='flex justify-between h-30 items-center'>
@@ -22,7 +24,7 @@ const ContractorProjects = () => {
         </div>
 
         {isNPFO && <CreateNewProject state = {{setisNPFO}}/>}
-
+        {isTeamModalOpen && <Teams state = {{setisTeamModalOpen}}/>}
         <div><CPTabs /></div>
 
         <div className='CPCards border border-black/20 px-8  flex flex-col gap-3 mt-2'>
@@ -38,7 +40,7 @@ const ContractorProjects = () => {
         <div className='mt-8 flex justify-between'>
             <RecentProjectUpdates />
             <ProjectHealth />
-            <CPQuickActions />
+            <CPQuickActions state={{setisNPFO, setisTeamModalOpen}}/>
         </div>
     </div>
   )
