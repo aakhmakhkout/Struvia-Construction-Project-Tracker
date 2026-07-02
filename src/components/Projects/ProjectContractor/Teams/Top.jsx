@@ -1,10 +1,13 @@
 import {Users, X} from 'lucide-react'
+import { useState } from 'react'
+import TeamForm from './TeamForm'
 
 export default function Top({teamsModalState}) {
     const {setisTeamModalOpen} = teamsModalState
+    const [isATMformOpen, setisATMformOpen] = useState(false)
   return (
-    <div className='flex flex-col relative'>
-        <button className='absolute right-0 cursor-pointer active:scale-95' onClick={()=> setisTeamModalOpen(false)}><X /></button>
+    <div className='flex flex-col'>
+        <button className='absolute right-3 cursor-pointer active:scale-95' onClick={()=> setisTeamModalOpen(false)}><X /></button>
         <div className='flex gap-5 border-b border-black/20 items-center h-30'>
             <div className='text-[#7745a7] bg-[#7845a726] p-3 rounded-xl'><Users size={35} strokeWidth={2} /></div>
             <div>
@@ -20,8 +23,11 @@ export default function Top({teamsModalState}) {
             </div>
 
             <div>
-                <button className='bg-[#e55707] text-white p-[8px_20px] rounded-lg font-bold'>+ Add Team Member</button>
+                <button className='bg-[#e55707] text-white p-[8px_20px] rounded-lg font-bold cursor-pointer active:scale-95' onClick={()=> {
+                    setisATMformOpen(true)
+                }}>+ Add Team Member</button>
             </div>
+            {isATMformOpen && <TeamForm state={{setisATMformOpen}}/>}
         </div>
 
     </div>
