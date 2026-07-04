@@ -100,7 +100,7 @@ function handleInputData(targetElem) {
                         <option value="" disabled>Select team member's status</option>
                         <option value="Active">Active</option>
                         <option value="On Leave">On Leave</option>
-                        <option value="In Active">In Active</option>
+                        <option value="Inactive">Inactive</option>
                     </select>
                     </div>
                     <div className='w-[30%] flex flex-col gap-1'>
