@@ -11,9 +11,17 @@ export const teamsSlice = createSlice( {
         addTeamMember(state, action) {
             state.teamsMembers.push(action.payload)
             localStorage.setItem("teamMembers", JSON.stringify(state.teamsMembers))
+        },
+        removeTeamMember(state, action) {
+            const updatedTeamMembers = state.teamsMembers.filter((items)=> {
+                return items.UUID !== action.payload
+            })
+            state.teamsMembers = updatedTeamMembers
+            localStorage.setItem("teamMembers", JSON.stringify(updatedTeamMembers))
+
         }
     }
 })
 
-export const {addTeamMember} = teamsSlice.actions
+export const {addTeamMember, removeTeamMember} = teamsSlice.actions
 export default teamsSlice.reducer

@@ -2,9 +2,10 @@ import {Users, X} from 'lucide-react'
 import { useState } from 'react'
 import TeamForm from './TeamForm'
 
-export default function Top({teamsModalState}) {
+export default function Top({teamsModalState, AddtmState}) {
     const {setisTeamModalOpen} = teamsModalState
-    const [isATMformOpen, setisATMformOpen] = useState(false)
+    const {isATMformOpen, setisATMformOpen} = AddtmState
+    
   return (
     <div className='flex flex-col'>
         <button className='absolute right-3 cursor-pointer active:scale-95' onClick={()=> setisTeamModalOpen(false)}><X /></button>

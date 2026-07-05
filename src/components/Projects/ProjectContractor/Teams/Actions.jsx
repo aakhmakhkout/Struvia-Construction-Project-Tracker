@@ -1,33 +1,32 @@
-import { ChevronRight, SquareArrowOutUpRight, BatteryMedium, Delete, SquarePen,  Trash2} from "lucide-react"
+import { ChevronRight, ListTodo, BatteryMedium, Delete, SquarePen,  Trash2} from "lucide-react"
 import { useDispatch } from "react-redux"
-import { deleteProject } from "../../../redux/features/projectsSlice"
+import supabase from "../../../../lib/supabase"
+import { removeTeamMember } from "../../../../redux/features/teamsSlice"
 
 
-
-const Actions = ({state, proData, supabaseClient}) => {
-    console.log(proData, supabaseClient)
+const Actions = ({state, tmData}) => {
   const {setisOptionsID} = state
+  console.log(tmData)
   const dispatch = useDispatch()
 
-  const handleDeleteProject = async ()=> {
-    const {data, error} = await supabaseClient.storage.from("struvia-media").remove([proData.coverImgObj.path])
+  const handleRemoveUser = async ()=> {
+    const {data, error} = await supabase.storage.from("struvia-media").remove([tmData.path])
     if(error) {
         return
     }
-    console.log(data, error)
-    dispatch(deleteProject(proData.projectid))
+    dispatch(removeTeamMember(tmData.UUID))
     setisOptionsID(null)
   }
  
 
 
   return (
-    <div className='w-50 bg-[#e7f0fa] text-black absolute right-15 top-8 rounded-lg flex z-10 CPCards border border-black/20'>
+    <div className='w-50 bg-[#e7f0fa] text-black absolute right-2 top-10 rounded-lg flex z-10 CPCards border border-black/20'>
         <div className='p-2 flex flex-col justify-start items-start w-full gap-2'>
          <button className="flex justify-between items-center w-full cursor-pointer">
             <div className="flex gap-3 items-center">
-            <div><SquareArrowOutUpRight size={15} strokeWidth={1.5} /></div>
-            <h1>Open</h1>
+            <div><ListTodo size={15} strokeWidth={1.5} /></div>
+            <h1>Task</h1>
             </div>
             <div><ChevronRight size={15} strokeWidth={1.25} /></div>
           </button>
@@ -41,7 +40,7 @@ const Actions = ({state, proData, supabaseClient}) => {
           <div><ChevronRight size={15} strokeWidth={1.25} /></div>
           </button>
 
-          <button className="flex w-full justify-between items-center cursor-pointer" onClick={handleDeleteProject}>
+          <button className="flex w-full justify-between items-center cursor-pointer" onClick={handleRemoveUser}>
             <div className="flex gap-3 items-center">
               <div><Trash2 size={15} strokeWidth={1.25} /></div>
               <h1 className="cursor-pointer">Delete</h1>

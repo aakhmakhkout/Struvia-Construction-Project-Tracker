@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import CreateNewProject from './CreateNewProject'
 import Teams from './Teams/Teams'
+import { LayersPlus, Users, ScrollText, ImageUp } from 'lucide-react'
 
 const CPQuickActions = ({state}) => {
   const {setisNPFO, setisTeamModalOpen} = state
@@ -13,30 +14,31 @@ const CPQuickActions = ({state}) => {
     setisTeamModalOpen(true)
   }
 
+
    const projectHealthData = [
     {
       id: 1,
-      img: "icon",
+      img: <LayersPlus size={30} strokeWidth={1.5} />,
       label: "Create New Project",
       desc: "Add a new construction project",
       function: openCreateNewProject
     },
     {
       id: 2,
-      img: "icon",
+      img: <Users size={30} strokeWidth={1.5} />,
       label: "Team Members",
       desc: "View and manage team members",
       function: openTeamModal
     },
     {
       id: 3,
-      img: "icon",
+      img: <ScrollText size={30} strokeWidth={1.5} />,
       label: "Add Updates",
       desc: "Add updates related to projects"
     },
     {
       id: 4,
-      img: "icon",
+      img: <ImageUp size={30} strokeWidth={1.5} />,
       label: "Upload Photos",
       desc: "Upload site photos and updates"
     },
@@ -51,8 +53,8 @@ const CPQuickActions = ({state}) => {
       <div className="flex flex-col gap-2">
         {projectHealthData.map((items)=> {
           return <button key={items.id} className="flex p-[10px_5px] rounded-lg hover:bg-black/10 cursor-pointer transition-all ease-in" onClick={items.function}>
-            <div className="flex gap-5 items-center">
-              <div className="bg-black/20 w-10 h-10 flex items-center justify-center rounded-sm">{items.img}</div>
+            <div className="flex gap-3 items-center">
+              <div className="w-10 h-10 flex items-center justify-center rounded-sm text-[#2c1e3df4]">{items.img}</div>
               <div className='flex flex-col'>
                 <h1 className="font-bold flex">{items.label}</h1>
                 <h3 className="text-sm text-black/70">{items.desc}</h3>

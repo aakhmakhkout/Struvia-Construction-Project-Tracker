@@ -87,7 +87,7 @@ const PhotosFormModal = () => {
             </div>
 
             <div className="w-full flex justify-center items-center">
-                 {!isLoading ? <button type='submit' className='bg-[#7745a7] w-full py-2.5 cursor-pointer font-bold border border-white/20 active:scale-95 CPCards'>Create Project</button> : <button type="submit" disabled className='bg-[#7745a7] w-full py-2.5 flex justify-center items-center font-bold border border-white/20 active:scale-95 CPCards'><Loader size={20} strokeWidth={1.5} className='animate-spin'/> </button>}
+                 {!isLoading ? <button type='submit' className='bg-[#7745a7] w-full py-2.5 cursor-pointer font-bold border border-white/20 active:scale-95 CPCards'>Create Album</button> : <button type="submit" disabled className='bg-[#7745a7] w-full py-2.5 flex justify-center items-center font-bold border border-white/20 active:scale-95 CPCards'><Loader size={20} strokeWidth={1.5} className='animate-spin'/> </button>}
             </div>
         </form>
        
