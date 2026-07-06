@@ -4,10 +4,11 @@ import supabase from "../../../../lib/supabase"
 import { addTeamMember } from '../../../../redux/features/teamsSlice'
 import { useDispatch } from 'react-redux'
 
-export default function TeamForm({state}) {
-    const dispatch = useDispatch()
-const {setisATMformOpen, setisTeamModalOpen} = state
-const [teamMembersData, setteamMembersData] = useState({})
+export default function TeamForm({state, whichPage, teamData}) {
+console.log(teamData)
+const dispatch = useDispatch()
+const {setisATMformOpen} = state
+const [teamMembersData, setteamMembersData] = useState(teamData)
 const [selectedFile, setselectedFile] = useState(null)
 const [isLoading, setisLoading] = useState(false)
 
@@ -23,7 +24,6 @@ async function submitHandler(elem) {
         setisLoading(false)
         return
     }
-    console.log(data)
 
     const publicUrl = supabase.storage.from("struvia-media").getPublicUrl(data.path)
     const pfpUrl = publicUrl.data.publicUrl
@@ -50,13 +50,13 @@ function handleInputData(targetElem) {
 }
 
   return (
-    <div className='absolute inset-0 bg-black/20 backdrop-blur-[2px] rounded-lg z-60'>
-        <div className='flex  justify-center items-center h-full w-full'>
-            <form className='w-[60%] h-[75%] bg-[#14202e] relative text-white p-4 CPCards flex flex-col items-center' onSubmit={(elem)=> {
+    <div className='fixed inset-0 bg-black/20 backdrop-blur-[2px] rounded-lg z-60'>
+        <div className='flex  justify-center items-center h-full w-full '>
+            <form className='w-[40%] h-[60%] bg-[#14202e] relative text-white p-4 CPCards flex flex-col items-center' onSubmit={(elem)=> {
                 submitHandler(elem)
             }}>
             <div className='w-full h-[20%] flex justify-center items-center'>
-                <h1 className='text-3xl font-bold'>Add New Team Member</h1>
+                <h1 className='text-3xl font-bold'>{whichPage === "topPage" ? "Add New Team Member" : "Edit Team Members Details"}</h1>
             </div>
                  <button type='button' className='absolute top-2 right-2 cursor-pointer active:scale-95' onClick={()=> setisATMformOpen(false)}><X /></button>
                  
@@ -119,7 +119,7 @@ function handleInputData(targetElem) {
 
 
                      <div className='w-full flex justify-center items-end'>     
-              {!isLoading ? <button type='submit' className='bg-[#7745a7] w-full py-3 cursor-pointer font-bold border border-white/20 active:scale-95 CPCards'>Add Team Member</button> : <button type="submit" disabled className='bg-[#7745a7] w-full py-3 flex justify-center items-center font-bold border border-white/20 active:scale-95 CPCards'><Loader size={20} strokeWidth={1.5} className='animate-spin'/> </button>}
+                    {!isLoading ? <button type='submit' className='bg-[#7745a7] w-full py-3 cursor-pointer font-bold border border-white/20 active:scale-95 CPCards'>{whichPage === "topPage" ? "Add Team Member" : "Update Details"}</button> : <button type="submit" disabled className='bg-[#7745a7] w-full py-3 flex justify-center items-center font-bold border border-white/20 active:scale-95 CPCards'><Loader size={20} strokeWidth={1.5} className='animate-spin'/> </button>}
             </div>
                  </div>
             </form>

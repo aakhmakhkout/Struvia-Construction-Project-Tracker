@@ -28,7 +28,7 @@ export default function Top({teamsModalState, AddtmState}) {
                     setisATMformOpen(true)
                 }}>+ Add Team Member</button>
             </div>
-            {isATMformOpen && <TeamForm state={{setisATMformOpen}}/>}
+            {isATMformOpen && <TeamForm state={{setisATMformOpen}} whichPage = {"topPage"} teamData = {{}}/>}
         </div>
 
     </div>

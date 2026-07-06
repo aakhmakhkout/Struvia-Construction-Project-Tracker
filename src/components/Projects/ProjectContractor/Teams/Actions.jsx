@@ -4,10 +4,10 @@ import supabase from "../../../../lib/supabase"
 import { removeTeamMember } from "../../../../redux/features/teamsSlice"
 import { useState } from "react"
 import NewTask from "../../../tasks/CreateTask/NewTask"
+import TeamForm from "./TeamForm"
 
 
 const Actions = ({state, tmData, ATMState}) => {
-  const {setisATMformOpen}
   const {setisOptionsID} = state
   console.log(tmData)
   const dispatch = useDispatch()
@@ -22,6 +22,7 @@ const Actions = ({state, tmData, ATMState}) => {
   }
 
   const [isNTP, setisNTP] = useState(false)
+  const [isATMformOpen, setisATMformOpen] = useState(false)
  
 
 
@@ -41,13 +42,17 @@ const Actions = ({state, tmData, ATMState}) => {
           {isNTP && <NewTask state={{setisNTP}} teamMember = {tmData.tmName} whichPage = {"teamsPage"}/>}
 
 
-          <button className="flex justify-between items-center w-full cursor-pointer">
+          <button className="flex justify-between items-center w-full cursor-pointer" onClick={()=> {
+            setisATMformOpen(true)
+          }}>
             <div className="flex gap-3 items-center">
             <div><SquarePen size={15} strokeWidth={1.25} /></div>
             <h1>Edit</h1>
             </div>
           <div><ChevronRight size={15} strokeWidth={1.25} /></div>
           </button>
+          
+          {isATMformOpen && <TeamForm state = {{setisATMformOpen}} whichPage = {"actionsPage"} teamData ={tmData}/>}
 
           <button className="flex w-full justify-between items-center cursor-pointer" onClick={handleRemoveUser}>
             <div className="flex gap-3 items-center">

@@ -4,10 +4,8 @@ import { useState } from "react"
 import Actions from "./Actions"
 
 export default function TeamCards({AddtmState}) {
-  console.log(AddtmState)
   const {setisATMformOpen} = AddtmState
   const teamMembersData = useSelector(state => state.teams.teamsMembers)
-  console.log(teamMembersData)
   const teamMembersDataCopy = [...teamMembersData]
   const [isOptionsID, setisOptionsID] = useState(null)
   return (
@@ -22,9 +20,9 @@ export default function TeamCards({AddtmState}) {
               setisOptionsID(idx)
             }
           }}><EllipsisVertical size={20} strokeWidth={1.5} /></button>
-          <div>
-            {isOptionsID === idx ? <Actions state ={{setisOptionsID}} tmData = {items} ATMState = {{setisATMformOpen}}/> : null}
-          </div>
+
+           {isOptionsID === idx ? <Actions state ={{setisOptionsID}} tmData = {items} ATMState = {{setisATMformOpen}}/> : null}
+
           <div className="flex gap-5 items-center">
             <div className="w-15 rounded-full overflow-hidden">
               <img src={items.url} alt="img" />
