@@ -23,7 +23,7 @@ export default function TeamCards({AddtmState}) {
             }
           }}><EllipsisVertical size={20} strokeWidth={1.5} /></button>
           <div>
-            {isOptionsID === idx ? <Actions state ={{setisOptionsID}} tmData = {items}/> : null}
+            {isOptionsID === idx ? <Actions state ={{setisOptionsID}} tmData = {items} ATMState = {{setisATMformOpen}}/> : null}
           </div>
           <div className="flex gap-5 items-center">
             <div className="w-15 rounded-full overflow-hidden">

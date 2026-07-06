@@ -14,7 +14,7 @@ const CreateNewTask = ({state}) => {
           setisNTP(true)
         }}>+ New Task</button>
 
-        {isNTP && <NewTask state={{setisNTP}}/>}
+        {isNTP && <NewTask state={{setisNTP}} teamMember={""} whichPage = {"taskPage"}/>}
       </div>
     </div>
   )

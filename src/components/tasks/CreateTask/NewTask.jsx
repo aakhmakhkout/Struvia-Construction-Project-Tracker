@@ -4,10 +4,15 @@ import { setToDoTask } from '../../../redux/features/tasksSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 
-const NewTask = ({state}) => {
+const NewTask = ({state, teamMember, whichPage}) => {
+  const initialTaskData = teamMember === "" ? {} : {assignee:teamMember}
+  const teamMembersData = useSelector(state => state.teams.teamsMembers)
+   const finalProjectData = useSelector(state => state.projects.projectsdata)
+  console.log(finalProjectData)
   const {setisNTP} = state
+  console.log(teamMember)
    const UUID = crypto.randomUUID()
-  const [todoTaskData, settodoTaskData] = useState({})
+  const [todoTaskData, settodoTaskData] = useState(initialTaskData)
   const dispatch = useDispatch()
 
   function getData(targetElement) {
@@ -39,7 +44,7 @@ const NewTask = ({state}) => {
           
 
           <div className='flex justify-center items-center' >
-            <h1 className='font-bold text-4xl'>Create Task</h1>
+            <h1 className='font-bold text-4xl'>{whichPage === "taskPage" ? "Create Task" : "Assign Task"}</h1>
           </div>
 
             <div className='flex justify-between '>
@@ -55,10 +60,9 @@ const NewTask = ({state}) => {
                   getData(elem.target)
                 }}>
                   <option value="" className='text-white/60 font-bold ' disabled selected>Select your project</option>
-                  <option value="skyline">Skyline Villa</option>
-                  <option value="greenland">Greenland Constructions</option>
-                  <option value="techpower">Tech Power Tower</option>
-                  <option value="riverside">River Side Mall</option>
+                  {finalProjectData.map((items)=> {
+                    return <option key={items.projectid} value={items.project}>{items.project}</option>
+                  })}
                 </select>
               </div>
             </div>
@@ -70,9 +74,9 @@ const NewTask = ({state}) => {
                   getData(elem.target)
                 }}>
                 <option value="" className='text-white/60 font-bold ' disabled selected>Select team member</option>
-                  <option value="worker1">worker1</option>
-                  <option value="worker2">worker2</option>
-                  <option value="worker3">worker3</option>
+                 {teamMembersData.map((items)=> {
+                    return <option key={items.UUID} value={items.tmName}>{items.tmName}</option>
+                  })}
                 </select>
               </div>
               <div className='flex flex-col w-[30%] gap-2'>
@@ -105,7 +109,7 @@ const NewTask = ({state}) => {
              
 
             <div className='w-full flex justify-center items-end'>     
-              <button className='bg-[#7745a7] w-full py-3 rounded-lg cursor-pointer font-bold border border-white/20 active:scale-95'>Add Task</button>
+              <button className='bg-[#7745a7] w-full py-3 rounded-lg cursor-pointer font-bold border border-white/20 active:scale-95'>{whichPage === "taskPage" ? "Add Task" : "Assign Task"}</button>
             </div>
           </form>
           </div>
