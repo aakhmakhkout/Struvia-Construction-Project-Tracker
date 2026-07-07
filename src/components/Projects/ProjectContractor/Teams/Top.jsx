@@ -2,9 +2,11 @@ import {Users, X} from 'lucide-react'
 import { useState } from 'react'
 import TeamForm from './TeamForm'
 
-export default function Top({teamsModalState, AddtmState}) {
+export default function Top({teamsModalState, AddtmState, searchBarState, tmstOpt}) {
+    const {settmStatusOptions} = tmstOpt
     const {setisTeamModalOpen} = teamsModalState
     const {isATMformOpen, setisATMformOpen} = AddtmState
+    const {setsearchBarData} = searchBarState
     
   return (
     <div className='flex flex-col'>
@@ -18,9 +20,22 @@ export default function Top({teamsModalState, AddtmState}) {
         </div>
 
         <div className='flex justify-between h-20 items-center'>
-            <div className='flex gap-5'>
-            <div className='border border-black/30 p-[8px_30px] rounded-lg'>Search Bar</div>
-            <div className='border border-black/30 p-[8px_30px] rounded-lg'>Status</div>
+            <div className='flex gap-5 items-center'>
+            <form>
+                <input type="text" name='tmSearchbar' id='tmSearchbar' placeholder='Search by Name/Role' className='border border-black/20 p-2 w-100 rounded-lg outline-none focus:border-black/50 capitalize' onChange={(elem)=> {
+                    setsearchBarData(elem.target.value)
+                }}/>
+            </form>
+            <div>
+                <select name="tmStatusOptions" id="tmStatusOptions" className='outline-none border border-black/20 p-2 rounded-lg w-30 font-bold cursor-pointer' onChange={(elem)=> {
+                    settmStatusOptions(elem.target.value)
+                }}>
+                    <option value="All Status" selected>All Status</option>
+                    <option value="On Leave">On Leave</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+            </div>
             </div>
 
             <div>

@@ -1,16 +1,34 @@
 import { useSelector } from "react-redux"
 import { EllipsisVertical, MapPin, Phone, Mail, UserRoundPlus } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Actions from "./Actions"
 
-export default function TeamCards({AddtmState}) {
+export default function TeamCards({AddtmState, searchData, tmstOpt}) {
   const {setisATMformOpen} = AddtmState
   const teamMembersData = useSelector(state => state.teams.teamsMembers)
   const teamMembersDataCopy = [...teamMembersData]
+  const [filteredTeamMembers, setfilteredTeamMembers] = useState(teamMembersDataCopy.reverse())
+  console.log(filteredTeamMembers)
+
+  useEffect(() => {
+   const timerId = setTimeout(() => {
+    const search = searchData.toLowerCase();
+     const filteredArray = teamMembersDataCopy.filter((items)=> {
+          return ((items.tmName.toLowerCase().includes(search) || items.tmRole.toLowerCase().includes(search)) && (items.tmStatus ===  tmstOpt || tmstOpt === "All Status"))
+     })
+     setfilteredTeamMembers(filteredArray)
+    }, 500);
+  
+    return () => {
+      clearTimeout(timerId)
+    }
+  }, [searchData, tmstOpt])
+  
+  // console.log(filteredArray)
   const [isOptionsID, setisOptionsID] = useState(null)
   return (
     <div className='flex gap-4 flex-wrap min-h-50'>
-      {teamMembersDataCopy.length > 0 ? teamMembersDataCopy.reverse().map((items, idx)=> {
+      {filteredTeamMembers.length > 0 ? filteredTeamMembers.map((items, idx)=> {
         return <div key={items.UUID} className="relative flex flex-col border border-black/20 CPCards p-3 w-70 h-60 justify-between">
           <button className="absolute right-3 top-3 cursor-pointer" onClick={()=> {
             if(isOptionsID === idx) {

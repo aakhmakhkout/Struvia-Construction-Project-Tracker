@@ -9,7 +9,6 @@ import TeamForm from "./TeamForm"
 
 const Actions = ({state, tmData, ATMState}) => {
   const {setisOptionsID} = state
-  console.log(tmData)
   const dispatch = useDispatch()
 
   const handleRemoveUser = async ()=> {
