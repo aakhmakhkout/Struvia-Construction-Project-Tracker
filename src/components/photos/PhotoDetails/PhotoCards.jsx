@@ -16,7 +16,7 @@ const PhotoCards = () => {
   return (
     <div className="h-[95%] mt-5 border border-black/20 CPCards">
       {albumsLength < 1 ? (
-        <div className="flex w-full h-full justify-center items-center bg-black/20 font-bold rounded-[10px]">
+        <div className="flex w-full h-full justify-center items-center bg-black/20 font-bold rounded-[10px] flex-col gap-2">
           <div>icon</div>
           <h1>Create an Album</h1>
           <p>Create new Album here</p>
