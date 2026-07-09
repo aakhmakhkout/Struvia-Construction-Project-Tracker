@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.12.0",
-    "@supabase/supabase-js": "^2.108.2",
+    "@supabase/supabase-js": "^2.110.2",
     "@tailwindcss/vite": "^4.3.0",
     "lucide-react": "^1.16.0",
     "motion": "^12.40.0",
@@ -19,6 +19,7 @@
     "react-dom": "^19.2.0",
     "react-redux": "^9.3.0",
     "react-router-dom": "^7.16.0",
+    "redux-toolkit": "^1.1.2",
     "tailwindcss": "^4.3.0"
   },
   "devDependencies": {

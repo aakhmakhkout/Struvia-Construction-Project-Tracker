@@ -1,3 +1,7 @@
 export default function Pagination() {
-  return <div>Pagination</div>;
+  return (
+    <div>
+      <h1>hello</h1>
+    </div>
+  );
 }
