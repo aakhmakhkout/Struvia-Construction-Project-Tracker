@@ -6,10 +6,9 @@ import supabase from "../../../lib/supabase";
 
 const CreateNewProject = ({ state }) => {
   const teamMembersData = useSelector((state) => state.teams.teamsMembers);
-  console.log(teamMembersData);
   const { setisNPFO } = state;
   const [projectData, setProjectData] = useState({});
-  const [teamMembers, setteamMembers] = useState([]);
+  const [selectedMembers, setselectedMembers] = useState([]);
   const [selectFile, setselectFile] = useState(null);
   const dispatch = useDispatch();
   const fpData = useSelector((state) => state.projects.projectsdata);
@@ -22,22 +21,25 @@ const CreateNewProject = ({ state }) => {
     });
   }
 
-  function addTeamMembers(data) {
-    setteamMembers((prev) => {
-      const isTeamMembers = prev.some((items) => {
-        return items === data;
-      });
-      if (!isTeamMembers) {
-        return [...prev, data];
-      } else {
-        return [...prev];
-      }
+  function addTeamMembers(element) {
+    const selectedTM = teamMembersData.find((items) => {
+      return items.UUID === element.target.value;
+    });
+
+    const finalTMarr = selectedMembers.some((items) => {
+      return items.UUID === selectedTM.UUID;
+    });
+
+    setselectedMembers((prev) => {
+      return !finalTMarr ? [...prev, selectedTM] : [...prev];
     });
   }
 
-  function removeTeamMembers(data) {
-    const updatedTeamMembers = teamMembers.filter((items) => items !== data);
-    setteamMembers(updatedTeamMembers);
+  function removeTeamMembers(UUID) {
+    const updatedTeamMembers = selectedMembers.filter(
+      (items) => items.UUID !== UUID,
+    );
+    setselectedMembers(updatedTeamMembers);
   }
 
   async function submitHandler(element) {
@@ -66,7 +68,7 @@ const CreateNewProject = ({ state }) => {
     const finalProjectData = {
       ...projectData,
       projectid: projectID,
-      team: teamMembers,
+      team: selectedMembers,
       coverImgObj: {
         pfpid: pfpID,
         path: data.path,
@@ -79,6 +81,7 @@ const CreateNewProject = ({ state }) => {
     setProjectData({});
     setteamMembers([]);
     setselectFile(null);
+    setteamMembers([]);
     setisLoading(false);
   }
 
@@ -277,7 +280,7 @@ const CreateNewProject = ({ state }) => {
                     value={projectData.team || ""}
                     className="bg-black/30 cursor-pointer   p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]"
                     onChange={(elem) => {
-                      addTeamMembers(elem.target.value);
+                      addTeamMembers(elem);
                     }}
                   >
                     <option
@@ -289,7 +292,7 @@ const CreateNewProject = ({ state }) => {
                     </option>
                     {teamMembersData.map((items) => {
                       return (
-                        <option value={items.tmName} key={items.UUID}>
+                        <option value={items.UUID} key={items.UUID}>
                           {items.tmName}
                         </option>
                       );
@@ -303,13 +306,13 @@ const CreateNewProject = ({ state }) => {
               <div className="flex flex-col gap-2">
                 <h1 className=" text-white/70 font-bold">Team Members</h1>
                 <div className="flex bg-black/30 h-15 p-2 border border-white/20 rounded-lg gap-3 overflow-x-scroll createNewProjectsTM">
-                  {teamMembers.map((items, idx) => {
+                  {selectedMembers.map((items, idx) => {
                     return (
                       <div
                         key={idx}
                         className="bg-white/20 p-[5px_15px] rounded-lg border border-white/30 flex items-center gap-2 capitalize"
                       >
-                        <h1>{items}</h1>
+                        <h1>{items.tmName}</h1>
                         <button
                           type="button"
                           className="cursor-pointer active:scale-95 text-[#e55707]"
@@ -318,7 +321,7 @@ const CreateNewProject = ({ state }) => {
                             size={20}
                             strokeWidth={1.5}
                             onClick={() => {
-                              removeTeamMembers(items);
+                              removeTeamMembers(items.UUID);
                             }}
                           />
                         </button>

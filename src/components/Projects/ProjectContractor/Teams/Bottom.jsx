@@ -17,7 +17,7 @@ export default function Bottom({ data, paginationState }) {
 
       <div className="flex gap-5 items-center">
         <button
-          className={`CPCardsBtns border border-black/20 rounded-sm bg-[#5d7bdf27] ${Pagination.currentPage === 1 ? "hidden" : "flex"}`}
+          className={`CPCardsBtns border border-black/20 rounded-sm bg-[#5d7bdf27] cursor-pointer active:scale-95 ${Pagination.currentPage === 1 ? "hidden" : "flex"}`}
           onClick={() => {
             setPagination(() => {
               return {
@@ -37,7 +37,7 @@ export default function Bottom({ data, paginationState }) {
           </h1>
         </div>
         <button
-          className={`CPCardsBtns border border-black/20 rounded-sm bg-[#5d7bdf27] ${Pagination.currentPage === pages ? "hidden" : "flex"}`}
+          className={`CPCardsBtns border border-black/20 rounded-sm bg-[#5d7bdf27] cursor-pointer active:scale-95 ${Pagination.currentPage === pages ? "hidden" : "flex"}`}
           onClick={() => {
             setPagination(() => {
               return {
