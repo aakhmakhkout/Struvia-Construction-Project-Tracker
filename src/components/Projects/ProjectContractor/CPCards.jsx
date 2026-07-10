@@ -57,7 +57,6 @@ const CPCards = () => {
           );
         })}
       </div>
-
       <div className="flex flex-col gap-5">
         {finalProjectData.map((items, idx) => {
           return (
