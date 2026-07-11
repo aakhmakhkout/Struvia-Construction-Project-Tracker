@@ -18,10 +18,7 @@ export default function TeamCards({
   const { Pagination } = pageIndexes;
   const { setisATMformOpen } = AddtmState;
   const teamMembersData = useSelector((state) => state.teams.teamsMembers);
-  // const slicedArr = [...teamMembersData].slice(
-  //   Pagination.startIdx,
-  //   Pagination.endIdx,
-  // );
+
   const [filteredTeamMembers, setfilteredTeamMembers] =
     useState(teamMembersData);
   // console.log(filteredTeamMembers);
@@ -82,8 +79,12 @@ export default function TeamCards({
               ) : null}
 
               <div className="flex gap-5 items-center">
-                <div className="w-15 rounded-full overflow-hidden">
-                  <img src={items.url} alt="img" />
+                <div className="w-16 h-16 rounded-full overflow-hidden">
+                  <img
+                    src={items.url}
+                    alt="img"
+                    className="w-full h-full object-cover object-center"
+                  />
                 </div>
                 <div>
                   <h1 className="font-bold text-xl capitalize">

@@ -10,8 +10,8 @@ export default function Bottom({ data, paginationState }) {
     <div className="flex justify-between border-t border-black/20 pt-3">
       <div>
         <h1 className="text-sm font-bold text-black/60">
-          Showing {teamLength > 0 ? 1 : 0} to 8 of {teamLength} team
-          members{" "}
+          Showing {teamLength > 0 ? 1 : 0} to {teamLength <= 8 ? teamLength : 8}{" "}
+          of {teamLength} team members{" "}
         </h1>
       </div>
 

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { EllipsisVertical } from "lucide-react";
+import { EllipsisVertical, Plus } from "lucide-react";
 import { useState } from "react";
 import Actions from "./Actions";
 
@@ -16,11 +16,18 @@ const PhotoCards = () => {
   return (
     <div className="h-[95%] mt-5 border border-black/20 CPCards">
       {albumsLength < 1 ? (
-        <div className="flex w-full h-full justify-center items-center bg-black/20 font-bold rounded-[10px] flex-col gap-2">
-          <div>icon</div>
-          <h1>Create an Album</h1>
-          <p>Create new Album here</p>
-        </div>
+        <button
+          className="bg-[#dedaf29e] flex flex-col w-70 h-60 cursor-pointer justify-center items-center gap-3 rounded-xl border border-dashed border-[#0000ff5c] active:scale-95 hover:bg-[#d4ccfbc8] transition-all ease-in m-3"
+          onClick={() => {}}
+        >
+          <div className="text-[#7745a7]">
+            <Plus size={48} strokeWidth={1.5} />
+          </div>
+          <h1 className="font-bold text-xl text-[#7745a7]">Create an Album</h1>
+          <p className="w-[50%] text-sm text-center text-black/70">
+            Click to create a new Album
+          </p>
+        </button>
       ) : (
         <div className=" h-full gap-3 p-2 grid grid-cols-4 place-content-between place-items-center">
           {albumDataCopy.reverse().map((items, idx) => {
