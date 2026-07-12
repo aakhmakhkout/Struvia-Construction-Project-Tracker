@@ -99,6 +99,7 @@ const CPCards = () => {
                 {items.team.map((items) => {
                   return (
                     <img
+                      key={items.UUID}
                       src={items.url}
                       alt={items.img}
                       className="w-7 h-7 rounded-full"

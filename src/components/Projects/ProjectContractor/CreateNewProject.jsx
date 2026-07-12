@@ -78,11 +78,15 @@ const CreateNewProject = ({ state }) => {
     };
 
     dispatch(setProjectsData(finalProjectData));
+    console.log("dispatch done");
     setProjectData({});
-    setteamMembers([]);
+    console.log("Projects empty");
+    setselectedMembers([]);
+    console.log("Selected members empty");
     setselectFile(null);
-    setteamMembers([]);
+    console.log("Selected file empty");
     setisLoading(false);
+    console.log("loading state false");
   }
 
   return (
@@ -305,7 +309,7 @@ const CreateNewProject = ({ state }) => {
 
               <div className="flex flex-col gap-2">
                 <h1 className=" text-white/70 font-bold">Team Members</h1>
-                <div className="flex bg-black/30 h-15 p-2 border border-white/20 rounded-lg gap-3 overflow-x-scroll createNewProjectsTM">
+                <div className="flex bg-black/30 min-h-15 max-h-28 overflow-scroll p-2 border border-white/20 rounded-lg gap-3 flex-wrap createNewProjectsTM">
                   {selectedMembers.map((items, idx) => {
                     return (
                       <div
