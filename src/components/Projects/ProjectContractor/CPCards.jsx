@@ -4,10 +4,9 @@ import Actions from "./Actions";
 import { useState } from "react";
 import supabase from "../../../lib/supabase";
 
-const CPCards = () => {
-  const finalProjectData = useSelector((state) => state.projects.projectsdata);
+const CPCards = ({ indexesState, proData }) => {
+  const { indexes } = indexesState;
   const [isOptionsID, setisOptionsID] = useState(null);
-  console.log(finalProjectData);
 
   const cardHeadings = [
     {
@@ -58,7 +57,9 @@ const CPCards = () => {
         })}
       </div>
       <div className="flex flex-col gap-5">
-        {finalProjectData.map((items, idx) => {
+        {proData.map((items, idx) => {
+          const teamLength = items.team.length;
+          const slicedTM = teamLength > 3 ? items.team.slice(0, 3) : items.team;
           return (
             <div
               key={items.projectid}
@@ -96,16 +97,21 @@ const CPCards = () => {
               <div>{items.endate}</div>
               <div className="font-bold uppercase">{items.budget}</div>
               <div className="overflow-hidden flex gap-1">
-                {items.team.map((items) => {
+                {slicedTM.map((tmList) => {
                   return (
                     <img
-                      key={items.UUID}
-                      src={items.url}
-                      alt={items.img}
+                      key={tmList.UUID}
+                      src={tmList.url}
+                      alt={tmList.img}
                       className="w-7 h-7 rounded-full"
                     />
                   );
                 })}
+                {teamLength > 3 ? (
+                  <div className="bg-black/10 w-7 h-7 rounded-full flex items-center justify-center text-sm">
+                    +{teamLength - 3}
+                  </div>
+                ) : null}
               </div>
               <div className="relative flex items-center justify-center">
                 <button
