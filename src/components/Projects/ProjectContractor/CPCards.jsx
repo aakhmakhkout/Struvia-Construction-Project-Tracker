@@ -92,7 +92,23 @@ const CPCards = ({ indexesState, proData }) => {
                   </div>
                 </div>
               </div>
-              <div>{items.status}</div>
+              <div className="flex w-40">
+                <p
+                  className={` p-[5px_20px] rounded-lg font-bold
+                    ${
+                      items.status === "In Progress"
+                        ? "bg-[#f59f0b2a] text-[#f59e0b]"
+                        : items.status === "Completed"
+                          ? "bg-[#10b98128] text-[#10b981]"
+                          : items.status === "On Hold"
+                            ? "bg-[#ef444422] text-[#ef4444]"
+                            : null
+                    }
+                          `}
+                >
+                  {items.status}
+                </p>
+              </div>
               <div>{items.stdate}</div>
               <div>{items.endate}</div>
               <div className="font-bold uppercase">{items.budget}</div>
