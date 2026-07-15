@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CreateNewProject from "./CreateNewProject";
 import Teams from "./Teams/Teams";
+import { Link } from "react-router-dom";
 import { LayersPlus, Users, ScrollText, ImageUp } from "lucide-react";
 
 const CPQuickActions = ({ state }) => {
@@ -35,12 +36,6 @@ const CPQuickActions = ({ state }) => {
       label: "Add Updates",
       desc: "Add updates related to projects",
     },
-    {
-      id: 4,
-      img: <ImageUp size={30} strokeWidth={1.5} />,
-      label: "Upload Photos",
-      desc: "Upload site photos and updates",
-    },
   ];
   return (
     <div className="w-[20%] CPCards p-3 flex flex-col gap-5 border border-black/20">
@@ -68,6 +63,22 @@ const CPQuickActions = ({ state }) => {
             </button>
           );
         })}
+        <Link
+          to="/home/photos"
+          className="flex p-[10px_5px] rounded-lg hover:bg-black/10 cursor-pointer transition-all ease-in"
+        >
+          <div className="flex gap-3 items-center">
+            <div className="w-10 h-10 flex items-center justify-center rounded-sm text-[#2c1e3df4]">
+              <ImageUp size={30} strokeWidth={1.5} />
+            </div>
+            <div className="flex flex-col">
+              <h1 className="font-bold flex">Upload Photos</h1>
+              <h3 className="text-sm text-black/70">
+                Upload site photos and updates
+              </h3>
+            </div>
+          </div>
+        </Link>
       </div>
     </div>
   );

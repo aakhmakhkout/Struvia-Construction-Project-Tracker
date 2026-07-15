@@ -3,7 +3,8 @@ import { EllipsisVertical, Plus } from "lucide-react";
 import { useState } from "react";
 import Actions from "./Actions";
 
-const PhotoCards = () => {
+const PhotoCards = ({ formState }) => {
+  const { isPFMopen, setisPFMopen } = formState;
   const albumdata = useSelector((state) => state.photos.albumdata);
   const projectData = useSelector((state) => state.projects.projectsdata);
   const albumDataCopy = [...albumdata];
@@ -18,7 +19,13 @@ const PhotoCards = () => {
       {albumsLength < 1 ? (
         <button
           className="bg-[#dedaf29e] flex flex-col w-70 h-60 cursor-pointer justify-center items-center gap-3 rounded-xl border border-dashed border-[#0000ff5c] active:scale-95 hover:bg-[#d4ccfbc8] transition-all ease-in m-3"
-          onClick={() => {}}
+          onClick={() => {
+            if (!isPFMopen) {
+              setisPFMopen(true);
+            } else {
+              setisPFMopen(false);
+            }
+          }}
         >
           <div className="text-[#7745a7]">
             <Plus size={48} strokeWidth={1.5} />
