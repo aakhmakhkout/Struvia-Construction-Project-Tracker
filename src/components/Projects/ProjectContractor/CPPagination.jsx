@@ -2,6 +2,7 @@ import { current } from "@reduxjs/toolkit";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const CPPagination = ({ indexesState, proLength }) => {
+  console.log(indexesState, proLength);
   const { indexes, setIndexes } = indexesState;
   const itemsPerPage = 4;
   const totalPages = Math.ceil(proLength / itemsPerPage);

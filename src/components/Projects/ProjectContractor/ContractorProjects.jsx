@@ -8,6 +8,7 @@ import CPQuickActions from "./CPQuickActions";
 import CreateNewProject from "./CreateNewProject";
 import Teams from "./Teams/Teams";
 import { useSelector } from "react-redux";
+import SearchBar from "./SearchBar";
 
 const ContractorProjects = () => {
   const finalProjectData = useSelector((state) => state.projects.projectsdata);
@@ -29,6 +30,7 @@ const ContractorProjects = () => {
           return items.status === status;
         });
   const [indexes, setIndexes] = useState(initialIDX);
+  console.log(indexes);
   const slicedData = filteredArr
     .reverse()
     .slice(indexes.startIDX, indexes.endIDX);
@@ -56,8 +58,9 @@ const ContractorProjects = () => {
 
       {isNPFO && <CreateNewProject state={{ setisNPFO }} />}
       {isTeamModalOpen && <Teams state={{ setisTeamModalOpen }} />}
-      <div>
+      <div className="flex justify-between items-center">
         <CPTabs tabsState={{ setstatus }} />
+        <SearchBar />
       </div>
 
       <div className="CPCards border border-black/20 px-8  flex flex-col gap-3 mt-2">
