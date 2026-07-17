@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CPTabs from "./CPTabs";
 import CPCards from "./CPCards";
 import CPPagination from "./CPPagination";
@@ -11,29 +11,46 @@ import { useSelector } from "react-redux";
 import SearchBar from "./SearchBar";
 
 const ContractorProjects = () => {
+  const activeTab = useSelector((state) => state.projects.activeTab);
+  console.log(activeTab);
   const finalProjectData = useSelector((state) => state.projects.projectsdata);
   const projectsLength = finalProjectData.length;
-  const [isNPFO, setisNPFO] = useState(false);
-  const [status, setstatus] = useState("All Projects");
-  console.log(status);
-  const [isTeamModalOpen, setisTeamModalOpen] = useState(false);
   const initialIDX = {
     startIDX: 0,
     endIDX: 4,
     currentPage: 1,
   };
-
-  const filteredArr =
-    status === "All Projects"
-      ? [...finalProjectData]
-      : finalProjectData.filter((items) => {
-          return items.status === status;
-        });
   const [indexes, setIndexes] = useState(initialIDX);
-  console.log(indexes);
-  const slicedData = filteredArr
+  const [isNPFO, setisNPFO] = useState(false);
+  const [search, setSearch] = useState("");
+  // console.log(search);
+  const [filteredProjectData, setfilteredProjectData] =
+    useState(finalProjectData);
+  const [isTeamModalOpen, setisTeamModalOpen] = useState(false);
+
+  const slicedData = [...filteredProjectData]
     .reverse()
     .slice(indexes.startIDX, indexes.endIDX);
+  console.log(slicedData);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      const filteredArr = finalProjectData.filter((items) => {
+        const finalSearch = search.toLowerCase();
+        return (
+          (items.PType.toLowerCase().includes(finalSearch) ||
+            items.project.toLowerCase().includes(finalSearch) ||
+            items.location.toLowerCase().includes(finalSearch)) &&
+          (items.status === activeTab || activeTab === "All Projects")
+        );
+      });
+      setfilteredProjectData(filteredArr);
+    }, 500);
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [search, activeTab]);
+
   return (
     <div className="mb-10">
       <div className="flex justify-between h-30 items-center">
@@ -59,8 +76,8 @@ const ContractorProjects = () => {
       {isNPFO && <CreateNewProject state={{ setisNPFO }} />}
       {isTeamModalOpen && <Teams state={{ setisTeamModalOpen }} />}
       <div className="flex justify-between items-center">
-        <CPTabs tabsState={{ setstatus }} />
-        <SearchBar />
+        <CPTabs />
+        <SearchBar searchState={{ setSearch }} />
       </div>
 
       <div className="CPCards border border-black/20 px-8  flex flex-col gap-3 mt-2">

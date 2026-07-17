@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function SearchBar() {
+export default function SearchBar({ searchState }) {
+  const { setSearch } = searchState;
   return (
     <div>
       <form className="w-150 rounded-lg">
@@ -10,6 +11,9 @@ export default function SearchBar() {
           name="searchbar"
           id="searchbar"
           placeholder="Search by Project name/type/location"
+          onChange={(elem) => {
+            setSearch(elem.target.value);
+          }}
         />
       </form>
     </div>

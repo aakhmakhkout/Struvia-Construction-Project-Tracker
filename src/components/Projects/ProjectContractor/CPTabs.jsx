@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveTab } from "../../../redux/features/projectsSlice";
 
-const CPTabs = ({ tabsState }) => {
-  const { setstatus } = tabsState;
+const CPTabs = () => {
   const dispatch = useDispatch();
   const activeTab = useSelector((state) => state.projects.activeTab);
   const tabs = [
@@ -53,7 +52,6 @@ const CPTabs = ({ tabsState }) => {
                 className="py-2.5 px-5 border border-black/20 rounded-[9px] cursor-pointer"
                 onClick={() => {
                   dispatch(setActiveTab(items.title));
-                  setstatus(items.title);
                 }}
               >
                 {items.title}
