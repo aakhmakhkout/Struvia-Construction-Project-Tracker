@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
-import CPTabs from "./CPTabs";
-import CPCards from "./CPCards";
-import CPPagination from "./CPPagination";
-import RecentProjectUpdates from "./RecentProjectUpdates";
-import ProjectHealth from "./ProjectHealth";
-import CPQuickActions from "./CPQuickActions";
-import CreateNewProject from "./CreateNewProject";
+import CPTabs from "./Top/CPTabs";
+import CPCards from "./cards/CPCards";
+import CPPagination from "./cards/CPPagination";
+import RecentProjectUpdates from "./bottom/RecentProjectUpdates";
+import ProjectHealth from "./bottom/ProjectHealth";
+import CPQuickActions from "./bottom/CPQuickActions";
+import CreateNewProject from "./Top/CreateNewProject";
 import Teams from "./Teams/Teams";
 import { useSelector } from "react-redux";
-import SearchBar from "./SearchBar";
+import SearchBar from "./Top/SearchBar";
+import UpdatesForm from "./bottom/updates/UpdatesForm";
 
 const ContractorProjects = () => {
   const activeTab = useSelector((state) => state.projects.activeTab);
   console.log(activeTab);
   const finalProjectData = useSelector((state) => state.projects.projectsdata);
+  const [updatesState, setupdatesState] = useState(false);
   const projectsLength = finalProjectData.length;
   const initialIDX = {
     startIDX: 0,
@@ -95,7 +97,10 @@ const ContractorProjects = () => {
       <div className="mt-8 flex justify-between">
         <RecentProjectUpdates />
         <ProjectHealth />
-        <CPQuickActions state={{ setisNPFO, setisTeamModalOpen }} />
+        <CPQuickActions
+          state={{ setisNPFO, setisTeamModalOpen, setupdatesState }}
+        />
+        {updatesState && <UpdatesForm state={{ setupdatesState }} />}
       </div>
     </div>
   );

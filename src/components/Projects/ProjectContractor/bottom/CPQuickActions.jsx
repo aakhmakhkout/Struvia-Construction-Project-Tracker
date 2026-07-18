@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import CreateNewProject from "./CreateNewProject";
-import Teams from "./Teams/Teams";
+import CreateNewProject from "../Top/CreateNewProject";
+import Teams from "../Teams/Teams";
 import { Link } from "react-router-dom";
 import { LayersPlus, Users, ScrollText, ImageUp } from "lucide-react";
 
 const CPQuickActions = ({ state }) => {
-  const { setisNPFO, setisTeamModalOpen } = state;
+  const { setisNPFO, setisTeamModalOpen, setupdatesState } = state;
 
   function openCreateNewProject() {
     setisNPFO(true);
@@ -13,6 +13,10 @@ const CPQuickActions = ({ state }) => {
 
   function openTeamModal() {
     setisTeamModalOpen(true);
+  }
+
+  function openUpdatesModal() {
+    setupdatesState(true);
   }
 
   const projectHealthData = [
@@ -35,6 +39,7 @@ const CPQuickActions = ({ state }) => {
       img: <ScrollText size={30} strokeWidth={1.5} />,
       label: "Add Updates",
       desc: "Add updates related to projects",
+      function: openUpdatesModal,
     },
   ];
   return (

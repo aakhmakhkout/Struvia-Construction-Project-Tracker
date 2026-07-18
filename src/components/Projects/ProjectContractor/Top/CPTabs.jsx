@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setActiveTab } from "../../../redux/features/projectsSlice";
+import { setActiveTab } from "../../../../redux/features/projectsSlice";
 
 const CPTabs = () => {
   const dispatch = useDispatch();
