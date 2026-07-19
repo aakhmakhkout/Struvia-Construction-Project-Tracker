@@ -45,7 +45,7 @@ const CPCards = ({ indexesState, proData }) => {
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="grid grid-cols-[2.5fr_1.5fr_1fr_1.5fr_1.5fr_1.5fr_1.5fr_1fr] border-b-2 border-black/20">
+      <div className="grid grid-cols-[2.5fr_1.5fr_1.5fr_1fr_1fr_1.5fr_1.5fr_1fr] border-b-2 border-black/20">
         {cardHeadings.map((items) => {
           return (
             <div key={items.id}>
@@ -63,7 +63,7 @@ const CPCards = ({ indexesState, proData }) => {
           return (
             <div
               key={items.projectid}
-              className="grid grid-cols-[2.5fr_1.5fr_1fr_1.5fr_1.5fr_1.5fr_1.5fr_1fr] border border-black/10 h-15 items-center px-3 cursor-pointer rounded-lg hover:bg-[#7c7cfb1c] transition-all ease-in"
+              className="grid grid-cols-[2.5fr_1.5fr_1.5fr_1fr_1fr_1.5fr_1.5fr_1fr] border border-black/10 h-15 items-center px-3 cursor-pointer rounded-lg hover:bg-[#7c7cfb1c] transition-all ease-in"
             >
               <div className="">
                 <div className="flex gap-2">

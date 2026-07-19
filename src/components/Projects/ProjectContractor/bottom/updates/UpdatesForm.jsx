@@ -54,6 +54,7 @@ export default function UpdatesForm({ state }) {
                 type="text"
                 name="update"
                 id="update"
+                value={updatesInputData.update || ""}
                 placeholder="18 new photos uploaded to skyline villa"
                 required
                 className="bg-black/30 cursor-text p-3  rounded-lg border border-white/30 outline-none"
@@ -64,38 +65,13 @@ export default function UpdatesForm({ state }) {
             </div>
 
             <div className="w-full flex flex-col gap-1">
-              <label htmlFor="updatedBy" className="text-white/80">
-                Updated by <span className="text-red-500">*</span>
-              </label>
-              <select
-                name="updatedBy"
-                id="updatedBy"
-                required
-                className="bg-black/30 p-3 rounded-lg border border-white/30 outline-none cursor-pointer"
-                onChange={(elem) => {
-                  handleInputData(elem.target);
-                }}
-              >
-                <option value="" disabled>
-                  Select team member
-                </option>
-                {teamMembersList.map((items) => {
-                  return (
-                    <option value={items.UUID} key={items.UUID}>
-                      {items.tmName}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-
-            <div className="w-full flex flex-col gap-1">
               <label htmlFor="project" className="text-white/80">
                 Project <span className="text-red-500">*</span>
               </label>
               <select
                 name="project"
                 id="project"
+                value={updatesInputData.project || ""}
                 required
                 className="bg-black/30 p-3 rounded-lg border border-white/30 outline-none cursor-pointer"
                 onChange={(elem) => {
@@ -113,6 +89,62 @@ export default function UpdatesForm({ state }) {
                   );
                 })}
               </select>
+            </div>
+
+            <div className="flex justify-between">
+              <div className="w-[47%] flex flex-col gap-1">
+                <label htmlFor="updatedBy" className="text-white/80">
+                  Updated by <span className="text-red-500">*</span>
+                </label>
+                <select
+                  name="updatedBy"
+                  id="updatedBy"
+                  value={updatesInputData.updatedBy || ""}
+                  required
+                  className="bg-black/30 p-3 rounded-lg border border-white/30 outline-none cursor-pointer"
+                  onChange={(elem) => {
+                    handleInputData(elem.target);
+                  }}
+                >
+                  <option value="" disabled>
+                    Select team member
+                  </option>
+                  {teamMembersList.map((items) => {
+                    return (
+                      <option value={items.UUID} key={items.UUID}>
+                        {items.tmName}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+
+              <div className="w-[47%] flex flex-col gap-1">
+                <label htmlFor="catagory" className="text-white/80">
+                  Catagory <span className="text-red-500">*</span>
+                </label>
+                <select
+                  name="catagory"
+                  id="catagory"
+                  value={updatesInputData.catagory || ""}
+                  required
+                  className="bg-black/30 p-3 rounded-lg border border-white/30 outline-none cursor-pointer"
+                  onChange={(elem) => {
+                    handleInputData(elem.target);
+                  }}
+                >
+                  <option value="" disabled>
+                    Select catagory
+                  </option>
+                  <option value="Projects">Projects</option>
+                  <option value="Tasks">Tasks</option>
+                  <option value="Teams">Teams</option>
+                  <option value="Photos">Photos</option>
+                  <option value="Payment">Payment</option>
+                  <option value="Punchlist">Punch List</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
             </div>
 
             <div className="w-full flex justify-center items-end">
