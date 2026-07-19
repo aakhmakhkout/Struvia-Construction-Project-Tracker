@@ -75,7 +75,14 @@ const ContractorProjects = () => {
         </div>
       </div>
 
-      {isNPFO && <CreateNewProject state={{ setisNPFO }} />}
+      {isNPFO && (
+        <CreateNewProject
+          state={{ setisNPFO }}
+          whichPage={"homePage"}
+          projectsData={{}}
+        />
+      )}
+
       {isTeamModalOpen && <Teams state={{ setisTeamModalOpen }} />}
       <div className="flex justify-between items-center">
         <CPTabs />
@@ -84,7 +91,11 @@ const ContractorProjects = () => {
 
       <div className="CPCards border border-black/20 px-8  flex flex-col gap-3 mt-2">
         <div>
-          <CPCards indexesState={{ indexes }} proData={slicedData} />
+          <CPCards
+            indexesState={{ indexes }}
+            proData={slicedData}
+            npfoState={{ isNPFO, setisNPFO }}
+          />
         </div>
         <div className="border-t-2 border-black/20 py-3">
           <CPPagination

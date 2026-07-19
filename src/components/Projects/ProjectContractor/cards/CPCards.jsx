@@ -4,7 +4,8 @@ import Actions from "./Actions";
 import { useState } from "react";
 import supabase from "../../../../lib/supabase";
 
-const CPCards = ({ indexesState, proData }) => {
+const CPCards = ({ indexesState, proData, npfoState }) => {
+  // const { setisNPFO } = npfoState;
   const { indexes } = indexesState;
   const [isOptionsID, setisOptionsID] = useState(null);
 

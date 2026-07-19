@@ -6,13 +6,16 @@ import {
   SquarePen,
   Trash2,
 } from "lucide-react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteProject } from "../../../../redux/features/projectsSlice";
+import CreateNewProject from "../Top/CreateNewProject";
+import { useState } from "react";
 
 const Actions = ({ state, proData, supabaseClient }) => {
   console.log(proData, supabaseClient);
   const { setisOptionsID } = state;
   const dispatch = useDispatch();
+  const [isNPFO, setisNPFO] = useState(false);
 
   const handleDeleteProject = async () => {
     const { data, error } = await supabaseClient.storage
@@ -41,7 +44,12 @@ const Actions = ({ state, proData, supabaseClient }) => {
           </div>
         </button>
 
-        <button className="flex justify-between items-center w-full cursor-pointer">
+        <button
+          className="flex justify-between items-center w-full cursor-pointer"
+          onClick={() => {
+            setisNPFO(true);
+          }}
+        >
           <div className="flex gap-3 items-center">
             <div>
               <SquarePen size={15} strokeWidth={1.25} />
@@ -52,6 +60,14 @@ const Actions = ({ state, proData, supabaseClient }) => {
             <ChevronRight size={15} strokeWidth={1.25} />
           </div>
         </button>
+
+        {isNPFO && (
+          <CreateNewProject
+            state={{ setisNPFO }}
+            whichPage="actionsPage"
+            projectsData={proData}
+          />
+        )}
 
         <button
           className="flex w-full justify-between items-center cursor-pointer"

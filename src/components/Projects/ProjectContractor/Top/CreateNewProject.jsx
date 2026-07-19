@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setProjectsData } from "../../../../redux/features/projectsSlice";
 import supabase from "../../../../lib/supabase";
 
-const CreateNewProject = ({ state }) => {
+const CreateNewProject = ({ state, whichPage, projectsData }) => {
+  console.log(whichPage);
   const teamMembersData = useSelector((state) => state.teams.teamsMembers);
   const { setisNPFO } = state;
-  const [projectData, setProjectData] = useState({});
+  const [projectData, setProjectData] = useState(projectsData);
   const [selectedMembers, setselectedMembers] = useState([]);
   const [selectFile, setselectFile] = useState(null);
   const dispatch = useDispatch();
@@ -78,17 +79,16 @@ const CreateNewProject = ({ state }) => {
     };
 
     dispatch(setProjectsData(finalProjectData));
-    console.log("dispatch done");
     setProjectData({});
-    console.log("Projects empty");
     setselectedMembers([]);
-    console.log("Selected members empty");
     setselectFile(null);
-    console.log("Selected file empty");
     setisLoading(false);
-    console.log("loading state false");
   }
 
+  const selectedTeamArr =
+    projectsData?.team?.length > 0 ? projectsData.team : selectedMembers;
+
+  console.log(projectData);
   return (
     <div className="fixed inset-0 bg-black/30 backdrop-blur-[2px] z-50 flex justify-center items-center text-white">
       <div className="w-full flex items-center justify-center ">
@@ -111,7 +111,11 @@ const CreateNewProject = ({ state }) => {
           >
             {/* heading */}
             <div className="flex justify-center items-center">
-              <h1 className="font-bold text-4xl">Create New Project</h1>
+              {whichPage === "homePage" ? (
+                <h1 className="font-bold text-4xl">Create New Project</h1>
+              ) : whichPage === "actionsPage" ? (
+                <h1 className="font-bold text-4xl">Edit Project Details</h1>
+              ) : null}
             </div>
 
             {/* Project Name and Project Type input field */}
@@ -310,7 +314,7 @@ const CreateNewProject = ({ state }) => {
               <div className="flex flex-col gap-2">
                 <h1 className=" text-white/70 font-bold">Team Members</h1>
                 <div className="flex bg-black/30 min-h-15 max-h-28 overflow-scroll p-2 border border-white/20 rounded-lg gap-3 flex-wrap createNewProjectsTM">
-                  {selectedMembers.map((items, idx) => {
+                  {selectedTeamArr.map((items, idx) => {
                     return (
                       <div
                         key={idx}
@@ -342,7 +346,9 @@ const CreateNewProject = ({ state }) => {
                   type="submit"
                   className="bg-[#7745a7] w-full py-3 cursor-pointer font-bold border border-white/20 active:scale-95 CPCards"
                 >
-                  Create Project
+                  {whichPage === "homePage"
+                    ? "Create Project"
+                    : "Update Project"}
                 </button>
               ) : (
                 <button
