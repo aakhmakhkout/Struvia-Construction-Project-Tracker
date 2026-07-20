@@ -15,10 +15,16 @@ export default function UpdatesForm({ state }) {
 
   function submitHandler(elem) {
     elem.preventDefault();
-    dispatch(setRecentUpdates(updatesInputData));
+    const recentUpdatesObj = {
+      updateId: crypto.randomUUID(),
+      type: "other",
+      projectid: updatesInputData.project,
+      label: updatesInputData.update,
+      timestamp: Date.now(),
+    };
+    dispatch(setRecentUpdates(recentUpdates));
   }
 
-  console.log(recentUpdates);
   function handleInputData(targetElem) {
     setupdatesInputData((prev) => {
       return { ...prev, [targetElem.name]: targetElem.value };

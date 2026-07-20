@@ -2,6 +2,7 @@ import { X, Loader } from "lucide-react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setProjectsData } from "../../../../redux/features/projectsSlice";
+import { setRecentUpdates } from "../../../../redux/features/projectsSlice";
 import supabase from "../../../../lib/supabase";
 
 const CreateNewProject = ({ state, whichPage, projectsData }) => {
@@ -74,11 +75,23 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
         pfpid: pfpID,
         path: data.path,
         src: pfpUrl,
-        originalName: selectFile.name,
+        orginalName: selectFile.name,
       },
     };
 
+    const recentUpdatesObj = {
+      updateId: crypto.randomUUID(),
+      type: "project",
+      projectid: finalProjectData.projectid,
+      coverImg: {
+        src: finalProjectData.coverImgObj.src,
+        alt: finalProjectData.coverImgObj.orginalName,
+      },
+      label: projectData.project,
+      timestamp: Date.now(),
+    };
     dispatch(setProjectsData(finalProjectData));
+    dispatch(setRecentUpdates(recentUpdatesObj));
     setProjectData({});
     setselectedMembers([]);
     setselectFile(null);
@@ -119,7 +132,7 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
             </div>
 
             {/* Project Name and Project Type input field */}
-            <div className="flex justify-between bg-black/30 backdrop-blur-2xl CPCards p-3 items-center">
+            <div className="flex justify-between  backdrop-blur-2xl p-3 items-center">
               <div className="flex flex-col w-[50%] gap-2">
                 <label htmlFor="project" className=" text-white/70 font-bold">
                   Project Name <span className="text-red-500">*</span>
@@ -158,7 +171,7 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
             </div>
 
             {/* Location + TotalBudget + Project Status */}
-            <div className="flex justify-between bg-black/30 p-3 backdrop-blur-2xl CPCards items-center">
+            <div className="flex justify-between  p-3 backdrop-blur-2xl items-center">
               <div className="flex flex-col w-[35%] gap-2">
                 <label htmlFor="location" className=" text-white/70 font-bold">
                   Location <span className="text-red-500">*</span>
@@ -224,7 +237,7 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
             </div>
 
             {/* Start date + End date + upload project pfp + select team member */}
-            <div className="flex flex-col  bg-black/30 p-3 backdrop-blur-2xl CPCards gap-10">
+            <div className="flex flex-col   p-3 backdrop-blur-2xl  gap-10">
               <div className="flex justify-between items-center ">
                 <div className="flex flex-col gap-2 w-[20%]">
                   <label htmlFor="stdate" className="font-bold text-white/70">
