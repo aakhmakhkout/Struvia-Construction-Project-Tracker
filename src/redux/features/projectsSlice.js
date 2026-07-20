@@ -29,28 +29,23 @@ export const projectsSlice = createSlice({
 
       localStorage.setItem("projectsData", JSON.stringify(updatedProjectList));
     },
-    setRecentUpdates(state, action) {
-      state.recentUpdates.push(action.payload);
-      localStorage.setItem(
-        "recentupdates",
-        JSON.stringify(state.recentUpdates),
-      );
-    },
-    deleteRecentUpdates(state, action) {
-      const updatedRU = state.recentUpdates.filter((items) => {
-        return items.project.id !== action.payload;
-      });
-      state.recentUpdates = updatedRU;
-      localStorage.setItem("recentupdates", JSON.stringify(updatedRU));
-    },
+    // setRecentUpdates(state, action) {
+    //   state.recentUpdates.push(action.payload);
+    //   localStorage.setItem(
+    //     "recentupdates",
+    //     JSON.stringify(state.recentUpdates),
+    //   );
+    // },
+    // deleteRecentUpdates(state, action) {
+    //   const updatedRU = state.recentUpdates.filter((items) => {
+    //     return items.project.id !== action.payload;
+    //   });
+    //   state.recentUpdates = updatedRU;
+    //   localStorage.setItem("recentupdates", JSON.stringify(updatedRU));
+    // },
   },
 });
 
-export const {
-  setActiveTab,
-  setProjectsData,
-  deleteProject,
-  setRecentUpdates,
-  deleteRecentUpdates,
-} = projectsSlice.actions;
+export const { setActiveTab, setProjectsData, deleteProject } =
+  projectsSlice.actions;
 export default projectsSlice.reducer;

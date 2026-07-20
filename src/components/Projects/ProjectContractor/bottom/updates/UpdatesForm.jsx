@@ -1,8 +1,7 @@
 import { X, Loader } from "lucide-react";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setRecentUpdates } from "../../../../../redux/features/projectsSlice";
-
+import { setRecentUpdates } from "../../../../../redux/features/updatesSlice";
 export default function UpdatesForm({ state }) {
   const dispatch = useDispatch();
   const { setupdatesState } = state;
