@@ -1,93 +1,143 @@
-import {Contact, CalendarDays, MessageSquareMore, EllipsisVertical} from "lucide-react"
+import {
+  Contact,
+  CalendarDays,
+  MessageSquareMore,
+  EllipsisVertical,
+} from "lucide-react";
 import { useState } from "react";
 import Actions from "./Actions";
-const TaskCards = ({data}) => {
-    // console.log(data.data)
-    const isTaskPresent = data.data.length > 0;
-    // console.log(isTaskPresent);
-    const dataCopy = [...data.data]
+import { useSelector } from "react-redux";
+const TaskCards = ({ data }) => {
+  const projectData = useSelector((state) => state.projects.projectsdata);
+  // console.log(data.data)
+  const isTaskPresent = data.data.length > 0;
+  // console.log(isTaskPresent);
+  const dataCopy = [...data.data];
 
-    let color = ""
+  let color = "";
 
-    if(data.label === "To Do") {
-        color = "bg-[#d0d1d2]"
-    }
-    else if(data.label === "In Progress") {
-        color = "bg-[#19147718]" 
-    }
-    else if(data.label === "In Review") {
-        color = "bg-[#f1e86849]"
-    }
-    else {
-        color = "bg-[#10800827]"
-    }
+  if (data.label === "To Do") {
+    color = "bg-[#d0d1d2]";
+  } else if (data.label === "In Progress") {
+    color = "bg-[#19147718]";
+  } else if (data.label === "In Review") {
+    color = "bg-[#f1e86849]";
+  } else {
+    color = "bg-[#10800827]";
+  }
 
-    const [isOptionsID, setisOptionsID] = useState(null)
-
+  const [isOptionsID, setisOptionsID] = useState(null);
 
   return (
-     <div className='CPCards w-[24%] overflow-y-scroll taskBoxes border border-black/20'>
-        <div className={`flex w-full ${color} h-10 items-center pl-3 gap-5 sticky top-0 backdrop-blur-2xl`}>
-          <h1 className='font-bold text-xl'>{data.label}</h1>
-          <p className={`${color} w-7 h-7 flex justify-center items-center rounded-full text-lg font-bold`}>{data.data.length}</p>
-        </div>
-
-        <div className='flex flex-col gap-3 p-2 '>
-        {dataCopy.length !== 0 ? dataCopy.reverse().map((items, idx)=> {
-          return <div key={idx} className='flex flex-col CPCards p-2 border border-black/20 gap-2'>
-            <div className='flex justify-between items-center'>
-            <div>
-            <h1 className='text-lg font-bold'>{items.Task}</h1>
-            <p className='text-black/70 text-sm'>{items.PName}</p>
-            </div>
-            <div className="relative">
-              <button className="cursor-pointer hover:bg-black/20 p-1 rounded-full transition-all" onClick={()=> {
-                    if(isOptionsID === idx) {
-                      setisOptionsID(null)
-                    }
-                    else {
-                      setisOptionsID(idx)
-                    }
-                  
-              }} >
-                <EllipsisVertical size={20} strokeWidth={1.5} id={idx}/>
-                </button>
-               {isOptionsID === idx ? <Actions data = {data.label} id={items.id} state={{setisOptionsID}}/> : null}
-              
-            </div>
-            </div>
-
-            <div className='flex font-bold items-center justify-between'>
-              <div className="flex items-center gap-2">
-               <div><Contact size={15} strokeWidth={1.5} /></div>
-              <h2>{items.assignee}</h2>
-              </div>
-              <div className="relative commentDiv cursor-pointer">
-                <MessageSquareMore size={16} strokeWidth={2} />
-                <div className={`max-w-55 max-h-25 p-2 hidden comments overflow-y-scroll bg-[#14202eb6] absolute -left-45 font-normal CPCards backdrop-blur-[1px] rounded-xl text-white`}>
-                  {items.comment === undefined ? <p>No comment</p> : <p>{items.comment}</p>}
-                </div>
-              </div>
-            </div>
-
-
-
-            <div className='flex justify-between items-center'>
-              <div className='flex gap-2 items-center'>
-              <p><CalendarDays size={15} strokeWidth={1.5} /></p>
-              <div>
-                {items.date}
-                </div>
-              </div>
-              <div>
-              {data.label !== "Completed" ? <p style={items.priority === "High" ? {color: "#EF4444", backgroundColor: "#FEE2E2"}: items.priority === "Medium" ? {color: "#F59E0B", backgroundColor: "#FEF3C7"}: {color: "#10B981", backgroundColor: "#D1FAE5"}} className='p-[3px_10px] font-bold rounded-lg'>{items.priority}</p>: <p className="bg-[#00800034] text-[green] p-[3px_10px] rounded-lg font-bold">Completed</p>}
-              </div>
-            </div>
-          </div>
-        }) : <p className="text-xl font-bold text-[#d70c0c94]">No tasks</p>}
-        </div>
+    <div className="CPCards w-[24%] overflow-y-scroll taskBoxes border border-black/20">
+      <div
+        className={`flex w-full ${color} h-10 items-center pl-3 gap-5 sticky top-0 backdrop-blur-2xl`}
+      >
+        <h1 className="font-bold text-xl">{data.label}</h1>
+        <p
+          className={`${color} w-7 h-7 flex justify-center items-center rounded-full text-lg font-bold`}
+        >
+          {data.data.length}
+        </p>
       </div>
-  )
-}
 
-export default TaskCards
+      <div className="flex flex-col gap-3 p-2 ">
+        {dataCopy.length !== 0 ? (
+          dataCopy.reverse().map((items, idx) => {
+            const ProName = projectData.find((items2) => {
+              return items.PName === items2.projectid;
+            });
+            return (
+              <div
+                key={idx}
+                className="flex flex-col CPCards p-2 border border-black/20 gap-2"
+              >
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h1 className="text-lg font-bold">{items.Task}</h1>
+                    <p className="text-black/70 text-sm">{ProName?.project}</p>
+                  </div>
+                  <div className="relative">
+                    <button
+                      className="cursor-pointer hover:bg-black/20 p-1 rounded-full transition-all"
+                      onClick={() => {
+                        if (isOptionsID === idx) {
+                          setisOptionsID(null);
+                        } else {
+                          setisOptionsID(idx);
+                        }
+                      }}
+                    >
+                      <EllipsisVertical size={20} strokeWidth={1.5} id={idx} />
+                    </button>
+                    {isOptionsID === idx ? (
+                      <Actions
+                        data={data.label}
+                        id={items.id}
+                        state={{ setisOptionsID }}
+                      />
+                    ) : null}
+                  </div>
+                </div>
+
+                <div className="flex font-bold items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div>
+                      <Contact size={15} strokeWidth={1.5} />
+                    </div>
+                    <h2>{items.assignee}</h2>
+                  </div>
+                  <div className="relative commentDiv cursor-pointer">
+                    <MessageSquareMore size={16} strokeWidth={2} />
+                    <div
+                      className={`max-w-55 max-h-25 p-2 hidden comments overflow-y-scroll bg-[#14202eb6] absolute -left-45 font-normal CPCards backdrop-blur-[1px] rounded-xl text-white`}
+                    >
+                      {items.comment === undefined ? (
+                        <p>No comment</p>
+                      ) : (
+                        <p>{items.comment}</p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <div className="flex gap-2 items-center">
+                    <p>
+                      <CalendarDays size={15} strokeWidth={1.5} />
+                    </p>
+                    <div>{items.date}</div>
+                  </div>
+                  <div>
+                    {data.label !== "Completed" ? (
+                      <p
+                        style={
+                          items.priority === "High"
+                            ? { color: "#EF4444", backgroundColor: "#FEE2E2" }
+                            : items.priority === "Medium"
+                              ? { color: "#F59E0B", backgroundColor: "#FEF3C7" }
+                              : { color: "#10B981", backgroundColor: "#D1FAE5" }
+                        }
+                        className="p-[3px_10px] font-bold rounded-lg"
+                      >
+                        {items.priority}
+                      </p>
+                    ) : (
+                      <p className="bg-[#00800034] text-[green] p-[3px_10px] rounded-lg font-bold">
+                        Completed
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <p className="text-xl font-bold text-[#d70c0c94]">No tasks</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default TaskCards;

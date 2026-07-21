@@ -64,11 +64,11 @@ const PhotoCards = ({ formState }) => {
                   </h2>
                 </div>
 
-                <div className="flex items-center justify-between p-2 text-sm text-black/70 font-bold">
+                <div className="flex items-center justify-between p-2 text-sm text-black/70 ">
                   {photosLength > 1 ? (
-                    <p>{photosLength} Photos</p>
+                    <p className="font-bold">{photosLength} Photos</p>
                   ) : (
-                    <p>{photosLength} Photo</p>
+                    <p className="font-bold">{photosLength} Photo</p>
                   )}
                   <button
                     className="cursor-pointer hover:bg-black/10 p-1 rounded-full transition-all"

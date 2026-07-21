@@ -2,7 +2,7 @@ import { X, Loader } from "lucide-react";
 import React, { useState } from "react";
 import supabase from "../../../../lib/supabase";
 import { addTeamMember } from "../../../../redux/features/teamsSlice";
-import { setRecentUpdates } from "../../../../redux/features/projectsSlice";
+import { setRecentUpdates } from "../../../../redux/features/updatesSlice";
 import { useDispatch } from "react-redux";
 
 export default function TeamForm({ state, whichPage, teamData }) {

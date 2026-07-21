@@ -3,7 +3,7 @@ import { setAlbumData } from "../../../redux/features/photoSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import supabase from "../../../lib/supabase.js";
-import { setRecentUpdates } from "../../../redux/features/projectsSlice.js";
+import { setRecentUpdates } from "../../../redux/features/updatesSlice.js";
 
 const PhotosFormModal = () => {
   const dispatch = useDispatch();

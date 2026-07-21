@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialRecentUpdates = JSON.parse(localStorage.getItem("recentUpdates"));
+const initialRecentUpdates =
+  JSON.parse(localStorage.getItem("recentUpdates")) || [];
 
 export const updateSlice = createSlice({
   name: "recentUpdates",

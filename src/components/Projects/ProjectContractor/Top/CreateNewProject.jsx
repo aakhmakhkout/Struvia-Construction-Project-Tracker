@@ -2,7 +2,7 @@ import { X, Loader } from "lucide-react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setProjectsData } from "../../../../redux/features/projectsSlice";
-import { setRecentUpdates } from "../../../../redux/features/projectsSlice";
+import { setRecentUpdates } from "../../../../redux/features/updatesSlice";
 import supabase from "../../../../lib/supabase";
 
 const CreateNewProject = ({ state, whichPage, projectsData }) => {

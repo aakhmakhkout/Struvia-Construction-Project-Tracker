@@ -125,12 +125,12 @@ export default function UpdatesForm({ state }) {
               </div>
 
               <div className="w-[47%] flex flex-col gap-1">
-                <label htmlFor="catagory" className="text-white/80">
+                <label htmlFor="type" className="text-white/80">
                   Catagory <span className="text-red-500">*</span>
                 </label>
                 <select
-                  name="catagory"
-                  id="catagory"
+                  name="type"
+                  id="type"
                   value={updatesInputData.catagory || ""}
                   required
                   className="bg-black/30 p-3 rounded-lg border border-white/30 outline-none cursor-pointer"

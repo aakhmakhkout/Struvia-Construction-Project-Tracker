@@ -13,7 +13,6 @@ import UpdatesForm from "./bottom/updates/UpdatesForm";
 
 const ContractorProjects = () => {
   const activeTab = useSelector((state) => state.projects.activeTab);
-  console.log(activeTab);
   const finalProjectData = useSelector((state) => state.projects.projectsdata);
   const [updatesState, setupdatesState] = useState(false);
   const projectsLength = finalProjectData.length;
@@ -25,7 +24,6 @@ const ContractorProjects = () => {
   const [indexes, setIndexes] = useState(initialIDX);
   const [isNPFO, setisNPFO] = useState(false);
   const [search, setSearch] = useState("");
-  // console.log(search);
   const [filteredProjectData, setfilteredProjectData] =
     useState(finalProjectData);
   const [isTeamModalOpen, setisTeamModalOpen] = useState(false);
@@ -33,7 +31,6 @@ const ContractorProjects = () => {
   const slicedData = [...filteredProjectData]
     .reverse()
     .slice(indexes.startIDX, indexes.endIDX);
-  console.log(slicedData);
 
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -51,7 +48,7 @@ const ContractorProjects = () => {
     return () => {
       clearTimeout(timerId);
     };
-  }, [search, activeTab]);
+  }, [search, activeTab, finalProjectData]);
 
   return (
     <div className="mb-10">

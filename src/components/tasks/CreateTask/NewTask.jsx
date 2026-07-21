@@ -1,7 +1,7 @@
 import { X } from "lucide-react";
 import { useState } from "react";
 import { setToDoTask } from "../../../redux/features/tasksSlice";
-import { setRecentUpdates } from "../../../redux/features/projectsSlice";
+import { setRecentUpdates } from "../../../redux/features/updatesSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const NewTask = ({ state, teamMember, whichPage }) => {
@@ -102,7 +102,7 @@ const NewTask = ({ state, teamMember, whichPage }) => {
                   </option>
                   {finalProjectData.map((items) => {
                     return (
-                      <option key={items.projectid} value={items.project}>
+                      <option key={items.projectid} value={items.projectid}>
                         {items.project}
                       </option>
                     );
