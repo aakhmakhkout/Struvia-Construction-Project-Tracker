@@ -1,54 +1,62 @@
 @import "tailwindcss";
 
 .landingPageCards {
-    -webkit-box-shadow:0px 0px 10px 2px rgba(47, 56, 59, 0.9);
--moz-box-shadow: 0px 0px 10px 2px rgba(47, 56, 59, 0.9);
-box-shadow: 0px 0px 10px 2px rgba(47, 56, 59, 0.9);
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(47, 56, 59, 0.9);
+  -moz-box-shadow: 0px 0px 10px 2px rgba(47, 56, 59, 0.9);
+  box-shadow: 0px 0px 10px 2px rgba(47, 56, 59, 0.9);
 }
 
 .statusPending {
-    background-color: rgba(255, 0, 0, 0.247);
-    border: 1px solid red;
-    padding: 5px 20px;
-    border-radius: 8px;
-    color: rgb(255, 60, 0);
-    font-weight: bolder;
+  background-color: rgba(255, 0, 0, 0.247);
+  border: 1px solid red;
+  padding: 5px 20px;
+  border-radius: 8px;
+  color: rgb(255, 60, 0);
+  font-weight: bolder;
 }
 
 .navbar {
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .weatherandlocation {
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.activityfeed, .dashboardBottomCards, .CPCards {
-    border-radius: 12px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+.activityfeed,
+.dashboardBottomCards,
+.CPCards {
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.CPCardsBtns, .NavToggle {
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+.CPCardsBtns,
+.NavToggle {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.taskBoxes::-webkit-scrollbar, .createNewProjectsTM::-webkit-scrollbar {
-    display: none;
+.taskBoxes::-webkit-scrollbar,
+.createNewProjectsTM::-webkit-scrollbar {
+  display: none;
 }
 
 select > option {
-    background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .comments::-webkit-scrollbar {
-    display: none;
+  display: none;
+}
+.RPUD::-webkit-scrollbar {
+  display: none;
 }
 
 .commentDiv:hover > .comments {
-    display: flex;
+  display: flex;
 }
 
 #tmStatusOptions > option {
   background-color: #e7effa;
-
 }
