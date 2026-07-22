@@ -141,12 +141,12 @@ export default function UpdatesForm({ state }) {
                   <option value="" disabled>
                     Select catagory
                   </option>
-                  <option value="Projects">Projects</option>
-                  <option value="Tasks">Tasks</option>
-                  <option value="Teams">Teams</option>
-                  <option value="Photos">Photos</option>
-                  <option value="Payment">Payment</option>
-                  <option value="Punchlist">Punch List</option>
+                  <option value="projects">Projects</option>
+                  <option value="tasks">Tasks</option>
+                  <option value="teams">Teams</option>
+                  <option value="album">Photos</option>
+                  <option value="payment">Payment</option>
+                  <option value="punchlist">Punch List</option>
                   <option value="Other">Other</option>
                 </select>
               </div>

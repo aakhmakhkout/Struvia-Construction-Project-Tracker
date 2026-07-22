@@ -15,7 +15,6 @@ const ContractorProjects = () => {
   const activeTab = useSelector((state) => state.projects.activeTab);
   const finalProjectData = useSelector((state) => state.projects.projectsdata);
   const [updatesState, setupdatesState] = useState(false);
-  const projectsLength = finalProjectData.length;
   const initialIDX = {
     startIDX: 0,
     endIDX: 4,
@@ -31,6 +30,8 @@ const ContractorProjects = () => {
   const slicedData = [...filteredProjectData]
     .reverse()
     .slice(indexes.startIDX, indexes.endIDX);
+  const projectsLength = finalProjectData.length;
+  const slicedDataLength = slicedData.length;
 
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -98,12 +99,13 @@ const ContractorProjects = () => {
           <CPPagination
             indexesState={{ indexes, setIndexes }}
             proLength={projectsLength}
+            slicedLength={slicedDataLength}
           />
         </div>
       </div>
 
       <div className="mt-8 flex justify-between">
-        <RecentProjectUpdates />
+        <RecentProjectUpdates UpdatesFormstate={{ setupdatesState }} />
         <ProjectHealth />
         <CPQuickActions
           state={{ setisNPFO, setisTeamModalOpen, setupdatesState }}

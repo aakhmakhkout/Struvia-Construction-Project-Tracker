@@ -4,6 +4,7 @@ import { setActiveTab } from "../../../../redux/features/projectsSlice";
 const CPTabs = () => {
   const dispatch = useDispatch();
   const activeTab = useSelector((state) => state.projects.activeTab);
+
   const tabs = [
     {
       id: 1,

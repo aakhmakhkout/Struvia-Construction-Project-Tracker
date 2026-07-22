@@ -19,7 +19,7 @@ const CPQuickActions = ({ state }) => {
     setupdatesState(true);
   }
 
-  const projectHealthData = [
+  const QuickActions = [
     {
       id: 1,
       img: <LayersPlus size={30} strokeWidth={1.5} />,
@@ -49,7 +49,7 @@ const CPQuickActions = ({ state }) => {
       </div>
 
       <div className="flex flex-col gap-2">
-        {projectHealthData.map((items) => {
+        {QuickActions.map((items) => {
           return (
             <button
               key={items.id}

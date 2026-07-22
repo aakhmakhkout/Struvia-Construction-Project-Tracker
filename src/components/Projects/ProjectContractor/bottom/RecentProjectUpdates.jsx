@@ -1,25 +1,41 @@
-import { EllipsisVertical, Plus, ClipboardList } from "lucide-react";
+import { EllipsisVertical, Plus, ClipboardList, Trash2 } from "lucide-react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Actions from "./Actions";
+import { DeleteAllUpdates } from "../../../../redux/features/updatesSlice";
 
-const RecentProjectUpdates = () => {
+const RecentProjectUpdates = ({ UpdatesFormstate }) => {
+  const { setupdatesState } = UpdatesFormstate;
+  const dispatch = useDispatch();
   const updatesData = useSelector((state) => state.updates.recentupdates);
   const projectData = useSelector((state) => state.projects.projectsdata);
-  console.log(updatesData);
-  const filteredData = [...updatesData].reverse();
+  const [endIdx, setendIdx] = useState(6);
+  const [recentProjectsIdx, setrecentProjectsIdx] = useState(null);
+  const updatesLength = updatesData.length;
+  const filteredData = [...updatesData].reverse().slice(0, endIdx);
   return (
     <div className="CPCards p-3 w-[50%] min-h-50 max-h-90 flex flex-col gap-5 border RPUD border-black/20 overflow-y-scroll">
-      <div className="flex justify-between p-2">
+      <div className="flex justify-between p-2 items-center">
         <h1 className="font-bold text-xl">Recent Project Updates</h1>
-        <button className="text-[#e55707] text-sm">View All Updates</button>
+        <button
+          className="text-[#e55707] text-sm flex items-center gap-2 cursor-pointer active:scale-95 hover:bg-[#ff00000f] p-2 rounded-lg"
+          onClick={() => {
+            dispatch(DeleteAllUpdates([]));
+          }}
+        >
+          <div>
+            {" "}
+            <Trash2 size={15} strokeWidth={1.25} />
+          </div>
+          <h1>Clear All Updates</h1>
+        </button>
       </div>
       {filteredData.length > 0 ? (
         <div className="flex flex-col ">
-          {filteredData.map((items) => {
+          {filteredData.map((items, idx) => {
             const PName = projectData.find((items2) => {
               return items.projectid === items2.projectid;
             });
-            console.log(PName);
             return (
               <div
                 key={items.updateId}
@@ -48,10 +64,22 @@ const RecentProjectUpdates = () => {
                   </div>
                 </div>
 
-                <div>
-                  <button>
+                <div className="relative">
+                  <button
+                    className="cursor-pointer active:scale-95 hover:bg-black/10 rounded-full p-1"
+                    onClick={() => {
+                      if (recentProjectsIdx === idx) {
+                        setrecentProjectsIdx(null);
+                      } else {
+                        setrecentProjectsIdx(idx);
+                      }
+                    }}
+                  >
                     <EllipsisVertical size={20} strokeWidth={1.5} />
                   </button>
+                  {recentProjectsIdx === idx ? (
+                    <Actions state={{ setrecentProjectsIdx }} data={items} />
+                  ) : null}
                 </div>
               </div>
             );
@@ -59,7 +87,12 @@ const RecentProjectUpdates = () => {
         </div>
       ) : (
         <div className="w-full h-full flex justify-center items-center">
-          <button className="bg-[#dedaf29e] flex w-55 h-15 cursor-pointer justify-center items-center gap-2 rounded-xl border border-dashed border-[#0000ff5c] active:scale-95 hover:bg-[#d4ccfbc8] transition-all ease-in">
+          <button
+            className="bg-[#dedaf29e] flex w-55 h-15 cursor-pointer justify-center items-center gap-2 rounded-xl border border-dashed border-[#0000ff5c] active:scale-95 hover:bg-[#d4ccfbc8] transition-all ease-in"
+            onClick={() => {
+              setupdatesState(true);
+            }}
+          >
             <div className="text-[#7745a7]">
               <Plus size={35} strokeWidth={1.5} />
             </div>
@@ -67,9 +100,17 @@ const RecentProjectUpdates = () => {
           </button>
         </div>
       )}
-      <button className="flex w-full justify-center items-center py-2 rounded-lg bg-black/10 border border-black/10 cursor-pointer">
-        Load More
-      </button>
+      {updatesLength > 6 && endIdx <= updatesLength ? (
+        <button
+          className="flex w-full justify-center items-center py-2 rounded-lg bg-black/10 border border-black/10 cursor-pointer active:scale-95"
+          onClick={() => {
+            const increment = updatesLength - endIdx;
+            setendIdx((prev) => prev + increment);
+          }}
+        >
+          Load More
+        </button>
+      ) : null}
     </div>
   );
 };
