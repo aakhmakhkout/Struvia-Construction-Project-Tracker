@@ -83,11 +83,12 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
       updateId: crypto.randomUUID(),
       type: "project",
       projectid: finalProjectData.projectid,
+      label: projectData.project,
+      location: projectData.location,
       coverImg: {
         src: finalProjectData.coverImgObj.src,
         alt: finalProjectData.coverImgObj.orginalName,
       },
-      label: projectData.project,
       timestamp: Date.now(),
     };
     dispatch(setProjectsData(finalProjectData));
@@ -196,7 +197,7 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
                 </label>
                 <input
                   type="text"
-                  placeholder="20,000,00 INR"
+                  placeholder="₹ 20,000,00"
                   required
                   name="budget"
                   id="budget"

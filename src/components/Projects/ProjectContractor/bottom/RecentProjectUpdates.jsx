@@ -38,6 +38,17 @@ const RecentProjectUpdates = ({ UpdatesFormstate }) => {
             const PName = projectData.find((items2) => {
               return items.projectid === items2.projectid;
             });
+            const date = new Date(items.timestamp);
+            const formattedDate = date.toLocaleDateString([], {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            });
+
+            const formattedTime = date.toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            });
             return (
               <div
                 key={items.updateId}
@@ -45,9 +56,7 @@ const RecentProjectUpdates = ({ UpdatesFormstate }) => {
               >
                 <div className="flex gap-5 items-center">
                   <div className=" w-15 h-10 flex items-center justify-center rounded-sm overflow-hidden">
-                    {items.type === "project" ||
-                    items.type === "album" ||
-                    items.type === "others" ? (
+                    {items.type === "project" || items.type === "others" ? (
                       <img
                         className="w-full h-full bg-black/20 "
                         src={items.coverImg.src}
@@ -65,25 +74,41 @@ const RecentProjectUpdates = ({ UpdatesFormstate }) => {
                           alt={items.coverImg.orginalName}
                         />
                       </div>
+                    ) : items.type === "album" ? (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <img
+                          className="w-12 h-10 rounded-lg"
+                          src={items.coverImg.src}
+                          alt={items.coverImg.orginalName}
+                        />
+                      </div>
                     ) : null}
                   </div>
                   <div>
                     <h1 className="font-bold">{`New ${
                       items.type === "project"
-                        ? `Project Created \"${items.label}\"`
+                        ? `Project Created | \"${items.label}\"`
                         : items.type === "teams"
-                          ? `Team Member Added ${items.label}`
+                          ? `Team Member Added | \"${items.label}\"`
                           : items.type === "tasks"
-                            ? `Task \"${items.label}\"Added`
+                            ? `Task Added | \"${items.label}\"`
                             : items.type === "album"
                               ? `Album Created \"${items.label}\"`
                               : items.type === "other"
                                 ? items.label
                                 : null
                     }`}</h1>
-                    <div className="flex gap-3 text-sm text-black/70">
-                      <h3>{PName?.project}</h3>
-                      <p>{items.timeStamp}</p>
+                    <div className="flex gap-5 text-sm text-black/70">
+                      <h3>
+                        {items.type === "teams" || items.type === "project"
+                          ? items.location
+                          : PName?.project}
+                      </h3>
+                      <p>|</p>
+                      <div className="flex gap-3">
+                        <p>{formattedDate}</p>
+                        <p>{formattedTime}</p>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -36,7 +36,7 @@ const CPPagination = ({
 
       <div className="flex gap-5">
         <button
-          className={`CPCardsBtns border border-black/20 rounded-sm bg-[#5d7bdf27] cursor-pointer active:scale-95 ${indexes.currentPage === 1 ? "hidden" : "flex"}`}
+          className={`CPCardsBtns border border-black/20 rounded-sm bg-[#5d7bdf27] cursor-pointer active:scale-95 ${proLength <= 0 ? "hidden" : "flex"} ${indexes.currentPage === 1 ? "hidden" : "flex"}`}
           onClick={() => {
             setIndexes(() => {
               return {
@@ -51,11 +51,11 @@ const CPPagination = ({
         </button>
         <div>
           <h1 className="text-[#e55707] border border-[#e55707] px-2.5 rounded-sm CPCardsBtns">
-            {indexes.currentPage}
+            {proLength > 0 ? indexes.currentPage : 0}
           </h1>
         </div>
         <button
-          className={`CPCardsBtns border border-black/20 rounded-sm bg-[#5d7bdf27] cursor-pointer active:scale-95 ${
+          className={`CPCardsBtns border border-black/20 rounded-sm bg-[#5d7bdf27] cursor-pointer active:scale-95 ${proLength <= 0 ? "hidden" : "flex"} ${
             activeTab === "All Projects" && searchData === ""
               ? indexes.currentPage === totalPages
                 ? "hidden"

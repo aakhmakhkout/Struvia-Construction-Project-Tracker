@@ -5,7 +5,7 @@ import { useState } from "react";
 import supabase from "../../../../lib/supabase";
 
 const CPCards = ({ indexesState, proData, npfoState }) => {
-  // const { setisNPFO } = npfoState;
+  const { setisNPFO } = npfoState;
   const { indexes } = indexesState;
   const [isOptionsID, setisOptionsID] = useState(null);
 
@@ -114,7 +114,7 @@ const CPCards = ({ indexesState, proData, npfoState }) => {
                 </div>
                 <div>{items.stdate}</div>
                 <div>{items.endate}</div>
-                <div className="font-bold uppercase">{items.budget}</div>
+                <div className="font-bold uppercase">₹ {items.budget}</div>
                 <div className="overflow-hidden flex gap-1">
                   {slicedTM.map((tmList) => {
                     return (
@@ -158,7 +158,12 @@ const CPCards = ({ indexesState, proData, npfoState }) => {
           })}
         </div>
       ) : (
-        <button className="bg-[#dedaf29e] flex flex-col w-60 h-40 cursor-pointer justify-center items-center gap-3 rounded-xl border border-dashed border-[#0000ff5c] active:scale-95 hover:bg-[#d4ccfbc8] transition-all ease-in">
+        <button
+          className="bg-[#dedaf29e] flex flex-col w-60 h-40 cursor-pointer justify-center items-center gap-3 rounded-xl border border-dashed border-[#0000ff5c] active:scale-95 hover:bg-[#d4ccfbc8] transition-all ease-in"
+          onClick={() => {
+            setisNPFO(true);
+          }}
+        >
           <div className="text-[#7745a7]">
             <Plus size={35} strokeWidth={1.5} />
           </div>

@@ -44,6 +44,7 @@ export default function TeamForm({ state, whichPage, teamData }) {
       updateId: crypto.randomUUID(),
       type: "teams",
       teamMemUUID: finalTeamMemberObj.UUID,
+      location: teamMembersData.tmAddress,
       coverImg: {
         src: finalTeamMemberObj.url,
         alt: finalTeamMemberObj.orginalName,
