@@ -2,7 +2,12 @@ import { current } from "@reduxjs/toolkit";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useSelector } from "react-redux";
 
-const CPPagination = ({ indexesState, proLength, slicedLength }) => {
+const CPPagination = ({
+  indexesState,
+  proLength,
+  slicedLength,
+  searchData,
+}) => {
   const activeTab = useSelector((state) => state.projects.activeTab);
   const { indexes, setIndexes } = indexesState;
   const itemsPerPage = 4;
@@ -10,11 +15,12 @@ const CPPagination = ({ indexesState, proLength, slicedLength }) => {
   console.log("project length", proLength);
   console.log("sliced length", slicedLength);
   console.log("active tab", activeTab);
+  console.log(searchData);
 
   return (
     <div className="flex justify-between">
       <div>
-        {activeTab === "All Projects" ? (
+        {activeTab === "All Projects" && searchData === "" ? (
           <p className="text-sm text-black/70 font-bold">
             Showing {proLength > 0 ? 1 : 0} to {proLength <= 4 ? proLength : 4}{" "}
             of {proLength} Projects {`(${activeTab})`}
@@ -50,7 +56,7 @@ const CPPagination = ({ indexesState, proLength, slicedLength }) => {
         </div>
         <button
           className={`CPCardsBtns border border-black/20 rounded-sm bg-[#5d7bdf27] cursor-pointer active:scale-95 ${
-            activeTab === "All Projects"
+            activeTab === "All Projects" && searchData === ""
               ? indexes.currentPage === totalPages
                 ? "hidden"
                 : "flex"

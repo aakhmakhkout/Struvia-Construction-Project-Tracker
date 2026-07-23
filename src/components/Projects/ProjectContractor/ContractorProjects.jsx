@@ -100,6 +100,7 @@ const ContractorProjects = () => {
             indexesState={{ indexes, setIndexes }}
             proLength={projectsLength}
             slicedLength={slicedDataLength}
+            searchData={search}
           />
         </div>
       </div>

@@ -13,6 +13,8 @@ const RecentProjectUpdates = ({ UpdatesFormstate }) => {
   const [recentProjectsIdx, setrecentProjectsIdx] = useState(null);
   const updatesLength = updatesData.length;
   const filteredData = [...updatesData].reverse().slice(0, endIdx);
+  console.log(updatesData);
+
   return (
     <div className="CPCards p-3 w-[50%] min-h-50 max-h-90 flex flex-col gap-5 border RPUD border-black/20 overflow-y-scroll">
       <div className="flex justify-between p-2 items-center">
@@ -39,27 +41,49 @@ const RecentProjectUpdates = ({ UpdatesFormstate }) => {
             return (
               <div
                 key={items.updateId}
-                className="flex justify-between border-t border-black/10 py-3"
+                className="flex justify-between border-t border-black/10 py-3 "
               >
                 <div className="flex gap-5 items-center">
                   <div className=" w-15 h-10 flex items-center justify-center rounded-sm overflow-hidden">
-                    {items.type !== "tasks" ? (
+                    {items.type === "project" ||
+                    items.type === "album" ||
+                    items.type === "others" ? (
                       <img
-                        className="w-full h-full bg-black/20"
+                        className="w-full h-full bg-black/20 "
                         src={items.coverImg.src}
                         alt={items.coverImg.orginalName}
                       />
-                    ) : (
-                      <div className="bg-[#9895dc4c] w-full h-full flex justify-center items-center">
+                    ) : items.type === "tasks" ? (
+                      <div className=" w-full h-full flex justify-center items-center">
                         <ClipboardList size={30} strokeWidth={1.25} />
                       </div>
-                    )}
+                    ) : items.type === "teams" ? (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <img
+                          className="w-10 h-10  rounded-full "
+                          src={items.coverImg.src}
+                          alt={items.coverImg.orginalName}
+                        />
+                      </div>
+                    ) : null}
                   </div>
                   <div>
-                    <h1 className="font-bold">{items.label}</h1>
+                    <h1 className="font-bold">{`New ${
+                      items.type === "project"
+                        ? `Project Created \"${items.label}\"`
+                        : items.type === "teams"
+                          ? `Team Member Added ${items.label}`
+                          : items.type === "tasks"
+                            ? `Task \"${items.label}\"Added`
+                            : items.type === "album"
+                              ? `Album Created \"${items.label}\"`
+                              : items.type === "other"
+                                ? items.label
+                                : null
+                    }`}</h1>
                     <div className="flex gap-3 text-sm text-black/70">
                       <h3>{PName?.project}</h3>
-                      <p>{items.time}</p>
+                      <p>{items.timeStamp}</p>
                     </div>
                   </div>
                 </div>

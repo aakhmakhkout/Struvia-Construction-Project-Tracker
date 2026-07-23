@@ -45,7 +45,7 @@ const CPCards = ({ indexesState, proData, npfoState }) => {
   ];
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 min-h-95">
       <div className="grid grid-cols-[2.5fr_1.5fr_1.5fr_1fr_1fr_1.5fr_1.5fr_1fr] border-b-2 border-black/20">
         {cardHeadings.map((items) => {
           return (
