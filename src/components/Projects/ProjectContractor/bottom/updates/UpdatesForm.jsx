@@ -17,11 +17,12 @@ export default function UpdatesForm({ state }) {
     const recentUpdatesObj = {
       updateId: crypto.randomUUID(),
       type: "other",
-      projectid: updatesInputData.project,
       label: updatesInputData.update,
+      subHeading: updatesInputData.subHeading,
       timestamp: Date.now(),
     };
-    dispatch(setRecentUpdates(recentUpdates));
+    dispatch(setRecentUpdates(recentUpdatesObj));
+    setupdatesInputData({});
   }
 
   function handleInputData(targetElem) {
@@ -31,15 +32,15 @@ export default function UpdatesForm({ state }) {
   }
   console.log(updatesInputData);
   return (
-    <div className="fixed inset-0 bg-black/20 backdrop-blur-[2px] rounded-lg z-60">
+    <div className="absolute w-110 right-80 h-90 -bottom-3 rounded-lg z-60">
       <div className="flex  justify-center items-center h-full w-full ">
         <form
-          className="w-[30%] h-[55%] bg-[#14202e] relative text-white p-4 CPCards flex flex-col items-center"
+          className="w-full h-full bg-[#14202e] relative text-white p-4 CPCards flex flex-col items-center justify-around"
           onSubmit={(elem) => {
             submitHandler(elem);
           }}
         >
-          <div className="w-full h-[20%] flex justify-center items-center">
+          <div className="w-full full flex justify-center items-center">
             <h1 className="text-3xl font-bold">Add New Updates</h1>
           </div>
           <button
@@ -50,7 +51,7 @@ export default function UpdatesForm({ state }) {
             <X />
           </button>
 
-          <div className="w-[95%] h-[70%] flex flex-col justify-between">
+          <div className="w-full full flex flex-col gap-5">
             <div className="w-full flex flex-col gap-1">
               <label htmlFor="update" className="text-white/80">
                 Update <span className="text-red-500">*</span>
@@ -69,86 +70,23 @@ export default function UpdatesForm({ state }) {
               />
             </div>
 
-            <div className="w-full flex flex-col gap-1">
-              <label htmlFor="project" className="text-white/80">
-                Project <span className="text-red-500">*</span>
-              </label>
-              <select
-                name="project"
-                id="project"
-                value={updatesInputData.project || ""}
-                required
-                className="bg-black/30 p-3 rounded-lg border border-white/30 outline-none cursor-pointer"
-                onChange={(elem) => {
-                  handleInputData(elem.target);
-                }}
-              >
-                <option value="" disabled>
-                  Select project
-                </option>
-                {projectsdata.map((items) => {
-                  return (
-                    <option value={items.projectid} key={items.projectid}>
-                      {items.project}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-
             <div className="flex justify-between">
-              <div className="w-[47%] flex flex-col gap-1">
-                <label htmlFor="updatedBy" className="text-white/80">
-                  Updated by <span className="text-red-500">*</span>
+              <div className="w-full flex flex-col gap-1">
+                <label htmlFor="subHeading" className="text-white/80">
+                  Sub Heading <span className="text-red-500">*</span>
                 </label>
-                <select
-                  name="updatedBy"
-                  id="updatedBy"
-                  value={updatesInputData.updatedBy || ""}
+                <input
+                  type="text"
+                  name="subHeading"
+                  id="subHeading"
+                  placeholder="Project name / location / team member's name"
                   required
-                  className="bg-black/30 p-3 rounded-lg border border-white/30 outline-none cursor-pointer"
+                  value={updatesInputData.subHeading || ""}
+                  className="bg-black/30 cursor-text p-3  rounded-lg border border-white/30 outline-none"
                   onChange={(elem) => {
                     handleInputData(elem.target);
                   }}
-                >
-                  <option value="" disabled>
-                    Select team member
-                  </option>
-                  {teamMembersList.map((items) => {
-                    return (
-                      <option value={items.UUID} key={items.UUID}>
-                        {items.tmName}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-
-              <div className="w-[47%] flex flex-col gap-1">
-                <label htmlFor="type" className="text-white/80">
-                  Catagory <span className="text-red-500">*</span>
-                </label>
-                <select
-                  name="type"
-                  id="type"
-                  value={updatesInputData.catagory || ""}
-                  required
-                  className="bg-black/30 p-3 rounded-lg border border-white/30 outline-none cursor-pointer"
-                  onChange={(elem) => {
-                    handleInputData(elem.target);
-                  }}
-                >
-                  <option value="" disabled>
-                    Select catagory
-                  </option>
-                  <option value="projects">Projects</option>
-                  <option value="tasks">Tasks</option>
-                  <option value="teams">Teams</option>
-                  <option value="album">Photos</option>
-                  <option value="payment">Payment</option>
-                  <option value="punchlist">Punch List</option>
-                  <option value="Other">Other</option>
-                </select>
+                />
               </div>
             </div>
 

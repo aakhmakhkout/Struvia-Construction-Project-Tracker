@@ -1,4 +1,10 @@
-import { EllipsisVertical, Plus, ClipboardList, Trash2 } from "lucide-react";
+import {
+  EllipsisVertical,
+  Plus,
+  ClipboardList,
+  Trash2,
+  CircleEllipsis,
+} from "lucide-react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Actions from "./Actions";
@@ -56,14 +62,14 @@ const RecentProjectUpdates = ({ UpdatesFormstate }) => {
               >
                 <div className="flex gap-5 items-center">
                   <div className=" w-15 h-10 flex items-center justify-center rounded-sm overflow-hidden">
-                    {items.type === "project" || items.type === "others" ? (
+                    {items.type === "project" ? (
                       <img
                         className="w-full h-full bg-black/20 "
                         src={items.coverImg.src}
                         alt={items.coverImg.orginalName}
                       />
                     ) : items.type === "tasks" ? (
-                      <div className=" w-full h-full flex justify-center items-center">
+                      <div className=" w-full h-full flex justify-center items-center bg-black/10">
                         <ClipboardList size={30} strokeWidth={1.25} />
                       </div>
                     ) : items.type === "teams" ? (
@@ -81,6 +87,10 @@ const RecentProjectUpdates = ({ UpdatesFormstate }) => {
                           src={items.coverImg.src}
                           alt={items.coverImg.orginalName}
                         />
+                      </div>
+                    ) : items.type === "other" ? (
+                      <div className=" w-full h-full flex justify-center items-center bg-black/10">
+                        <CircleEllipsis size={30} strokeWidth={1.5} />
                       </div>
                     ) : null}
                   </div>
@@ -102,7 +112,11 @@ const RecentProjectUpdates = ({ UpdatesFormstate }) => {
                       <h3>
                         {items.type === "teams" || items.type === "project"
                           ? items.location
-                          : PName?.project}
+                          : items.type === "album" || items.type === "tasks"
+                            ? PName?.project
+                            : items.type === "other"
+                              ? items.subHeading
+                              : null}
                       </h3>
                       <p>|</p>
                       <div className="flex gap-3">
@@ -149,17 +163,23 @@ const RecentProjectUpdates = ({ UpdatesFormstate }) => {
           </button>
         </div>
       )}
-      {updatesLength > 6 && endIdx <= updatesLength ? (
+      {updatesLength > 6 && endIdx !== updatesLength ? (
         <button
-          className="flex w-full justify-center items-center py-2 rounded-lg bg-black/10 border border-black/10 cursor-pointer active:scale-95"
+          className="flex w-full justify-center items-center py-2 rounded-lg bg-[#7845a7] text-white  hover:bg-[#7b1cd5]  cursor-pointer active:scale-95 font-bold"
           onClick={() => {
-            const increment = updatesLength - endIdx;
+            const increment =
+              updatesLength - endIdx > 6 ? 6 : updatesLength - endIdx;
             setendIdx((prev) => prev + increment);
+            console.log(endIdx, updatesLength);
           }}
         >
           Load More
         </button>
-      ) : null}
+      ) : (
+        <h1 className="font-bold text-center border-t border-black/20 pt-2 text-[#ee6767c2]">
+          No more updates
+        </h1>
+      )}
     </div>
   );
 };

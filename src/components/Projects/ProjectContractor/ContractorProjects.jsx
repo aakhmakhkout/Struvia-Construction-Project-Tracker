@@ -109,9 +109,13 @@ const ContractorProjects = () => {
         <RecentProjectUpdates UpdatesFormstate={{ setupdatesState }} />
         <ProjectHealth />
         <CPQuickActions
-          state={{ setisNPFO, setisTeamModalOpen, setupdatesState }}
+          state={{
+            setisNPFO,
+            setisTeamModalOpen,
+            updatesState,
+            setupdatesState,
+          }}
         />
-        {updatesState && <UpdatesForm state={{ setupdatesState }} />}
       </div>
     </div>
   );

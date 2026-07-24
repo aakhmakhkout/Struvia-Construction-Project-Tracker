@@ -3,9 +3,11 @@ import CreateNewProject from "../Top/CreateNewProject";
 import Teams from "../Teams/Teams";
 import { Link } from "react-router-dom";
 import { LayersPlus, Users, ScrollText, ImageUp } from "lucide-react";
+import UpdatesForm from "./updates/UpdatesForm";
 
 const CPQuickActions = ({ state }) => {
-  const { setisNPFO, setisTeamModalOpen, setupdatesState } = state;
+  const { setisNPFO, setisTeamModalOpen, updatesState, setupdatesState } =
+    state;
 
   function openCreateNewProject() {
     setisNPFO(true);
@@ -16,7 +18,7 @@ const CPQuickActions = ({ state }) => {
   }
 
   function openUpdatesModal() {
-    setupdatesState(true);
+    setupdatesState(() => (updatesState ? false : true));
   }
 
   const QuickActions = [
@@ -84,6 +86,9 @@ const CPQuickActions = ({ state }) => {
             </div>
           </div>
         </Link>
+        <div className="relative">
+          {updatesState && <UpdatesForm state={{ setupdatesState }} />}
+        </div>
       </div>
     </div>
   );
