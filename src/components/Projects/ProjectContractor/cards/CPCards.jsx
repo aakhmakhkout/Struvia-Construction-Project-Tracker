@@ -159,7 +159,7 @@ const CPCards = ({ indexesState, proData, npfoState }) => {
         </div>
       ) : (
         <button
-          className="bg-[#dedaf29e] flex flex-col w-60 h-40 cursor-pointer justify-center items-center gap-3 rounded-xl border border-dashed border-[#0000ff5c] active:scale-95 hover:bg-[#d4ccfbc8] transition-all ease-in"
+          className="bg-[#dedaf29e] flex flex-col w-80 h-70 cursor-pointer justify-center items-center gap-3 rounded-xl border border-dashed border-[#0000ff5c] active:scale-95 hover:bg-[#d4ccfbc8] transition-all ease-in"
           onClick={() => {
             setisNPFO(true);
           }}

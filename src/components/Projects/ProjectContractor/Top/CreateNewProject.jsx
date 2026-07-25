@@ -33,7 +33,7 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
     });
 
     setselectedMembers((prev) => {
-      return !finalTMarr ? [...prev, selectedTM] : [...prev];
+      return !finalTMarr ? [...prev] : [...prev];
     });
   }
 

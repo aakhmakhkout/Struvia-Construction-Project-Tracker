@@ -1,23 +1,43 @@
-import React from 'react'
-import SearchBar from './SearchBar'
-import PriorityOptions from './PriorityOptions'
+import React from "react";
+import SearchBar from "./SearchBar";
+import PriorityOptions from "./PriorityOptions";
 
-const TaskTabs = () => {
+const TaskTabs = ({ state, data }) => {
+  const { selectedProject, setselectedProject } = state;
+  const { projectsList } = data;
+  function handleSelectedProject(elem) {
+    setselectedProject(elem.target.value);
+  }
+  console.log(selectedProject);
   return (
-    <div className='h-15 flex gap-10 items-center'>
-      <div className='border border-black/20 p-[8px_15px] rounded-sm'>
-        <h1 >Projects Drop Down</h1>
+    <div className="h-15 flex gap-10 items-center">
+      <div className="border border-black/20  rounded-sm">
+        <select
+          className="w-full h-full p-[8px_15px] outline-none proDD cursor-pointer"
+          name="projectsDropDown"
+          id="projectsDropDown"
+          onChange={(elem) => {
+            handleSelectedProject(elem);
+          }}
+        >
+          <option value="All Projects">All Projects</option>
+          {projectsList.map((items) => {
+            return (
+              <option key={items.projectid} value={items.projectid}>
+                {items.project}
+              </option>
+            );
+          })}
+        </select>
       </div>
 
-      <div className='border border-black/20 p-[8px_15px] rounded-sm relative'>
-        <PriorityOptions />
-      </div>
+      <PriorityOptions />
 
-      <div className='border border-black/20 p-[8px_15px] rounded-sm'>
+      <div className="border border-black/20 p-[8px_15px] rounded-sm">
         <SearchBar />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TaskTabs
+export default TaskTabs;

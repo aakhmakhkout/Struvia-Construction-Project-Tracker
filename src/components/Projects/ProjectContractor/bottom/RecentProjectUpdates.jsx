@@ -151,15 +151,15 @@ const RecentProjectUpdates = ({ UpdatesFormstate }) => {
       ) : (
         <div className="w-full h-full flex justify-center items-center">
           <button
-            className="bg-[#dedaf29e] flex w-55 h-15 cursor-pointer justify-center items-center gap-2 rounded-xl border border-dashed border-[#0000ff5c] active:scale-95 hover:bg-[#d4ccfbc8] transition-all ease-in"
+            className="bg-[#dedaf29e] flex w-50 h-12 cursor-pointer justify-center items-center gap-2 rounded-xl border border-dashed border-[#0000ff5c] active:scale-95 hover:bg-[#d4ccfbc8] transition-all ease-in"
             onClick={() => {
               setupdatesState(true);
             }}
           >
             <div className="text-[#7745a7]">
-              <Plus size={35} strokeWidth={1.5} />
+              <Plus size={30} strokeWidth={1.5} />
             </div>
-            <h1 className="font-bold text-xl text-[#7745a7]">Add Update</h1>
+            <h1 className="text-xl text-[#7745a7]">Add Update</h1>
           </button>
         </div>
       )}
@@ -175,11 +175,11 @@ const RecentProjectUpdates = ({ UpdatesFormstate }) => {
         >
           Load More
         </button>
-      ) : (
+      ) : updatesLength !== 0 ? (
         <h1 className="font-bold text-center border-t border-black/20 pt-2 text-[#ee6767c2]">
           No more updates
         </h1>
-      )}
+      ) : null}
     </div>
   );
 };
