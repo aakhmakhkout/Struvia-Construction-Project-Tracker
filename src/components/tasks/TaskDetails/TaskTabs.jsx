@@ -33,9 +33,7 @@ const TaskTabs = ({ state, data }) => {
 
       <PriorityOptions />
 
-      <div className="border border-black/20 p-[8px_15px] rounded-sm">
-        <SearchBar />
-      </div>
+      <SearchBar />
     </div>
   );
 };
