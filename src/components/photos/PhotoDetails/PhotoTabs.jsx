@@ -1,6 +1,7 @@
 import { Images } from "lucide-react";
 import { useState } from "react";
 import PhotosFormModal from "./PhotosFormModal";
+import SearchBar from "./Searchbar";
 
 const PhotoTabs = ({ formState }) => {
   const { isPFMopen, setisPFMopen } = formState;
@@ -11,12 +12,8 @@ const PhotoTabs = ({ formState }) => {
           <div className="border border-black/30 p-[5px_15px] font-bold rounded-sm">
             All Projects
           </div>
-          <div className="border border-black/30 p-[5px_15px] font-bold rounded-sm">
-            All Albums
-          </div>
-          <div className="border border-black/30 p-[5px_15px] font-bold rounded-sm">
-            Search Bar
-          </div>
+
+          <SearchBar />
         </div>
 
         <div className="flex relative">
