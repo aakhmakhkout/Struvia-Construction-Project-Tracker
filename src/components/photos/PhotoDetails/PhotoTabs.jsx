@@ -2,6 +2,7 @@ import { Images } from "lucide-react";
 import { useState } from "react";
 import PhotosFormModal from "./PhotosFormModal";
 import SearchBar from "./Searchbar";
+import AllProjectsTab from "./AllProjectsTab";
 
 const PhotoTabs = ({ formState }) => {
   const { isPFMopen, setisPFMopen } = formState;
@@ -9,10 +10,7 @@ const PhotoTabs = ({ formState }) => {
     <div className="flex flex-col h-[5%]">
       <div className="flex justify-between items-center">
         <div className="flex gap-5">
-          <div className="border border-black/30 p-[5px_15px] font-bold rounded-sm">
-            All Projects
-          </div>
-
+          <AllProjectsTab />
           <SearchBar />
         </div>
 
