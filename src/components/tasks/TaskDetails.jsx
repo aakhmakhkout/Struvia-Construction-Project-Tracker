@@ -16,7 +16,7 @@ const TaskDetails = () => {
         state={{ selectedProject, setselectedProject }}
         data={{ projectsList }}
       />
-      <DetailedTasksInformation />
+      <DetailedTasksInformation selectedPro={selectedProject} />
       <Bottom />
     </div>
   );
