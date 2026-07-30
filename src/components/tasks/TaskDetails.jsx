@@ -8,15 +8,20 @@ import { useSelector } from "react-redux";
 const TaskDetails = () => {
   const projectsList = useSelector((state) => state.projects.projectsdata);
   const [selectedProject, setselectedProject] = useState("All Projects");
+  const [selectedPriority, setselectedPriority] = useState("All Priorities");
   const [isNTP, setisNTP] = useState(false);
   return (
     <div>
       <TaskPTop state={{ isNTP, setisNTP }} />
       <TaskTabs
-        state={{ selectedProject, setselectedProject }}
+        statePro={{ selectedProject, setselectedProject }}
+        statePri={{ selectedPriority, setselectedPriority }}
         data={{ projectsList }}
       />
-      <DetailedTasksInformation selectedPro={selectedProject} />
+      <DetailedTasksInformation
+        selectedPro={selectedProject}
+        selectedPri={selectedPriority}
+      />
       <Bottom />
     </div>
   );

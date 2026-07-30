@@ -2,8 +2,9 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import PriorityOptions from "./PriorityOptions";
 
-const TaskTabs = ({ state, data }) => {
-  const { selectedProject, setselectedProject } = state;
+const TaskTabs = ({ statePro, statePri, data }) => {
+  const { selectedProject, setselectedProject } = statePro;
+
   const { projectsList } = data;
   function handleSelectedProject(elem) {
     setselectedProject(elem.target.value);
@@ -31,7 +32,7 @@ const TaskTabs = ({ state, data }) => {
         </select>
       </div>
 
-      <PriorityOptions />
+      <PriorityOptions state={statePri} />
 
       <SearchBar />
     </div>

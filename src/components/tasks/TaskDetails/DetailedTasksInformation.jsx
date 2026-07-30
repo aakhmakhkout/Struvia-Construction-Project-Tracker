@@ -7,7 +7,7 @@ import {
 import { useSelector } from "react-redux";
 import TaskCards from "./TaskCards/TaskCards";
 
-const DetailedTasksInformation = ({ selectedPro }) => {
+const DetailedTasksInformation = ({ selectedPro, selectedPri }) => {
   const { todoTasks, inProgressTasks, inReviewTasks, completedTasks } =
     useSelector((state) => state.tasks);
   console.log(todoTasks);
@@ -37,23 +37,36 @@ const DetailedTasksInformation = ({ selectedPro }) => {
           return items.PName === selectedPro;
         });
 
-  console.log(filteredTodo);
+  const sFilterdTodo =
+    selectedPri === "All Priorities"
+      ? filteredTodo
+      : filteredTodo.filter((items) => items.priority === selectedPri);
+  const sFilterdInProg =
+    selectedPri === "All Priorities"
+      ? filteredInProgressTasks
+      : filteredInProgressTasks.filter(
+          (items) => items.priority === selectedPri,
+        );
+  const sFilterdInRev =
+    selectedPri === "All Priorities"
+      ? filteredInReviewTasks
+      : filteredInReviewTasks.filter((items) => items.priority === selectedPri);
 
   const CardOptions = [
     {
       id: 1,
       label: "To Do",
-      data: filteredTodo,
+      data: sFilterdTodo,
     },
     {
       id: 2,
       label: "In Progress",
-      data: filteredInProgressTasks,
+      data: sFilterdInProg,
     },
     {
       id: 3,
       label: "In Review",
-      data: filteredInReviewTasks,
+      data: sFilterdInRev,
     },
     {
       id: 4,

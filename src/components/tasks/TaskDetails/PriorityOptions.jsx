@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-const PriorityOptions = () => {
+const PriorityOptions = ({ state }) => {
+  const { selectedPriority, setselectedPriority } = state;
   function handleSelectedPriority(elem) {
-    console.log(elem.target.value);
+    setselectedPriority(elem.target.value);
   }
+  console.log(selectedPriority);
   return (
     <div className="border border-black/20  rounded-sm">
       <select
