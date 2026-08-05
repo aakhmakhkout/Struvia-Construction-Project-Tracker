@@ -3,17 +3,25 @@ import { EllipsisVertical, Plus } from "lucide-react";
 import { useState } from "react";
 import Actions from "./Actions";
 
-const PhotoCards = ({ formState }) => {
+const PhotoCards = ({ formState, state }) => {
+  console.log(state);
   const { isPFMopen, setisPFMopen } = formState;
   const albumdata = useSelector((state) => state.photos.albumdata);
   const projectData = useSelector((state) => state.projects.projectsdata);
-  const albumDataCopy = [...albumdata];
-
   const [isOptionsID, setisOptionsID] = useState(null);
+  const albumDataCopy = [...albumdata];
 
   console.log(albumdata);
   const photosLength = 20;
-  const albumsLength = albumdata.length;
+
+  const filteredArr =
+    state === "All Projects"
+      ? albumDataCopy
+      : albumDataCopy.filter((items) => items.projectid === state);
+
+  const albumsLength = filteredArr.length;
+  console.log(albumsLength);
+
   return (
     <div className="h-[95%] mt-5 border border-black/20 CPCards">
       {albumsLength < 1 ? (
@@ -37,7 +45,7 @@ const PhotoCards = ({ formState }) => {
         </button>
       ) : (
         <div className=" h-full gap-3 p-2 grid grid-cols-4 place-content-between place-items-center">
-          {albumDataCopy.reverse().map((items, idx) => {
+          {filteredArr.reverse().map((items, idx) => {
             const project = projectData.find((projectItems) => {
               return items.projectid === projectItems.projectid;
             });
@@ -94,5 +102,4 @@ const PhotoCards = ({ formState }) => {
     </div>
   );
 };
-
 export default PhotoCards;

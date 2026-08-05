@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 
 const PhotosDetails = () => {
   const albumData = useSelector((state) => state.photos.albumdata);
+  const [selectedProject, setselectedProject] = useState("All Projects");
   const [isPFMopen, setisPFMopen] = useState(false);
   const albumsLength = albumData.length;
   return (
@@ -19,8 +20,14 @@ const PhotosDetails = () => {
 
       <div className="w-full h-[85%] flex flex-col justify-between">
         <div className="h-[93%]">
-          <PhotoTabs formState={{ isPFMopen, setisPFMopen }} />
-          <PhotoCards formState={{ isPFMopen, setisPFMopen }} />
+          <PhotoTabs
+            formState={{ isPFMopen, setisPFMopen }}
+            state={{ selectedProject, setselectedProject }}
+          />
+          <PhotoCards
+            formState={{ isPFMopen, setisPFMopen }}
+            state={selectedProject}
+          />
         </div>
 
         <div className="h-[4%]">
