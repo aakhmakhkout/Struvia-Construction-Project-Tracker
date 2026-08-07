@@ -2,7 +2,6 @@ import { X, Loader } from "lucide-react";
 import React, { useState } from "react";
 import supabase from "../../../../lib/supabase";
 import { addTeamMember } from "../../../../redux/features/teamsSlice";
-import { setRecentUpdates } from "../../../../redux/features/updatesSlice";
 import { useDispatch } from "react-redux";
 
 export default function TeamForm({ state, whichPage, teamData }) {
@@ -40,21 +39,8 @@ export default function TeamForm({ state, whichPage, teamData }) {
       url: pfpUrl,
       orginalName: selectedFile.name,
     };
-    const recentUpdatesObj = {
-      updateId: crypto.randomUUID(),
-      type: "teams",
-      teamMemUUID: finalTeamMemberObj.UUID,
-      location: teamMembersData.tmAddress,
-      coverImg: {
-        src: finalTeamMemberObj.url,
-        alt: finalTeamMemberObj.orginalName,
-      },
-      label: teamMembersData.tmName,
-      timestamp: Date.now(),
-    };
 
     dispatch(addTeamMember(finalTeamMemberObj));
-    dispatch(setRecentUpdates(recentUpdatesObj));
     setteamMembersData({});
     setselectedFile(null);
     setisLoading(false);

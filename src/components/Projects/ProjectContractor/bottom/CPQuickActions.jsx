@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import CreateNewProject from "../Top/CreateNewProject";
-import Teams from "../Teams/Teams";
 import { Link } from "react-router-dom";
 import { LayersPlus, Users, ScrollText, ImageUp } from "lucide-react";
 import UpdatesForm from "./updates/UpdatesForm";

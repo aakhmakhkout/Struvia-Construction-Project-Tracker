@@ -72,14 +72,6 @@ const RecentProjectUpdates = ({ UpdatesFormstate }) => {
                       <div className=" w-full h-full flex justify-center items-center bg-black/10">
                         <ClipboardList size={30} strokeWidth={1.25} />
                       </div>
-                    ) : items.type === "teams" ? (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <img
-                          className="w-10 h-10  rounded-full "
-                          src={items.coverImg.src}
-                          alt={items.coverImg.orginalName}
-                        />
-                      </div>
                     ) : items.type === "album" ? (
                       <div className="w-full h-full flex items-center justify-center">
                         <img
@@ -98,19 +90,17 @@ const RecentProjectUpdates = ({ UpdatesFormstate }) => {
                     <h1 className="font-bold">{`New ${
                       items.type === "project"
                         ? `Project Created | \"${items.label}\"`
-                        : items.type === "teams"
-                          ? `Team Member Added | \"${items.label}\"`
-                          : items.type === "tasks"
-                            ? `Task Added | \"${items.label}\"`
-                            : items.type === "album"
-                              ? `Album Created \"${items.label}\"`
-                              : items.type === "other"
-                                ? items.label
-                                : null
+                        : items.type === "tasks"
+                          ? `Task Added | \"${items.label}\"`
+                          : items.type === "album"
+                            ? `Album Created \"${items.label}\"`
+                            : items.type === "other"
+                              ? items.label
+                              : null
                     }`}</h1>
                     <div className="flex gap-5 text-sm text-black/70">
                       <h3>
-                        {items.type === "teams" || items.type === "project"
+                        {items.type === "project"
                           ? items.location
                           : items.type === "album" || items.type === "tasks"
                             ? PName?.project
