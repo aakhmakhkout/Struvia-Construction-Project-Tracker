@@ -8,6 +8,7 @@ const PhotosDetails = () => {
   const albumData = useSelector((state) => state.photos.albumdata);
   const [selectedProject, setselectedProject] = useState("All Projects");
   const [isPFMopen, setisPFMopen] = useState(false);
+  const [searchedKeyword, setsearchedKeyword] = useState("");
   const albumsLength = albumData.length;
   return (
     <div className="w-full h-full">
@@ -23,10 +24,12 @@ const PhotosDetails = () => {
           <PhotoTabs
             formState={{ isPFMopen, setisPFMopen }}
             state={{ selectedProject, setselectedProject }}
+            searchState={{ setsearchedKeyword }}
           />
           <PhotoCards
             formState={{ isPFMopen, setisPFMopen }}
             state={selectedProject}
+            searchState={{ searchedKeyword }}
           />
         </div>
 

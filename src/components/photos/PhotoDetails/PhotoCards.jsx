@@ -1,17 +1,33 @@
 import { useSelector } from "react-redux";
 import { EllipsisVertical, Plus } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Actions from "./Actions";
 
-const PhotoCards = ({ formState, state }) => {
-  console.log(state);
+const PhotoCards = ({ formState, state, searchState }) => {
+  const { searchedKeyword } = searchState;
   const { isPFMopen, setisPFMopen } = formState;
   const albumdata = useSelector((state) => state.photos.albumdata);
   const projectData = useSelector((state) => state.projects.projectsdata);
   const [isOptionsID, setisOptionsID] = useState(null);
   const albumDataCopy = [...albumdata];
 
-  console.log(albumdata);
+  const [filteredAlbumData, setfilteredAlbumData] = useState(albumDataCopy);
+  console.log("filteredAlbumData : ", filteredAlbumData);
+
+  useEffect(() => {
+    const TimerID = setTimeout(() => {
+      const filteredArr = albumDataCopy.filter((items) => {
+        const finalSearch = searchedKeyword.toLowerCase();
+        return items.label.toLowerCase().includes(finalSearch);
+      });
+      setfilteredAlbumData(filteredArr);
+    }, 500);
+
+    return () => {
+      clearTimeout(TimerID);
+    };
+  }, [searchedKeyword]);
+
   const photosLength = 20;
 
   const filteredArr =
@@ -20,7 +36,6 @@ const PhotoCards = ({ formState, state }) => {
       : albumDataCopy.filter((items) => items.projectid === state);
 
   const albumsLength = filteredArr.length;
-  console.log(albumsLength);
 
   return (
     <div className="h-[95%] mt-5 border border-black/20 CPCards">

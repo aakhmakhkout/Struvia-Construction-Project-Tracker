@@ -4,14 +4,14 @@ import PhotosFormModal from "./PhotosFormModal";
 import SearchBar from "./Searchbar";
 import AllProjectsTab from "./AllProjectsTab";
 
-const PhotoTabs = ({ formState, state }) => {
+const PhotoTabs = ({ formState, state, searchState }) => {
   const { isPFMopen, setisPFMopen } = formState;
   return (
     <div className="flex flex-col h-[5%]">
       <div className="flex justify-between items-center">
         <div className="flex gap-5">
           <AllProjectsTab proState={state} />
-          <SearchBar />
+          <SearchBar state={searchState} />
         </div>
 
         <div className="flex relative">
