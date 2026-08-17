@@ -106,7 +106,7 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
   return (
     <div className="fixed inset-0 bg-black/30 backdrop-blur-[2px] z-50 flex justify-center items-center text-white">
       <div className="w-full flex items-center justify-center ">
-        <div className="w-[50%] relative">
+        <div className="w-[60%] relative">
           <div className="absolute top-5 right-5">
             <button
               onClick={() => {
@@ -171,9 +171,9 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
               </div>
             </div>
 
-            {/* Location + TotalBudget + Project Status */}
+            {/* Location + TotalBudget + Project Status, Client's Email */}
             <div className="flex justify-between  p-3 backdrop-blur-2xl items-center">
-              <div className="flex flex-col w-[35%] gap-2">
+              <div className="flex flex-col w-[23%] gap-2">
                 <label htmlFor="location" className=" text-white/70 font-bold">
                   Location <span className="text-red-500">*</span>
                 </label>
@@ -191,7 +191,7 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
                 />
               </div>
 
-              <div className="flex flex-col w-[30%] gap-2">
+              <div className="flex flex-col w-[23%] gap-2">
                 <label htmlFor="budget" className=" text-white/70 font-bold">
                   Total Budget <span className="text-red-500">*</span>
                 </label>
@@ -209,7 +209,7 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
                 />
               </div>
 
-              <div className="flex flex-col w-[30%] gap-2">
+              <div className="flex flex-col w-[20%] gap-2">
                 <label htmlFor="status" className="font-bold text-white/70">
                   Project Status<span className="text-red-500">*</span>
                 </label>
@@ -235,12 +235,30 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
                   <option value="On Hold">On Hold</option>
                 </select>
               </div>
+
+              <div className="flex flex-col w-[25%] gap-2">
+                <label htmlFor="client" className=" text-white/70 font-bold">
+                  Client <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  placeholder="client's email"
+                  required
+                  name="client"
+                  id="client"
+                  value={projectData.client || ""}
+                  className="bg-black/30 cursor-text p-3 rounded-lg border border-white/30 outline-none focus:border-[#7845a765]"
+                  onChange={(elem) => {
+                    handleInputChanges(elem.target);
+                  }}
+                />
+              </div>
             </div>
 
             {/* Start date + End date + upload project pfp + select team member */}
             <div className="flex flex-col   p-3 backdrop-blur-2xl  gap-10">
               <div className="flex justify-between items-center ">
-                <div className="flex flex-col gap-2 w-[20%]">
+                <div className="flex flex-col gap-2 w-[23%]">
                   <label htmlFor="stdate" className="font-bold text-white/70">
                     Start Date <span className="text-red-500">*</span>
                   </label>
@@ -256,7 +274,7 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
                     }}
                   />
                 </div>
-                <div className="flex flex-col  gap-2 w-[20%]">
+                <div className="flex flex-col  gap-2 w-[23%]">
                   <label htmlFor="endate" className="font-bold text-white/70">
                     End Date <span className="text-red-500">*</span>
                   </label>
@@ -273,7 +291,7 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
                   />
                 </div>
 
-                <div className="flex flex-col  gap-2 w-[25%]">
+                <div className="flex flex-col  gap-2 w-[20%]">
                   <label
                     htmlFor="projectImgIcon"
                     className="font-bold text-white/70"
@@ -292,7 +310,7 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
                   />
                 </div>
 
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-[25%]">
                   <label htmlFor="team" className=" text-white/70 font-bold">
                     Select team member <span className="text-red-500">*</span>
                   </label>
