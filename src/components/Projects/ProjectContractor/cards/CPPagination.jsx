@@ -12,10 +12,10 @@ const CPPagination = ({
   const { indexes, setIndexes } = indexesState;
   const itemsPerPage = 4;
   const totalPages = Math.ceil(proLength / itemsPerPage);
-  console.log("project length", proLength);
-  console.log("sliced length", slicedLength);
-  console.log("active tab", activeTab);
-  console.log(searchData);
+  // console.log("project length", proLength);
+  // console.log("sliced length", slicedLength);
+  // console.log("active tab", activeTab);
+  // console.log(searchData);
 
   return (
     <div className="flex justify-between">

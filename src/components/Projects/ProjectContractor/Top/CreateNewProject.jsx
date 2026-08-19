@@ -6,7 +6,7 @@ import { setRecentUpdates } from "../../../../redux/features/updatesSlice";
 import supabase from "../../../../lib/supabase";
 
 const CreateNewProject = ({ state, whichPage, projectsData }) => {
-  console.log(whichPage);
+  // console.log(whichPage);
   const teamMembersData = useSelector((state) => state.teams.teamsMembers);
   const { setisNPFO } = state;
   const [projectData, setProjectData] = useState(projectsData);
@@ -27,15 +27,18 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
     const selectedTM = teamMembersData.find((items) => {
       return items.UUID === element.target.value;
     });
+    console.log(selectedTM);
 
     const finalTMarr = selectedMembers.some((items) => {
       return items.UUID === selectedTM.UUID;
     });
+    console.log(finalTMarr);
 
     setselectedMembers((prev) => {
-      return !finalTMarr ? [...prev] : [...prev];
+      return finalTMarr ? [...prev] : [...prev, selectedTM];
     });
   }
+  console.log(selectedMembers);
 
   function removeTeamMembers(UUID) {
     const updatedTeamMembers = selectedMembers.filter(
@@ -102,7 +105,9 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
   const selectedTeamArr =
     projectsData?.team?.length > 0 ? projectsData.team : selectedMembers;
 
-  console.log(projectData);
+  // console.log(projectData);
+  // console.log(projectsData);
+  // console.log(selectedTeamArr);
   return (
     <div className="fixed inset-0 bg-black/30 backdrop-blur-[2px] z-50 flex justify-center items-center text-white">
       <div className="w-full flex items-center justify-center ">

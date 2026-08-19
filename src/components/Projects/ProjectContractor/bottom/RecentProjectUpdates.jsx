@@ -19,7 +19,7 @@ const RecentProjectUpdates = ({ UpdatesFormstate }) => {
   const [recentProjectsIdx, setrecentProjectsIdx] = useState(null);
   const updatesLength = updatesData.length;
   const filteredData = [...updatesData].reverse().slice(0, endIdx);
-  console.log(updatesData);
+  // console.log(updatesData);
 
   return (
     <div className="CPCards p-3 w-[50%] min-h-50 max-h-90 flex flex-col gap-5 border RPUD border-black/20 overflow-y-scroll">
@@ -160,7 +160,7 @@ const RecentProjectUpdates = ({ UpdatesFormstate }) => {
             const increment =
               updatesLength - endIdx > 6 ? 6 : updatesLength - endIdx;
             setendIdx((prev) => prev + increment);
-            console.log(endIdx, updatesLength);
+            // console.log(endIdx, updatesLength);
           }}
         >
           Load More

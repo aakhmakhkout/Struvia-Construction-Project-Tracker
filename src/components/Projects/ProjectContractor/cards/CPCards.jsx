@@ -43,6 +43,7 @@ const CPCards = ({ indexesState, proData, npfoState }) => {
       title: "Actions",
     },
   ];
+  // console.log(proData);
 
   return (
     <div className="flex flex-col gap-5 min-h-95">
