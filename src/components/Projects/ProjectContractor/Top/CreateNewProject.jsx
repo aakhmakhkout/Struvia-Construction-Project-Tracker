@@ -27,12 +27,12 @@ const CreateNewProject = ({ state, whichPage, projectsData }) => {
     const selectedTM = teamMembersData.find((items) => {
       return items.UUID === element.target.value;
     });
-    console.log(selectedTM);
+    // console.log(selectedTM);
 
     const finalTMarr = selectedMembers.some((items) => {
       return items.UUID === selectedTM.UUID;
     });
-    console.log(finalTMarr);
+    // console.log(finalTMarr);
 
     setselectedMembers((prev) => {
       return finalTMarr ? [...prev] : [...prev, selectedTM];
