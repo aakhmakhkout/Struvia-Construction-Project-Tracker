@@ -12,14 +12,7 @@ const Navbar = () => {
   let { activeTab } = useSelector((state) => state.layout);
   const { role } = useSelector((state) => state.auth);
   const { status, ProjectName } = useSelector((state) => state.dashboard);
-  const projectList = useSelector((state) => state.projects.projectsdata);
-  console.log(projectList);
 
-  const cw_project = projectList.find((items) => {
-    return items.email === userData.email;
-  });
-
-  const project_data = role === "Contractor" ? projectList : cw_project;
   console.log(role);
   if (status === "Pending") {
     proStatusClass = "statusPending";
