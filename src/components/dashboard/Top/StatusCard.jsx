@@ -38,6 +38,15 @@ const StatusCard = () => {
 
   const totalTasksLength =
     currentProjectTasks.length > 0 ? currentProjectTasks.length : 0;
+
+  const activeWorkers = dashboardProjectData.team.filter((items) => {
+    return items.tmStatus === "Active";
+  });
+  const onSiteWorkers = activeWorkers.length;
+  console.log(activeWorkers);
+
+  const totalBudget = parseInt(dashboardProjectData.budget);
+  const budgetRemaining = totalBudget - 1245000;
   const dashboardStatusData = [
     {
       id: 1,
@@ -60,7 +69,7 @@ const StatusCard = () => {
     {
       id: 3,
       title: "On Site",
-      data: 8,
+      data: onSiteWorkers,
       subtitle: "Workers",
       icon: <Users size={20} strokeWidth={1.5} />,
       color: "#2f71e6",
@@ -70,7 +79,7 @@ const StatusCard = () => {
       id: 4,
       title: "Budget Used",
       data: "12,45,000 Rs",
-      subtitle: "of 20,00,000",
+      subtitle: `of ${totalBudget}`,
       icon: <Wallet size={20} strokeWidth={1.5} />,
       color: "#420ca5",
       bgColor: "#efe5fc ",
@@ -78,7 +87,7 @@ const StatusCard = () => {
     {
       id: 5,
       title: "Budget Remaining",
-      data: "7,55,000 Rs",
+      data: budgetRemaining,
       subtitle: "Remaining",
       icon: <IndianRupee size={20} strokeWidth={1.5} />,
       color: "#074e28 ",
