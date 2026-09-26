@@ -72,7 +72,7 @@ const Navbar = () => {
             ) : (
               <div className="w-[40%] h-full flex items-center">
                 <h1 className=" p-3 font-bold text-xl outline-none ">
-                  {project_data_navbar.project}
+                  {project_data_navbar?.project}
                 </h1>
               </div>
             )}
