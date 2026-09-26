@@ -57,9 +57,8 @@ select > option {
   display: flex;
 }
 
-#tmStatusOptions > option {
-  background-color: #e7effa;
-}
+#tmStatusOptions > option,
+.selectProjectsNav > option,
 .proDD > option {
   background-color: #e7effa;
 }

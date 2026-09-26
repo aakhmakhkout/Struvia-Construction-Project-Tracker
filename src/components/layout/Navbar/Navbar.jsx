@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Bell, ChevronDown } from "lucide-react";
 import { setUser } from "../../../redux/features/authSlice";
 import { getRole } from "../../../redux/features/authSlice";
+import { selectProject } from "../../../redux/projectSelectors";
+import { setCDdata } from "../../../redux/features/projectsSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -11,9 +13,10 @@ const Navbar = () => {
   let proStatusClass = null;
   let { activeTab } = useSelector((state) => state.layout);
   const { role } = useSelector((state) => state.auth);
-  const { status, ProjectName } = useSelector((state) => state.dashboard);
+  const project_data_navbar = useSelector(selectProject);
+  // const { status, ProjectName } = useSelector((state) => state.dashboard);
 
-  console.log(role);
+  // console.log(role);
   if (status === "Pending") {
     proStatusClass = "statusPending";
   } else if (status === "In Progress") {
@@ -22,10 +25,22 @@ const Navbar = () => {
     proStatusClass = "statusCompleted";
   }
 
+  function getSelectedProject(projectId) {
+    const selectedProject = project_data_navbar.find((items) => {
+      return items.projectid === projectId;
+    });
+
+    dispatch(setCDdata(selectedProject));
+  }
+
+  const selectedProjectData = useSelector(
+    (state) => state.projects.contractorDashboardData,
+  );
+  // console.log(selectedProjectData);
   return (
     <div>
       <div className="flex justify-between w-full navbar h-15 items-center px-10 relative">
-        <div className="flex gap-10 items-center">
+        {/* <div className="flex gap-10 items-center">
           <div className="text-xl font-bold">
             {activeTab === "Dashboard" ? <h1>{ProjectName}</h1> : activeTab}
           </div>
@@ -34,7 +49,35 @@ const Navbar = () => {
               <h1 className={proStatusClass}>{status}</h1>
             </div>
           ) : null}
-        </div>
+        </div> */}
+        {activeTab === "Dashboard" ? (
+          <div className="w-[40%] h-full flex items-center">
+            {role === "Contractor" ? (
+              <select
+                name="all_projects"
+                id="allProjects"
+                className=" p-3 font-bold text-xl outline-none cursor-pointer selectProjectsNav"
+                onChange={(elem) => {
+                  getSelectedProject(elem.target.value);
+                }}
+              >
+                {project_data_navbar.map((items) => {
+                  return (
+                    <option value={items.projectid} key={items.projectid}>
+                      {items.project}
+                    </option>
+                  );
+                })}
+              </select>
+            ) : (
+              <div className="w-[40%] h-full flex items-center">
+                <h1 className=" p-3 font-bold text-xl outline-none ">
+                  {project_data_navbar.project}
+                </h1>
+              </div>
+            )}
+          </div>
+        ) : null}
 
         <div className="flex gap-10 items-center">
           <div className="relative">
