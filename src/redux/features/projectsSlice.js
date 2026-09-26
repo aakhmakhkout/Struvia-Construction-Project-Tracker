@@ -23,7 +23,13 @@ export const projectsSlice = createSlice({
       state.projectsdata.push(action.payload);
       localStorage.setItem("projectsData", JSON.stringify(state.projectsdata));
     },
-    setCDdata(state, action) {},
+    setCDdata(state, action) {
+      state.contractorDashboardData = action.payload;
+      localStorage.setItem(
+        "CDdata",
+        JSON.stringify(state.contractorDashboardData),
+      );
+    },
     deleteProject(state, action) {
       const updatedProjectList = state.projectsdata.filter((items) => {
         return items.projectid !== action.payload;
@@ -36,6 +42,6 @@ export const projectsSlice = createSlice({
   },
 });
 
-export const { setActiveTab, setProjectsData, deleteProject } =
+export const { setActiveTab, setProjectsData, setCDdata, deleteProject } =
   projectsSlice.actions;
 export default projectsSlice.reducer;

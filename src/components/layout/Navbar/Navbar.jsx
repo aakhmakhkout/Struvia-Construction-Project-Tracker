@@ -5,6 +5,7 @@ import { Bell, ChevronDown } from "lucide-react";
 import { setUser } from "../../../redux/features/authSlice";
 import { getRole } from "../../../redux/features/authSlice";
 import { selectProject } from "../../../redux/projectSelectors";
+import { setCDdata } from "../../../redux/features/projectsSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,18 @@ const Navbar = () => {
     proStatusClass = "statusCompleted";
   }
 
+  function getSelectedProject(projectId) {
+    const selectedProject = project_data_navbar.find((items) => {
+      return items.projectid === projectId;
+    });
+
+    dispatch(setCDdata(selectedProject));
+  }
+
+  const selectedProjectData = useSelector(
+    (state) => state.projects.contractorDashboardData,
+  );
+  console.log(selectedProjectData);
   return (
     <div>
       <div className="flex justify-between w-full navbar h-15 items-center px-10 relative">
@@ -37,29 +50,34 @@ const Navbar = () => {
             </div>
           ) : null}
         </div> */}
-        <div className="w-[40%] h-full flex items-center">
-          {role === "Contractor" ? (
-            <select
-              name="all_projects"
-              id="allProjects"
-              className=" p-3 font-bold text-xl outline-none "
-            >
-              {project_data_navbar.map((items) => {
-                return (
-                  <option value={items.projectid} key={items.projectid}>
-                    {items.project}
-                  </option>
-                );
-              })}
-            </select>
-          ) : (
-            <div className="w-[40%] h-full flex items-center">
-              <h1 className=" p-3 font-bold text-xl outline-none ">
-                {project_data_navbar.project}
-              </h1>
-            </div>
-          )}
-        </div>
+        {activeTab === "Dashboard" ? (
+          <div className="w-[40%] h-full flex items-center">
+            {role === "Contractor" ? (
+              <select
+                name="all_projects"
+                id="allProjects"
+                className=" p-3 font-bold text-xl outline-none cursor-pointer selectProjectsNav"
+                onChange={(elem) => {
+                  getSelectedProject(elem.target.value);
+                }}
+              >
+                {project_data_navbar.map((items) => {
+                  return (
+                    <option value={items.projectid} key={items.projectid}>
+                      {items.project}
+                    </option>
+                  );
+                })}
+              </select>
+            ) : (
+              <div className="w-[40%] h-full flex items-center">
+                <h1 className=" p-3 font-bold text-xl outline-none ">
+                  {project_data_navbar.project}
+                </h1>
+              </div>
+            )}
+          </div>
+        ) : null}
 
         <div className="flex gap-10 items-center">
           <div className="relative">
