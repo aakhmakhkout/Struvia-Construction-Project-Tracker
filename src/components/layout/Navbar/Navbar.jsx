@@ -36,7 +36,7 @@ const Navbar = () => {
   const selectedProjectData = useSelector(
     (state) => state.projects.contractorDashboardData,
   );
-  console.log(selectedProjectData);
+  // console.log(selectedProjectData);
   return (
     <div>
       <div className="flex justify-between w-full navbar h-15 items-center px-10 relative">
