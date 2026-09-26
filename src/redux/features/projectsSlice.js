@@ -1,15 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { userData } from "../../data/usersData";
+import { useSelector } from "react-redux";
 
 const projectsInitialData =
   JSON.parse(localStorage.getItem("projectsData")) || [];
-// const initialRecentUpdates =
-//   JSON.parse(localStorage.getItem("recentupdates")) || [];
+
+const initialContractorDashboardData =
+  JSON.parse(localStorage.getItem("CDdata")) || [];
 
 export const projectsSlice = createSlice({
   name: "projects",
   initialState: {
     activeTab: "All Projects",
     projectsdata: projectsInitialData,
+    contractorDashboardData: initialContractorDashboardData,
   },
   reducers: {
     setActiveTab(state, action) {
@@ -19,6 +23,7 @@ export const projectsSlice = createSlice({
       state.projectsdata.push(action.payload);
       localStorage.setItem("projectsData", JSON.stringify(state.projectsdata));
     },
+    setCDdata(state, action) {},
     deleteProject(state, action) {
       const updatedProjectList = state.projectsdata.filter((items) => {
         return items.projectid !== action.payload;
