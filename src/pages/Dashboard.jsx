@@ -8,25 +8,33 @@ import { userData } from "../data/usersData";
 // import { getRole } from "../redux/features/authSlice";
 
 const Dashboard = () => {
-  // const { role } = useSelector((state) => state.auth);
-  // const projectList = useSelector((state) => state.projects.projectsdata);
-  // console.log(projectList);
-  // const current_user = userData.find((items) => {
-  //   return items.role === role;
-  // });
-  // // console.log(current_user);
+  const { contractorDashboardData } = useSelector((state) => state.projects);
+  const { recentupdates } = useSelector((state) => state.updates);
+  const { todoTasks } = useSelector((state) => state.tasks);
+  const { albumdata } = useSelector((state) => state.photos);
+  // console.log(contractorDashboardData);
+  // console.log(recentupdates);
+  // console.log(todoTasks);
+  // console.log(albumdata);
 
-  // const cw_project = projectList.find((items) => {
-  //   return items.client === current_user.email;
+  const contractorDashboardUpdates = recentupdates.filter((items) => {
+    return items.projectid === contractorDashboardData.projectid;
+  });
+  const contractorDashboardTasks = todoTasks.filter((items) => {
+    return items.PName === contractorDashboardData.projectid;
+  });
+  // const contractorDashboardPhotos = todoTasks.filter((items) => {
+  //   return items.projectid === contractorDashboardData.projectid;
   // });
 
-  // const project_data = role === "Contractor" ? projectList : cw_project;
-  // console.log(project_data);
   return (
     <div>
       <Welcome />
       <StatusCard />
-      <ActivityFeed />
+      <ActivityFeed
+        recentActivity={contractorDashboardUpdates}
+        upcomingTasks={contractorDashboardTasks}
+      />
       <ExtraInformation />
     </div>
   );

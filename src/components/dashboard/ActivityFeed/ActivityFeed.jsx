@@ -1,13 +1,13 @@
-import RecentActivites from "./RecentActivities.jsx"
-import UpcomingTasks from "./UpcomingTasks.jsx"
+import RecentActivites from "./RecentActivities.jsx";
+import UpcomingTasks from "./UpcomingTasks.jsx";
 
-const ActivityFeed = () => {
+const ActivityFeed = ({ recentActivity, upcomingTasks }) => {
   return (
     <div className="flex justify-between mt-5">
-      <RecentActivites />
-      <UpcomingTasks />
+      <RecentActivites data={recentActivity} />
+      <UpcomingTasks data={upcomingTasks} />
     </div>
-  )
-}
+  );
+};
 
-export default ActivityFeed
+export default ActivityFeed;
