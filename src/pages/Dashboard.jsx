@@ -33,6 +33,7 @@ const Dashboard = () => {
       <StatusCard />
       <ActivityFeed
         recentActivity={contractorDashboardUpdates}
+        projectCover={contractorDashboardData.coverImgObj}
         upcomingTasks={contractorDashboardTasks}
       />
       <ExtraInformation />

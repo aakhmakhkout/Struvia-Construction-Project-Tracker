@@ -1,18 +1,20 @@
 import { useSelector } from "react-redux";
 
 const UpcomingTasks = ({ data }) => {
-  console.table(data);
+  // console.table(data);
 
   // const upcomingTasksData = useSelector(
   //   (state) => state.dashboard.upcomingTasks,
   // );
+  const filteredUpcomingTasksData = data.reverse().slice(0, 4);
   return (
     <div className="w-[45%] activityfeed py-3 px-5 flex flex-col gap-5 border border-black/20">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold">Upcoming Tasks</h1>
         <button className="text-[#ff4800] text-sm">View All</button>
       </div>
-      {data.map((items, idx) => {
+      <div className="bg-black/20 w-full h-0.5"></div>
+      {filteredUpcomingTasksData.map((items, idx) => {
         return (
           <div key={idx} className="flex justify-between">
             <div className="flex gap-3">
