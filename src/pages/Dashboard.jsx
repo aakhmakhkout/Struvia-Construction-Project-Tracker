@@ -29,13 +29,14 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Welcome />
+      <Welcome location={contractorDashboardData.location} />
       <StatusCard />
       <ActivityFeed
         recentActivity={contractorDashboardUpdates}
+        projectCover={contractorDashboardData.coverImgObj}
         upcomingTasks={contractorDashboardTasks}
       />
-      <ExtraInformation />
+      <ExtraInformation team={contractorDashboardData.team} />
     </div>
   );
 };
