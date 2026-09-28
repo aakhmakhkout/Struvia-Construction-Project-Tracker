@@ -14,24 +14,30 @@ const UpcomingTasks = ({ data }) => {
         <button className="text-[#ff4800] text-sm">View All</button>
       </div>
       <div className="bg-black/20 w-full h-0.5"></div>
-      {filteredUpcomingTasksData.map((items, idx) => {
-        return (
-          <div key={idx} className="flex justify-between">
-            <div className="flex gap-3">
-              <div>
-                <h1 className="font-bold mb-1">{items.Task}</h1>
-                <p className="text-sm text-black/60">
-                  Assigneed to {items.assignee}
-                </p>
+      {filteredUpcomingTasksData.length > 0 ? (
+        filteredUpcomingTasksData.map((items, idx) => {
+          return (
+            <div key={idx} className="flex justify-between">
+              <div className="flex gap-3">
+                <div>
+                  <h1 className="font-bold mb-1">{items.Task}</h1>
+                  <p className="text-sm text-black/60">
+                    Assigneed to {items.assignee}
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-col w-20">
+                <div className="font-bold">{items.priority}</div>
+                <div className="text-black/60 text-sm">{items.date}</div>
               </div>
             </div>
-            <div className="flex flex-col w-20">
-              <div className="font-bold">{items.priority}</div>
-              <div className="text-black/60 text-sm">{items.date}</div>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })
+      ) : (
+        <h1 className="text-black/70 text-sm">
+          No Upcoming Tasks for the current Project
+        </h1>
+      )}
     </div>
   );
 };

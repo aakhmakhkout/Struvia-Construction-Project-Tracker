@@ -1,32 +1,37 @@
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 
-const TeamonSitepre = () => {
-  const teamOnSiteData = useSelector(state => state.dashboard.teamOnSite)
+const TeamonSitepre = ({ data }) => {
+  const teamOnSiteData = useSelector((state) => state.dashboard.teamOnSite);
+  const filteredTeamData = [...data].reverse().slice(0, 4);
+  console.table(filteredTeamData);
   return (
-    <div className='dashboardBottomCards border border-black/20 rounded-lg p-4 flex flex-col gap-3'>
-       <div className='flex justify-between'>
-        <h1 className='font-bold text-xl'>Team On Site</h1>
-        <button className='text-sm text-[#ff4800]'>View All</button>
+    <div className="dashboardBottomCards border border-black/20 rounded-lg p-4 flex flex-col gap-3">
+      <div className="flex justify-between">
+        <h1 className="font-bold text-xl">Team On Site</h1>
+        <button className="text-sm text-[#ff4800]">View All</button>
       </div>
 
-    <div className="flex flex-col gap-3">
-      {
-        teamOnSiteData.map((items, idx)=> {
-          return <div key={idx} className="flex justify-between items-center">
-            <div className="flex gap-3 items-center">
-              <div className="bg-black/20 p-2 rounded-full">{items.img}</div>
-              <div>
-                <h1 className="font-bold text-sm">{items.name}</h1>
-                <p className="text-[12px] text-black/60">{items.field}</p>
+      <div className="flex flex-col gap-3">
+        {filteredTeamData.map((items, idx) => {
+          return (
+            <div key={idx} className="flex justify-between items-center">
+              <div className="flex gap-3 items-center">
+                <div className="rounded-full w-10 h-10 overflow-hidden">
+                  <img src={items.url} alt={items.tmName} />
+                </div>
+                <div>
+                  <h1 className="font-bold text-sm">{items.tmName}</h1>
+                  <p className="text-[12px] text-black/60">{items.tmRole}</p>
+                </div>
               </div>
+              <div
+                className={`w-2 h-2 rounded-full ${items.isPresent ? "bg-[green]" : "bg-[red]"}`}
+              ></div>
             </div>
-            <div className={`w-2 h-2 rounded-full ${items.isPresent ? "bg-[green]": "bg-[red]"}`}></div>
-          </div>
-        })
-      }
+          );
+        })}
+      </div>
     </div>
-
-    </div>
-  )
-}
-export default TeamonSitepre
+  );
+};
+export default TeamonSitepre;

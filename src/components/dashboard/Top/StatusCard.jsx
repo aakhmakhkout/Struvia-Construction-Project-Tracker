@@ -39,11 +39,11 @@ const StatusCard = () => {
   const totalTasksLength =
     currentProjectTasks.length > 0 ? currentProjectTasks.length : 0;
 
-  const activeWorkers = dashboardProjectData.team.filter((items) => {
-    return items.tmStatus === "Active";
-  });
-  const onSiteWorkers = activeWorkers.length;
-  console.log(activeWorkers);
+  // const teamOnSite = dashboardProjectData.team.filter((items) => {
+  //   return items.tmStatus === "Active";
+  // });
+  const teamOnSite = dashboardProjectData.team.length;
+  // console.log(activeWorkers);
 
   const totalBudget = parseInt(dashboardProjectData.budget);
   const budgetRemaining = totalBudget - 1245000;
@@ -69,7 +69,7 @@ const StatusCard = () => {
     {
       id: 3,
       title: "On Site",
-      data: onSiteWorkers,
+      data: teamOnSite,
       subtitle: "Workers",
       icon: <Users size={20} strokeWidth={1.5} />,
       color: "#2f71e6",
