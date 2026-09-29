@@ -12,7 +12,7 @@ const Dashboard = () => {
   const { recentupdates } = useSelector((state) => state.updates);
   const { todoTasks } = useSelector((state) => state.tasks);
   const { albumdata } = useSelector((state) => state.photos);
-  // console.log(contractorDashboardData);
+  console.log(contractorDashboardData);
   // console.log(recentupdates);
   // console.log(todoTasks);
   // console.log(albumdata);
