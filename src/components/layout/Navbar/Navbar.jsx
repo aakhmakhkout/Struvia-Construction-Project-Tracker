@@ -29,12 +29,12 @@ const Navbar = () => {
   }
 
   function getSelectedProject(projectId) {
-    setselectedProject((prev) => {
-      return project_data_navbar.find((items) => {
-        return items.projectid === projectId;
-      });
-    });
-    dispatch(setCDdata(selectedProject));
+    // setselectedProject((prev) => {
+    //   return project_data_navbar.find((items) => {
+    //     return items.projectid === projectId;
+    //   });
+    // });
+    dispatch(setCDdata(projectId));
   }
 
   const selectedProjectData = useSelector(
