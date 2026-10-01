@@ -5,7 +5,7 @@ import { Bell, ChevronDown } from "lucide-react";
 import { setUser } from "../../../redux/features/authSlice";
 import { getRole } from "../../../redux/features/authSlice";
 import { selectProject } from "../../../redux/projectSelectors";
-import { setCDdata } from "../../../redux/features/projectsSlice";
+import { setNavbarProId } from "../../../redux/features/projectsSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const Navbar = () => {
     //     return items.projectid === projectId;
     //   });
     // });
-    dispatch(setCDdata(projectId));
+    dispatch(setNavbarProId(projectId));
   }
 
   const selectedProjectData = useSelector(

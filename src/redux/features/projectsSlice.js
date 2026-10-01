@@ -5,15 +5,15 @@ import { useSelector } from "react-redux";
 const projectsInitialData =
   JSON.parse(localStorage.getItem("projectsData")) || [];
 
-const initialContractorDashboardData =
-  JSON.parse(localStorage.getItem("CDdata")) || [];
+const initialnavbarProjectId =
+  JSON.parse(localStorage.getItem("NavbarId")) || [];
 
 export const projectsSlice = createSlice({
   name: "projects",
   initialState: {
     activeTab: "All Projects",
     projectsdata: projectsInitialData,
-    contractorDashboardData: initialContractorDashboardData,
+    navbarProjectId: initialnavbarProjectId,
   },
   reducers: {
     setActiveTab(state, action) {
@@ -23,12 +23,9 @@ export const projectsSlice = createSlice({
       state.projectsdata.push(action.payload);
       localStorage.setItem("projectsData", JSON.stringify(state.projectsdata));
     },
-    setCDdata(state, action) {
-      state.contractorDashboardData = action.payload;
-      localStorage.setItem(
-        "CDdata",
-        JSON.stringify(state.contractorDashboardData),
-      );
+    setNavbarProId(state, action) {
+      state.navbarProjectId = action.payload;
+      localStorage.setItem("NavbarId", JSON.stringify(state.navbarProjectId));
     },
     deleteProject(state, action) {
       const updatedProjectList = state.projectsdata.filter((items) => {
@@ -42,6 +39,6 @@ export const projectsSlice = createSlice({
   },
 });
 
-export const { setActiveTab, setProjectsData, setCDdata, deleteProject } =
+export const { setActiveTab, setProjectsData, setNavbarProId, deleteProject } =
   projectsSlice.actions;
 export default projectsSlice.reducer;
