@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Welcome from "../components/dashboard/Top/Welcome.jsx";
 import StatusCard from "../components/dashboard/Top/StatusCard.jsx";
 import ActivityFeed from "../components/dashboard/ActivityFeed/ActivityFeed.jsx";
@@ -8,20 +8,28 @@ import { userData } from "../data/usersData";
 // import { getRole } from "../redux/features/authSlice";
 
 const Dashboard = () => {
-  const { contractorDashboardData } = useSelector((state) => state.projects);
+  const { projectsdata, navbarProjectId } = useSelector(
+    (state) => state.projects,
+  );
   const { recentupdates } = useSelector((state) => state.updates);
   const { todoTasks } = useSelector((state) => state.tasks);
   const { albumdata } = useSelector((state) => state.photos);
-  console.log(contractorDashboardData);
+  console.log(navbarProjectId);
   // console.log(recentupdates);
   // console.log(todoTasks);
   // console.log(albumdata);
+  const contratorPageData =
+    projectsdata.length > 0
+      ? projectsdata.find((items) => {
+          return items.projectId === navbarProjectId;
+        })
+      : null;
 
   const contractorDashboardUpdates = recentupdates.filter((items) => {
-    return items.projectid === contractorDashboardData.projectid;
+    return items.projectid === contratorPageData?.projectid;
   });
   const contractorDashboardTasks = todoTasks.filter((items) => {
-    return items.PName === contractorDashboardData.projectid;
+    return items.PName === contratorPageData?.projectid;
   });
   // const contractorDashboardPhotos = todoTasks.filter((items) => {
   //   return items.projectid === contractorDashboardData.projectid;
@@ -29,14 +37,14 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Welcome location={contractorDashboardData.location} />
+      <Welcome location={contratorPageData?.location} />
       <StatusCard />
       <ActivityFeed
         recentActivity={contractorDashboardUpdates}
-        projectCover={contractorDashboardData.coverImgObj}
+        projectCover={contratorPageData?.coverImgObj}
         upcomingTasks={contractorDashboardTasks}
       />
-      <ExtraInformation team={contractorDashboardData.team} />
+      <ExtraInformation team={contratorPageData?.team} />
     </div>
   );
 };
