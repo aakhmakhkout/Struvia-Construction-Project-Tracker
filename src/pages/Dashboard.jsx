@@ -23,7 +23,7 @@ const Dashboard = () => {
       ? projectsdata.find((items) => {
           return items.projectId === navbarProjectId;
         })
-      : null;
+      : {};
 
   const contractorDashboardUpdates = recentupdates.filter((items) => {
     return items.projectid === contratorPageData?.projectid;
@@ -34,17 +34,18 @@ const Dashboard = () => {
   // const contractorDashboardPhotos = todoTasks.filter((items) => {
   //   return items.projectid === contractorDashboardData.projectid;
   // });
+  console.log(contratorPageData);
 
   return (
     <div>
       <Welcome location={contratorPageData?.location} />
-      <StatusCard />
+      <StatusCard data={contratorPageData} />
       <ActivityFeed
         recentActivity={contractorDashboardUpdates}
         projectCover={contratorPageData?.coverImgObj}
         upcomingTasks={contractorDashboardTasks}
       />
-      <ExtraInformation team={contratorPageData?.team} />
+      <ExtraInformation data={contratorPageData} />
     </div>
   );
 };
