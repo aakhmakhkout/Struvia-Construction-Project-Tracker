@@ -6,10 +6,10 @@ import {
   IndianRupee,
 } from "lucide-react";
 import { useSelector } from "react-redux";
-const StatusCard = () => {
-  const dashboardProjectData = useSelector(
-    (state) => state.projects.contractorDashboardData,
-  );
+const StatusCard = ({ data }) => {
+  // const dashboardProjectData = useSelector(
+  //   (state) => state.projects.contractorDashboardData,
+  // );
   const { todoTasks, inProgressTasks, inReviewTasks, completedTasks } =
     useSelector((state) => state.tasks);
   const allTasks = [
@@ -21,10 +21,10 @@ const StatusCard = () => {
   // console.log(allTasks);
 
   const currentProjectTasks = allTasks.filter((items) => {
-    return items.PName === dashboardProjectData.projectid;
+    return items.PName === data?.projectid;
   });
   const SelectedCompletedTasks = completedTasks.filter((items) => {
-    return items.PName === dashboardProjectData.projectid;
+    return items.PName === data?.projectid;
   });
   const progressData =
     currentProjectTasks.length > 0
@@ -34,7 +34,7 @@ const StatusCard = () => {
   // console.log(progressData);
   // console.log(currentProjectTasks);
 
-  console.log(dashboardProjectData);
+  console.log(data);
 
   const totalTasksLength =
     currentProjectTasks.length > 0 ? currentProjectTasks.length : 0;
@@ -42,17 +42,17 @@ const StatusCard = () => {
   // const teamOnSite = dashboardProjectData.team.filter((items) => {
   //   return items.tmStatus === "Active";
   // });
-  const teamOnSite = dashboardProjectData.team.length;
+  const teamOnSite = data?.team?.length;
   // console.log(activeWorkers);
 
-  const totalBudget = parseInt(dashboardProjectData.budget);
+  const totalBudget = parseInt(data?.budget);
   const budgetRemaining = totalBudget - 1245000;
   const dashboardStatusData = [
     {
       id: 1,
       title: "Project Progress",
       data: `${progressData}%`,
-      subtitle: dashboardProjectData.status,
+      subtitle: data?.status,
       icon: <CalendarCheck size={20} strokeWidth={1.5} />,
       color: "#fd4f0e",
       bgColor: "#fef2e3",
