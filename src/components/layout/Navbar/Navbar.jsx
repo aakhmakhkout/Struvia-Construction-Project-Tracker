@@ -14,9 +14,9 @@ const Navbar = () => {
   let { activeTab } = useSelector((state) => state.layout);
   const { role } = useSelector((state) => state.auth);
   const project_data_navbar = useSelector(selectProject);
-  const [selectedProject, setselectedProject] = useState(
-    project_data_navbar[0],
-  );
+  // const [selectedProject, setselectedProject] = useState(
+  //   project_data_navbar[0],
+  // );
   // console.log(selectedProject);
   // const { status, ProjectName } = useSelector((state) => state.dashboard);
   // console.log(project_data_navbar);
@@ -30,13 +30,13 @@ const Navbar = () => {
   }
 
   function getSelectedProject(projectId) {
-    setselectedProject((prev) => {
-      return project_data_navbar.find((items) => {
-        return items.projectid === projectId;
-      });
-    });
+    // setselectedProject((prev) => {
+    //   return project_data_navbar.find((items) => {
+    //     return items.projectid === projectId;
+    //   });
+    // });
 
-    dispatch(setNavbarProId(selectedProject.projectid));
+    dispatch(setNavbarProId(projectId));
   }
 
   // const selectedProjectData = useSelector(

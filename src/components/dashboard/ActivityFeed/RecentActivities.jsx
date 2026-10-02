@@ -40,7 +40,7 @@ const RecentActivities = ({ data, pc }) => {
                   <div className="w-[10%] h-full flex items-center justify-center">
                     <img
                       className="w-12 h-10 rounded-lg"
-                      src={items.coverImg.src}
+                      src={pc}
                       alt={items.coverImg.orginalName}
                     />
                   </div>
