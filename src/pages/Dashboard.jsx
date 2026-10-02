@@ -13,17 +13,18 @@ const Dashboard = () => {
   );
   const { recentupdates } = useSelector((state) => state.updates);
   const { todoTasks } = useSelector((state) => state.tasks);
-  const { albumdata } = useSelector((state) => state.photos);
-  console.log(navbarProjectId);
-  // console.log(recentupdates);
-  // console.log(todoTasks);
-  // console.log(albumdata);
+  // const { albumdata } = useSelector((state) => state.photos);
+  console.log("Navbar id = ", navbarProjectId);
+  console.log("Projects Data = ", projectsdata);
+
   const contratorPageData =
-    projectsdata.length > 0
+    projectsdata.length > 0 && navbarProjectId !== "empty"
       ? projectsdata.find((items) => {
-          return items.projectId === navbarProjectId;
+          return items.projectid === navbarProjectId;
         })
       : {};
+
+  console.log("contrator Page Data = ", contratorPageData);
 
   const contractorDashboardUpdates = recentupdates.filter((items) => {
     return items.projectid === contratorPageData?.projectid;
