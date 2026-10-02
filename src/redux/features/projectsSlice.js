@@ -6,7 +6,7 @@ const projectsInitialData =
   JSON.parse(localStorage.getItem("projectsData")) || [];
 
 const initialnavbarProjectId =
-  JSON.parse(localStorage.getItem("NavbarId")) || [];
+  JSON.parse(localStorage.getItem("NavbarId")) || "empty";
 
 export const projectsSlice = createSlice({
   name: "projects",

@@ -14,9 +14,10 @@ const Navbar = () => {
   let { activeTab } = useSelector((state) => state.layout);
   const { role } = useSelector((state) => state.auth);
   const project_data_navbar = useSelector(selectProject);
-  const [selectedProject, setselectedProject] = useState(
-    project_data_navbar[0],
-  );
+  // const [selectedProject, setselectedProject] = useState(
+  //   project_data_navbar[0],
+  // );
+  // console.log(selectedProject);
   // const { status, ProjectName } = useSelector((state) => state.dashboard);
   // console.log(project_data_navbar);
   // console.log(role);
@@ -34,12 +35,13 @@ const Navbar = () => {
     //     return items.projectid === projectId;
     //   });
     // });
+
     dispatch(setNavbarProId(projectId));
   }
 
-  const selectedProjectData = useSelector(
-    (state) => state.projects.contractorDashboardData,
-  );
+  // const selectedProjectData = useSelector(
+  //   (state) => state.projects.contractorDashboardData,
+  // );
   // console.log(selectedProjectData);
   return (
     <div>

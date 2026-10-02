@@ -34,7 +34,7 @@ const StatusCard = ({ data }) => {
   // console.log(progressData);
   // console.log(currentProjectTasks);
 
-  console.log(data);
+  // console.log(data);
 
   const totalTasksLength =
     currentProjectTasks.length > 0 ? currentProjectTasks.length : 0;

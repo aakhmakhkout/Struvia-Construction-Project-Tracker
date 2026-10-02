@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 
 const TeamonSitepre = ({ teamData }) => {
-  console.log(teamData);
-  const teamOnSiteData = useSelector((state) => state.dashboard.teamOnSite);
+  const teamList = teamData.team;
+  // console.log(teamData);
   const filteredTeamData =
-    teamData.length > 0 ? [...teamData].reverse().slice(0, 4) : [];
-  console.table(filteredTeamData);
+    teamList.length > 0 ? [...teamList].reverse().slice(0, 4) : [];
+  // console.table(filteredTeamData);
   return (
     <div className="dashboardBottomCards h-full border border-black/20 rounded-lg p-4 flex flex-col gap-3">
       <div className="flex justify-between">
