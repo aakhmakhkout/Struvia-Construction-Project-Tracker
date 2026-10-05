@@ -22,9 +22,10 @@ const Dashboard = () => {
     return items.role === role;
   });
 
-  const cw_project = projectsdata.find((items) => {
-    return items.client === current_user.email ? items : {};
-  });
+  const cw_project =
+    projectsdata.find((items) => {
+      return items.client === current_user.email;
+    }) || {};
 
   console.log(current_user);
   console.log(cw_project);
@@ -37,6 +38,7 @@ const Dashboard = () => {
           return items.projectid === navbarProjectId;
         })
       : {};
+
   const contratorPageData = role === "Contractor" ? filteredData : cw_project;
 
   // console.log("contrator Page Data = ", contratorPageData);
