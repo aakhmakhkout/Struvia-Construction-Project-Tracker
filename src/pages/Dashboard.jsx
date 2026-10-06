@@ -27,9 +27,6 @@ const Dashboard = () => {
       return items.client === current_user.email;
     }) || {};
 
-  console.log(current_user);
-  console.log(cw_project);
-
   // const currentDashboardData =
 
   const filteredData =
