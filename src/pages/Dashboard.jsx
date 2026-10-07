@@ -11,12 +11,8 @@ const Dashboard = () => {
   const { projectsdata, navbarProjectId } = useSelector(
     (state) => state.projects,
   );
-  console.log(projectsdata);
   const { recentupdates } = useSelector((state) => state.updates);
   const { todoTasks } = useSelector((state) => state.tasks);
-  // const { albumdata } = useSelector((state) => state.photos);
-  // console.log("Navbar id = ", navbarProjectId);
-  // console.log("Projects Data = ", projectsdata);
   const role = useSelector((state) => state.auth.role);
   const current_user = userData.find((items) => {
     return items.role === role;
@@ -27,8 +23,6 @@ const Dashboard = () => {
       return items.client === current_user.email;
     }) || {};
 
-  // const currentDashboardData =
-
   const filteredData =
     projectsdata.length > 0 && navbarProjectId !== "empty"
       ? projectsdata.find((items) => {
@@ -37,8 +31,6 @@ const Dashboard = () => {
       : {};
 
   const contratorPageData = role === "Contractor" ? filteredData : cw_project;
-
-  // console.log("contrator Page Data = ", contratorPageData);
 
   const contractorDashboardUpdates = recentupdates.filter((items) => {
     return items.projectid === contratorPageData?.projectid;
