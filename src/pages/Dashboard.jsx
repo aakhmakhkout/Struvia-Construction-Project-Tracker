@@ -6,6 +6,7 @@ import ExtraInformation from "../components/dashboard/Bottom/ExtraInformation.js
 import { useSelector } from "react-redux";
 import { userData } from "../data/usersData";
 // import { getRole } from "../redux/features/authSlice";
+import ContractorDashboardData from "../redux/ContractorDashboardData.jsx";
 
 const Dashboard = () => {
   const { projectsdata, navbarProjectId } = useSelector(
@@ -13,25 +14,25 @@ const Dashboard = () => {
   );
   const { recentupdates } = useSelector((state) => state.updates);
   const { todoTasks } = useSelector((state) => state.tasks);
-  const role = useSelector((state) => state.auth.role);
-  const current_user = userData.find((items) => {
-    return items.role === role;
-  });
+  // const role = useSelector((state) => state.auth.role);
+  // const current_user = userData.find((items) => {
+  //   return items.role === role;
+  // });
 
-  const cw_project =
-    projectsdata.find((items) => {
-      return items.client === current_user.email;
-    }) || {};
+  // const cw_project =
+  //   projectsdata.find((items) => {
+  //     return items.client === current_user.email;
+  //   }) || {};
 
-  const filteredData =
-    projectsdata.length > 0 && navbarProjectId !== "empty"
-      ? projectsdata.find((items) => {
-          return items.projectid === navbarProjectId;
-        })
-      : {};
+  // const filteredData =
+  //   projectsdata.length > 0 && navbarProjectId !== "empty"
+  //     ? projectsdata.find((items) => {
+  //         return items.projectid === navbarProjectId;
+  //       })
+  //     : {};
 
-  const contratorPageData = role === "Contractor" ? filteredData : cw_project;
-
+  // const contratorPageData = role === "Contractor" ? filteredData : cw_project;
+  const contratorPageData = ContractorDashboardData();
   const contractorDashboardUpdates = recentupdates.filter((items) => {
     return items.projectid === contratorPageData?.projectid;
   });
@@ -41,7 +42,7 @@ const Dashboard = () => {
   // const contractorDashboardPhotos = todoTasks.filter((items) => {
   //   return items.projectid === contractorDashboardData.projectid;
   // });
-  console.log(contratorPageData);
+  // console.log(contratorPageData);
 
   return (
     <div>
