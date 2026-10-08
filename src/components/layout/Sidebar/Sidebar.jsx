@@ -4,12 +4,15 @@ import { House, Building, ClipboardCheck, Image, List } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { setActiveTab } from "../../../redux/features/layoutSlice";
+import ContractorDashboardData from "../../../redux/ContractorDashboardData";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
   const { projectsdata, navbarProjectId } = useSelector(
     (state) => state.projects,
   );
+  const contractorPageData = ContractorDashboardData();
+  console.log(contractorPageData);
   const activeTab = useSelector((state) => state.layout.activeTab);
   const PageTabs = [
     {
