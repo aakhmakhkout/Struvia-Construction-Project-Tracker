@@ -42,7 +42,6 @@ const Dashboard = () => {
   // const contractorDashboardPhotos = todoTasks.filter((items) => {
   //   return items.projectid === contractorDashboardData.projectid;
   // });
-  // console.log(contratorPageData);
 
   return (
     <div>
