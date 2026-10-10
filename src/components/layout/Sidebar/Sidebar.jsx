@@ -8,9 +8,28 @@ import ContractorDashboardData from "../../../redux/ContractorDashboardData";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
-  const { projectsdata, navbarProjectId } = useSelector(
-    (state) => state.projects,
-  );
+  // const { projectsdata, navbarProjectId } = useSelector(
+  //   (state) => state.projects,
+  // );
+  const { todoTasks, inProgressTasks, inReviewTasks, completedTasks } =
+    useSelector((state) => state.tasks);
+  const allTasks = [
+    ...todoTasks,
+    ...inProgressTasks,
+    ...inReviewTasks,
+    ...completedTasks,
+  ];
+  const currentProjectTasks = allTasks.filter((items) => {
+    return items.PName === data?.projectid;
+  });
+  const SelectedCompletedTasks = completedTasks.filter((items) => {
+    return items.PName === data?.projectid;
+  });
+  const progressData =
+    currentProjectTasks.length > 0
+      ? (SelectedCompletedTasks.length / currentProjectTasks.length) * 100
+      : 0;
+
   const contractorPageData = ContractorDashboardData();
   console.log(contractorPageData);
   const activeTab = useSelector((state) => state.layout.activeTab);
@@ -82,13 +101,15 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className="mb-20">
-        <h1>Project Progress</h1>
-        <p>58%</p>
-
+      <div className="mb-20 flex flex-col gap-3">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-xl font-bold">Project Progress</h1>
+          <p className="text-4xl font-bold">{progressData}%</p>
+        </div>
+        <div className="w-[90%] h-0.5 bg-white/10"></div>
         <div>
-          <h1>End Date</h1>
-          <p>20 aug, 2026</p>
+          <h1 className="text-lg">End Date</h1>
+          <p className="text-xl">{contractorPageData.endate}</p>
         </div>
       </div>
     </div>
