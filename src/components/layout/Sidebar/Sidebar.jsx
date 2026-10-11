@@ -19,18 +19,18 @@ const Sidebar = () => {
     ...inReviewTasks,
     ...completedTasks,
   ];
+  const contractorPageData = ContractorDashboardData();
   const currentProjectTasks = allTasks.filter((items) => {
-    return items.PName === data?.projectid;
+    return items.PName === contractorPageData?.projectid;
   });
   const SelectedCompletedTasks = completedTasks.filter((items) => {
-    return items.PName === data?.projectid;
+    return items.PName === contractorPageData?.projectid;
   });
   const progressData =
     currentProjectTasks.length > 0
       ? (SelectedCompletedTasks.length / currentProjectTasks.length) * 100
       : 0;
 
-  const contractorPageData = ContractorDashboardData();
   console.log(contractorPageData);
   const activeTab = useSelector((state) => state.layout.activeTab);
   const PageTabs = [
@@ -109,7 +109,7 @@ const Sidebar = () => {
         <div className="w-[90%] h-0.5 bg-white/10"></div>
         <div>
           <h1 className="text-lg">End Date</h1>
-          <p className="text-xl">{contractorPageData.endate}</p>
+          <p className="text-xl">{contractorPageData?.endate}</p>
         </div>
       </div>
     </div>

@@ -33,6 +33,7 @@ const Dashboard = () => {
 
   // const contratorPageData = role === "Contractor" ? filteredData : cw_project;
   const contratorPageData = ContractorDashboardData();
+  console.log(contratorPageData);
   const contractorDashboardUpdates = recentupdates.filter((items) => {
     return items.projectid === contratorPageData?.projectid;
   });

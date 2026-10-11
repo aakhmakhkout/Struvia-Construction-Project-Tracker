@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 const TeamonSitepre = ({ teamData }) => {
-  const teamList = teamData.team;
+  const teamList = teamData?.team;
   // console.log(teamData);
   const filteredTeamData =
     teamList?.length > 0 ? [...teamList].reverse().slice(0, 4) : [];
